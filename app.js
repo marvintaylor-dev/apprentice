@@ -8,6 +8,7 @@ const engine = require('ejs-mate');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const User = require('./models/user');
+const Mentor = require('./models/user')
 
 
 //connects Mongoose to Mongo database
@@ -31,28 +32,6 @@ db.once("open", () => {
     console.log("Database connected");
 });
 
-app.get('/makeuser', async (req, res) => {
-    const newUser = new User({
-        name: {
-            first: 'Dude',
-            last: 'Love'
-        },
-        email: 'duuuude@mail.com',
-        username: 'thegeneral',
-        password: 'bootydude',
-        age: 59,
-        occupation: 'hobo',
-        interest: 'WWF',
-        starting: 3,
-        location: {
-            city: 'Hoboken',
-            state: 'NJ',
-            zipcode: 56721
-        }
-    })
-    await newUser.save()
-    res.send(newUser)
-})
 
 
 //route to public folder
@@ -78,12 +57,23 @@ app.get('/signup', (req, res) => {
     res.render('users/signup')
 })
 
-app.post('/signup/:id', (req, res) => {
-    res.send('Hello')
-})
-
 app.get('/faq', (req, res) => {
     res.render('users/faq')
+})
+
+app.get('/explore', async (req, res) => {
+    const mentors = await Mentor.find({})
+    res.render('users/explore', { mentors })
+})
+
+app.get('/explore/:id', async (req, res) => {
+    const { id } = req.params
+    const mentor = await Mentor.findById(id);
+    res.render('users/show', { mentor })
+})
+
+app.get('/tiers', (req, res) => {
+    res.render('users/tiers')
 })
 
 app.listen(3000, () => {
@@ -92,22 +82,3 @@ app.listen(3000, () => {
 
 
 
-//fake user template
-/* const newUser = new User({
-        name: {
-            first: 'Marvin',
-            last: 'Taylor'
-        },
-        email: 'marvin@mailcom',
-        username: 'mrfunky',
-        password: 'cake',
-        age: 32,
-        occupation: 'bum',
-        interest: 'Web Dev',
-        starting: 3,
-        location: {
-            city: 'Las Vegas',
-            state: 'NV',
-            zipcode: 89108
-        }
-    }) */

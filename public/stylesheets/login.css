@@ -11,6 +11,12 @@
     margin-left: 25%;
     margin-right: 25%;
 }
+@media (max-width: 760px){
+    .card{
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
 
 .createProfile {
     padding: 2rem;

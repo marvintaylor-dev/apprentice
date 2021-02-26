@@ -1,0 +1,25 @@
+<% layout('layouts/boilerplate') %>
+<link rel="stylesheet" href="/stylesheets/show.css">
+
+<div class="container ">
+    <h1 class="header my-5">Explore By Subject</h1>
+    <div class="d-flex justify-content-center">
+        <div class="container">
+            <div class="row row-cols-2">
+                <div id="psychology" class="subject col">Psychology</div>
+                <div id="engineering" class="subject col">Engineering</div>
+                <div id="biology" class="subject col">Biology</div>
+                <div id="physics" class="subject col">Physics</div>
+                <div id="artisan" class="subject col">Artisan</div>
+                <div id="trades" class="subject col">Trades</div>
+                <div id="contentCreation" class="subject col">Content Creation</div>
+                <div id="business" class="subject col">Business</div>
+            </div>
+        </div>
+    </div>
+    <ul>
+        <% for (let mentor of mentors) {%>
+        <li><a href="/explore/<%=mentor._id%>"><%= mentor.name.first %> <%= mentor.name.last %></a> </li>
+        <% } %>
+    </ul>
+</div>

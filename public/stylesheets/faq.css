@@ -1,0 +1,23 @@
+body {
+    height: 200%;
+    background: linear-gradient(180deg, #393939 0%, #06070c 100%);
+}
+
+h2 {
+    color: #21D883;
+}
+
+dt {
+    font-size: 1.2rem;
+    color: white;
+}
+
+dd {
+    color: rgb(237, 237, 237);
+    margin-bottom: 3rem;
+}
+
+#brand {
+    color: #96EAC3;
+    font-weight: bold;
+}

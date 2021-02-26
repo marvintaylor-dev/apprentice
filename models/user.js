@@ -26,7 +26,7 @@ const userSchema = new Schema({
         required: true,
     },
     age: {
-        type: Number,
+        type: String,
         required: true,
     },
     occupation: {
@@ -57,4 +57,39 @@ const userSchema = new Schema({
     }
 })
 
-module.exports = mongoose.model('User', userSchema)
+const User = mongoose.model('User', userSchema)
+
+
+const mentorSchema = new Schema({
+    job_title: {
+        type: String,
+        required: true
+    },
+    name: {
+        first: {
+            type: String,
+            required: true
+        },
+        last: {
+            type: String,
+            required: true
+        }
+    },
+    salary: {
+        type: String,
+    },
+    job_description: {
+        type: String
+    },
+    education_required: {
+        type: String
+    },
+    field_of_study: {
+        type: String
+    }
+})
+
+const Mentor = mongoose.model('Mentor', mentorSchema)
+
+module.exports = User;
+module.exports = Mentor;
