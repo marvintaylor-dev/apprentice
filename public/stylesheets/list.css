@@ -4,3 +4,20 @@ body {
     color: white;
 }
 
+
+ul {
+    list-style-type: none;
+    margin-left: 0;
+    padding: 0;
+}
+
+.list_of_mentors {
+    text-decoration: none;
+    color: #96EAC3;
+    font-size: 2rem;
+    transition: all .2s;
+}
+
+.list_of_mentors:hover {
+    color: #21D883;
+}

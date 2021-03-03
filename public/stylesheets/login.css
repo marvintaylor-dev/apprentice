@@ -25,12 +25,18 @@ body {
     align-items: center;
     background-color:  rgba(242, 242, 242, 0.872);
     margin-top: 2rem;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 30%;
+    margin-right: 30%;
     margin-bottom: 5rem;
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: 2px 2px 20px 10px rgba(0, 0, 0, 0.2);
+}
+@media (max-width: 1232px){
+    #login-card{
+        margin-left: 20%;
+        margin-right: 20%;
+    }
 }
 @media (max-width: 760px){
     #login-card{
