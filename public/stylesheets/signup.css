@@ -1,70 +1,59 @@
 body {
-    height: 150vh;
-    background-image: linear-gradient(180deg, #39393980 0%, #06070ca1 100%),
-    url(https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1287&q=80);
-    background-size: cover;
-    background-position: bottom;
+    height: 200%;
+    background: linear-gradient(180deg, #393939 0%, #06070c 100%);
 }
 
-h1 {
-    border-bottom: 3px solid #21D883;
+#header {
+    color: white;
 }
 
-.card {
+.contained {
     display: flex;
-    justify-content: center;
     align-items: center;
-    background-color:  rgba(242, 242, 242, 0.872);
-    margin-top: 2rem;
-    margin-left: 20%;
-    margin-right: 20%;
-    margin-bottom: 5rem;
-    padding: 2rem;
-    border-radius: 1rem;
-    box-shadow: 2px 2px 20px 10px rgba(0, 0, 0, 0.2);
-}
-@media (max-width: 760px){
-    .card{
-        margin-left: 5%;
-        margin-right: 5%;
-    }
+    justify-content: center;
+    margin: 4rem;
+    padding: 1rem;
 }
 
-label{
+.category {
+    width: 20rem;
+    height: 40rem;
+    background-position: left;
+    background-size: cover;
+    border: 2px solid #21D883;
+    transition: all;
+    transition-duration: .2s;
+}
+
+.category:hover {
+    cursor: pointer;
+    border: 3px solid yellow;
+    transform: translateY(-10px);
+    box-shadow: yellow;
+}
+
+
+.category_title {
+    font-size: 3rem;
     font-weight: bold;
+    color: white;
+    transition: all;
+    transition-duration: .2s;
 }
 
-.btn-primary {
-    background-color: #21D883;
-    border: none;
-    border-radius: 3rem;
-    margin-top: 2rem;
+.category_title:hover {
+    font-size: 3.5rem;
 }
 
-.active {
-    font-weight: bold;
-    color: orange;
+#mentorButton {
+    background-image: linear-gradient(180deg, #39393980 0%, #06070c82 100%),
+    url(https://images.unsplash.com/photo-1608403689838-a9014243d151?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80);
 }
 
-.nav-link:hover,
-.nav-link-active:hover {
-    border-bottom: 3px solid white;
+#menteeButton{
+    background-image: linear-gradient(180deg, #39393980 0%, #06070c82 100%),
+    url(https://images.unsplash.com/photo-1596496638503-0980ae36f17a?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1500&q=80);
 }
 
-#brand {
-    color: #96EAC3;
-    font-weight: bold;
-}
 
-#welcome-msg{
-    color: #96eac3;
-}
 
-.section {
-    padding: .5rem;
-}
-
-.btn-info {
-    background-color: gainsboro;
-    border: none;
-}

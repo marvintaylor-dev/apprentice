@@ -43,6 +43,8 @@ app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 //route to views folder
 app.set('views', path.join(__dirname, 'views'));
+//allows me to parse information from the body of the POST request
+app.use(express.urlencoded({ extended: true }))
 
 
 app.get('/', (req, res) => {
@@ -57,23 +59,41 @@ app.get('/signup', (req, res) => {
     res.render('users/signup')
 })
 
-app.get('/faq', (req, res) => {
-    res.render('users/faq')
+app.get('/mentee', (req, res) => {
+    res.render('users/mentee')
 })
 
-app.get('/explore', async (req, res) => {
-    const mentors = await Mentor.find({})
-    res.render('users/explore', { mentors })
+app.get('/mentor', (req, res) => {
+    res.render('users/mentor')
 })
+
+app.get('/faq', (req, res) => {
+    res.render('explore/faq')
+})
+
+app.get('/explore', (req, res) => {
+    res.render('explore/explore')
+})
+
+app.get('/list', async (req, res) => {
+    const mentors = await Mentor.find({})
+    res.render('explore/list', { mentors })
+})
+
 
 app.get('/explore/:id', async (req, res) => {
     const { id } = req.params
     const mentor = await Mentor.findById(id);
-    res.render('users/show', { mentor })
+    res.render('explore/show', { mentor })
 })
 
 app.get('/tiers', (req, res) => {
-    res.render('users/tiers')
+    res.render('explore/tiers')
+})
+
+app.post('/tiers', (req, res) => {
+    console.log(req.body)
+    res.send('new mentor')
 })
 
 app.listen(3000, () => {

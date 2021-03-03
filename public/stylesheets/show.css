@@ -2,10 +2,7 @@ body {
     height: 200%;
     background: linear-gradient(180deg, #393939 0%, #06070c 100%);
 }
-#brand {
-    color: #96EAC3;
-    font-weight: bold;
-}
+
 
 .header {
     color: #21D883;
@@ -59,7 +56,8 @@ body {
 
 .subject:hover {
     border: 3px solid #ecff8b;
-    font-size: 4rem;
+    font-size: 3.5rem;
+    cursor: pointer;
 }
 
 #psychology {
@@ -94,6 +92,8 @@ body {
     background-image: linear-gradient(180deg, #39393980 0%, #06070c82 100%),
     url(https://images.unsplash.com/photo-1577415124269-fc1140a69e91?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1300&q=80);
 }
+
+
 
 
 /* .mentors::before {

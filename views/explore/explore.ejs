@@ -1,0 +1,25 @@
+<% layout('layouts/boilerplate') %>
+<link rel="stylesheet" href="/stylesheets/show.css">
+
+<div class="d-flex justify-content-center">
+    <h1 class="header my-5">Explore By Subject</h1>
+</div>
+
+<div class="container d-flex justify-content-center">
+    <div class="d-flex justify-content-center">
+        <div class="container">
+            <form action="/list" method="GET">
+                <div class="row row-cols-2 justify-content-center">
+                    <button id="psychology" class="subject col">Psychology</button>
+                    <button id="engineering" class="subject col">Engineering</button>
+                    <button id="biology" class="subject col">Biology</button>
+                    <button id="physics" class="subject col">Physics</button>
+                    <button id="artisan" class="subject col">Arts</button>
+                    <button id="trades" class="subject col">Trades</button>
+                    <button id="contentCreation" class="subject col">Content Creation</button>
+                    <button id="business" class="subject col">Business</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

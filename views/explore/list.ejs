@@ -1,0 +1,11 @@
+<% layout('layouts/boilerplate') %>
+<link rel="stylesheet" href="/stylesheets/list.css">
+
+<h1>Mentors</h1>
+<ul>
+    <% for (let mentor of mentors) {%>
+    <li><a href="/explore/<%=mentor._id%>"><%= mentor.name.first %> <%= mentor.name.last %></a>
+        <%= mentor.field_of_study  %>
+    </li>
+    <% } %>
+</ul>
