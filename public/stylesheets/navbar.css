@@ -1,0 +1,12 @@
+#brand {
+    color: #96EAC3;
+    font-weight: bold;
+}
+
+.nav-link {
+    transition: all .2s;
+}
+
+.nav-link:hover {
+    border-bottom: 2px solid #96EAC3;
+}

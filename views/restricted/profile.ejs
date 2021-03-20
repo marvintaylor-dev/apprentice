@@ -1,0 +1,149 @@
+<% layout('/layouts/boilerplate')  %>
+<link rel="stylesheet" href="/stylesheets/profile.css">
+
+
+<div class="container">
+    <div class="profile_container d-flex justify-content-start my-5">
+        <h1>Edit Profile</h1>
+    </div>
+
+    <form action="/restricted/<%= mentor._id%>?_method=PUT" method="POST">
+        <div class="profile_info">
+            <h2><%= mentor.name.first %> <%= mentor.name.last %> </h2>
+            <div class="pic_container">
+                <div id="profile_picture"> <%= mentor.profile_picture %> </div>
+            </div>
+            <div class="row g-3 section">
+                <label for="firstname" class="form-label col-sm">Name</label>
+                <div class="col-md-4">
+                    <input type="text" id="firstname" name="name.first" placeholder="First Name" class="form-control"
+                        aria-label="First name" value="<%=mentor.name.first%>">
+                </div>
+                <div class="col-md-4">
+                    <input type="text" id="lastname" name="name.last" placeholder="Last Name" class="form-control"
+                        aria-label="Last name" value="<%=mentor.name.last%>">
+                </div>
+
+            </div>
+            <div class="row g-3 section">
+                <label for="email" class="form-label col-4">Email</label>
+                <div class="col-md-8">
+                    <input type="email" id="email" name="email" placeholder="username@email.com" class="form-control"
+                        aria-label="Email" value="<%=mentor.email%>">
+                </div>
+            </div>
+            <div class="row g-3 section">
+                <label for="username" class="form-label col-sm">Username</label>
+                <div class="col-md-8">
+                    <input type="username" id="username" name="username" placeholder="username" class="form-control"
+                        aria-label="username" value="<%=mentor.username%>">
+                </div>
+            </div>
+
+            <div class="row g-3 section">
+                <label for="age" class="form-label col-4">Age</label>
+                <div class="col-md-8">
+                    <input class="age" type="text" name="age" id="age" placeholder="Enter your age" aria-label="Age"
+                        value="<%=mentor.age%>">
+                </div>
+            </div>
+            <div class=" row g-3 section">
+                <label for="formFileSm" class="form-label col-sm">Upload Profile Picture</label>
+                <div class="col-md-8">
+                    <input class="form-control form-control-Sm" name="profile_pic" id="formFileSm" type="file">
+                </div>
+            </div>
+            <div class="row g-3 section">
+                <label for="tier" class="form-label col-sm">Tier</label>
+                <div class="col-md-8">
+                    <select name="tier" id="tier" class="form-control">
+                        <% for(let tier of tiers) {%>
+                        <option value="<%= tier %>" <%= mentor.tier === tier ? 'selected' : ''%>><%= tier %></option>
+                        <% } %>
+                    </select>
+                </div>
+            </div>
+            <div class="row g-3 section">
+                <label for="jobTitle" class="form-label col-sm">Job Title</label>
+                <div class="col-md-8">
+                    <input type="jobTitle" id="jobTitle" name="job_title" placeholder="Job Title" class="form-control"
+                        aria-label="jobTitle" value="<%=mentor.job_title%>">
+                </div>
+            </div>
+            <div class="row g-3 section">
+                <label for="jobDescription" class="form-label col-sm">Job Description</label>
+                <div class="col-md-8">
+                    <textarea id="jobDescription" name="job_description" placeholder="Job Description" rows="5"
+                        cols="100" aria-label=" jobDescription"><%=mentor.job_description%>
+                </textarea>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="row g-3 section">
+                    <label for="field_of_study" class="form-label col-sm">Field of Study</label>
+                    <div class="col-md-8">
+                        <select name="field_of_study" id="field_of_study" class="form-label">
+                            <% for(let field of fields) { %>
+                            <option value="<%= field %>" <%= mentor.field_of_study === field ? 'selected' : ''%>>
+                                <%= field %>
+                            </option>
+                            <% } %>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="row g-3 section">
+                    <label for="salary" class="form-label col-sm">Salary</label>
+                    <div class="col-md-8">
+                        <input type="salary" id="salary" name="salary" placeholder="Average salary" class="form-control"
+                            aria-label="salary" value="<%=mentor.salary%>">
+                    </div>
+                </div>
+            </div>
+            <div class="row g-3 section">
+                <label for="education_required" class="form-label col-4">Education Required</label>
+                <div class="col-md-8">
+                    <input class="education_required form-control" type="text" name="education_required"
+                        id="education_required" placeholder="Education Required" aria-label="Education Required"
+                        value="<%=mentor.education_required%>">
+                </div>
+            </div>
+
+            <div class="row g-3 section">
+                <label class="form-label col-4" for="location">Location</label>
+                <div class="col-sm-5">
+                    <input type="text" id="city" name="location.city" class="form-control" placeholder="City"
+                        aria-label="City" value="<%=mentor.location.city%>">
+                </div>
+                <div class="col-sm">
+                    <select id="state" name="location.state" class="form-control" aria-label="State"
+                        value="<%=mentor.location.state%>">
+                        <% for(let state of states) { %>
+                        <option value="<%=state%>" <%= mentor.location.state === state ? 'selected' : '' %>>
+                            <%= state %>
+                        </option>
+                        <% } %>
+                    </select>
+                </div>
+                <div class="col-sm">
+                    <input type="text" name="location.zip" class="form-control" placeholder="Zip" aria-label="Zip"
+                        value="<%=mentor.location.zip%>">
+                </div>
+            </div>
+
+
+            <div class="buttons">
+                <button id="edit" class="btn btn-info">Submit Changes</button>
+            </div>
+
+        </div>
+    </form>
+    <div class="buttons">
+        <form action="/restricted/<%=mentor._id%>?_method=DELETE" method="POST">
+            <button id="delete" class="btn btn-danger">Delete Profile</button>
+        </form>
+    </div>
+
+</div>

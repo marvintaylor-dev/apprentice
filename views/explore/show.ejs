@@ -1,0 +1,66 @@
+<% layout('layouts/boilerplate') %>
+<link rel="stylesheet" href="/stylesheets/explore.css">
+
+<div class="container">
+    <div class="header mt-5 d-flex justify-content-center">
+        <h1><%= mentor.name.first %> <%= mentor.name.last %> </h1>
+    </div>
+    <div class="job-title d-flex justify-content-center mb-5">
+        <h2 id="job_title"><%= mentor.job_title.toUpperCase()  %> </h2>
+    </div>
+
+    <div class="mentorContainer d-flex justify-content-center">
+        <!-- mentor image -->
+        <div class="mentors"></div>
+    </div>
+    <div class="information">
+        <div class="profileInformation col-sm">
+            <div class="d-flex justify-content-center col-11">
+                <div class="job-description info-section">
+                    <h3>Job Description</h3>
+                    <p class="unique_info"><%= mentor.job_description %></p>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between">
+                <div class="compensation info-section">
+                    <h3>Annual Compensation</h3>
+                    <p class="unique_info">$<%= mentor.salary %></p>
+                </div>
+                <div class="education info-section">
+                    <h3>Education Requirements</h3>
+                    <p class="unique_info"> <%= mentor.education_required  %></p>
+                </div>
+                <div class="field info-section">
+                    <h3>Field</h3>
+                    <p class="unique_info"><%= mentor.field_of_study  %></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="button_container d-flex justify-content-end align-items-center">
+        <div class="me-5">
+            <button class="navigation btn btn-info me-3">Previous</button>
+            <button class="navigation btn btn-info">Next</button>
+        </div>
+        <button id="request_btn" class="btn btn-warning">Request Mentorship</button>
+    </div>
+
+
+    <div class="progress_bar_container">
+        <h3 class="text-white mb-4">9/10 Mentoring Slots Filled</h3>
+        <div class="progress">
+            <div class="progress-bar progress_color" role="progressbar" style="width: 90%;" aria-valuenow="9"
+                aria-valuemin="0" aria-valuemax="10"></div>
+        </div>
+    </div>
+    <div id="reviews" class="text-white">
+        <p>Mentor Reviews</p>
+    </div>
+    <div class="user_content text-white">
+        <div class="video">Video Content</div>
+    </div>
+
+</div>

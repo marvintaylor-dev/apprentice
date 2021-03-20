@@ -1,0 +1,117 @@
+<% layout('layouts/boilerplate') %>
+
+<link rel="stylesheet" href="/stylesheets/register.css">
+
+
+<div class="card">
+    <div class="container-sm">
+        <div class="d-flex justify-content-center">
+            <h1>Create a Mentor Profile</h1>
+        </div>
+        <div class="underlineContainer">
+            <div class="underline"></div>
+        </div>
+        <form action="/list" method="POST" class="row g-3 mt-3">
+            <div class="row g-3 section">
+                <label for="firstname" class="form-label col-sm">Name</label>
+                <div class="col-md-4">
+                    <input type="text" id="firstname" name="name.first" placeholder="First Name" class="form-control"
+                        aria-label="First name">
+                </div>
+                <div class="col-md-4">
+                    <input type="text" id="lastname" name="name.last" placeholder="Last Name" class="form-control"
+                        aria-label="Last name">
+                </div>
+
+            </div>
+            <div class="row g-3 section">
+                <label for="email" class="form-label col-4">Email</label>
+                <div class="col-md-8">
+                    <input type="email" id="email" name="email" placeholder="username@email.com" class="form-control"
+                        aria-label="Email">
+                </div>
+            </div>
+            <div class="row g-3 section">
+                <label for="username" class="form-label col-sm">Username</label>
+                <div class="col-md-8">
+                    <input type="username" name="username" id="username" placeholder="username" class="form-control"
+                        aria-label="username">
+                </div>
+            </div>
+            <div class="row g-3 section">
+                <label for="password" class="form-label col-sm">Password</label>
+                <div class="col-md-8">
+                    <input type="password" id="password" name="password" placeholder="*********" class="form-control"
+                        aria-label="password">
+                </div>
+            </div>
+            <div class="row g-3 section">
+                <label for="age" class="form-label col-4">Age</label>
+                <div class="col-md-8">
+                    <input class="age" type="text" name="age" id="age" placeholder="Enter your age" aria-label="Age">
+                </div>
+            </div>
+            <div class="row g-3 section">
+                <label for="formFileSm" class="form-label col-sm">Upload Profile Picture</label>
+                <div class="col-md-8">
+                    <input class="form-control form-control-Sm" name="profile_pic" id="formFileSm" type="file">
+                </div>
+            </div>
+            <div class="row g-3 section">
+                <label for="jobTitle" class="form-label col-sm">Job Title</label>
+                <div class="col-md-8">
+                    <input type="jobTitle" id="jobTitle" name="job_title" placeholder="Job Title" class="form-control"
+                        aria-label="jobTitle">
+                </div>
+            </div>
+            <div class="section">
+                <div class="row g-3 section">
+                    <label for="field_of_study" class="form-label col-sm">Field of Study</label>
+                    <select class="col form-control" name="field_of_study" id="field_of_study">
+                        <% for(let field of fields) { %>
+                        <option value="<%= field  %>"><%= field  %></option>
+                        <% } %>
+                    </select>
+                </div>
+            </div>
+            <div class="section">
+                <div class="row g-3 section">
+                    <label for="salary" class="form-label col-md">Salary</label>
+                    <input type="salary" id="salary" name="salary" placeholder="Average salary" class="col form-control"
+                        aria-label="salary">
+                </div>
+            </div>
+
+            <div class="row g-3 section">
+                <label for="city">Location</label>
+                <div class="col-sm-7">
+                    <input type="text" id="city" name="location.city" class="form-control" placeholder="City"
+                        aria-label="City">
+                </div>
+                <div class="col-sm">
+                    <select id="state" name="location.state" class="form-control" aria-label="State">
+                        <% for(let state of states) { %>
+                        <option value="<%= state %>"><%= state %></option>
+                        <% } %>
+                    </select>
+                </div>
+                <div class="col-sm">
+                    <input type="text" name="location.zip" class="form-control" placeholder="Zip" aria-label="Zip">
+                </div>
+            </div>
+
+
+            <div class="col-12 section d-flex justify-content-end">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck" required>
+                    <label class="form-check-label" for="gridCheck">
+                        I agree to Terms and Conditions
+                    </label>
+                </div>
+            </div>
+            <div class="col-12 mb-6 d-flex justify-content-end">
+                <button class="btn btn-primary">Create Profile</button>
+            </div>
+        </form>
+    </div>
+</div>
