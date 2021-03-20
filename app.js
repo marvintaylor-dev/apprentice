@@ -19,6 +19,8 @@ const states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Color
     'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia',
     'Wisconsin', 'Wyoming']
 
+const blah2 = "blah2"
+
 
 //connects Mongoose to Mongo database
 mongoose.connect('mongodb://localhost:27017/apprentice', {
