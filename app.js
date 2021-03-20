@@ -19,6 +19,7 @@ const states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Color
     'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia',
     'Wisconsin', 'Wyoming']
 
+const blah = "blah"
 
 //connects Mongoose to Mongo database
 mongoose.connect('mongodb://localhost:27017/apprentice', {
@@ -105,7 +106,7 @@ app.get('/explore', async (req, res) => {
 //show the list of mentors
 app.get('/list', async (req, res) => {
     const { field } = req.query
-    if (field === fields) {
+    if (field) {
         const mentors = await Mentor.find({ field })
         return res.render('explore/list', { mentors })
     } else {
@@ -113,7 +114,6 @@ app.get('/list', async (req, res) => {
         return res.render('explore/list', { mentors })
     }
 })
-
 
 
 //Mentor page from Mentee point of view
