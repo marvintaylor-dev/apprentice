@@ -1,4 +1,4 @@
-# apprenctice
+# apprentice
 A website to expose you to different professions and find personal mentoring
 
 The goal of Apprentice is to connect people of all ages to someone who is an introduction to what could be the profession of great interest
