@@ -1,6 +1,9 @@
 body {
-    height: 200%;
-    background: linear-gradient(180deg, #393939 0%, #06070c 100%);
+    height: 150%;
+    background-image:linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+    url(https://images.unsplash.com/photo-1591710635498-283fe28f75e2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1048&q=80);
+    background-size: cover;
+    background-position: center;
 }
 
 h2 {
@@ -11,8 +14,12 @@ dt {
     font-size: 1.2rem;
     color: white;
 }
-
-dd {
+.accordion,
+.accordion-button {
     color: rgb(237, 237, 237);
-    margin-bottom: 3rem;
 }
+
+.accordion-button {
+    border: 1px solid #21D883;
+}
+
