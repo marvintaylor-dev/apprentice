@@ -3,6 +3,10 @@ body {
     background: linear-gradient(180deg, #393939 0%, #0c0c06 100%);
 }
 
+a {
+    text-decoration: none;
+}
+
 
 .header {
     color: white;
