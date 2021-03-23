@@ -19,7 +19,6 @@ const states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Color
     'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia',
     'Wisconsin', 'Wyoming']
 
-
 //connects Mongoose to Mongo database
 mongoose.connect('mongodb://localhost:27017/apprentice', {
     useNewUrlParser: true,
@@ -113,7 +112,6 @@ app.get('/list', async (req, res) => {
         return res.render('explore/list', { mentors, field_of_study })
     }
 })
-
 
 
 //Mentor page from Mentee point of view

@@ -21,3 +21,7 @@ ul {
 .list_of_mentors:hover {
     color: #21D883;
 }
+
+#profile_access {
+   margin-left: 5rem;
+}
