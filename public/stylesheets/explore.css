@@ -5,8 +5,12 @@ body {
 
 a {
     text-decoration: none;
+    color: #21D883;
 }
 
+a:hover {
+    color: rgb(255, 218, 7);
+}
 
 .header {
     color: white;
