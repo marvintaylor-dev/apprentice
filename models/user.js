@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+//for schema validation
+const Joi = require('joi')
 
 
-const userSchema = new Schema({
+const userSchema = ({
     name: {
         first: {
             type: String,

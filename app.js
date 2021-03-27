@@ -26,14 +26,9 @@ const states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Color
     'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia',
     'Wisconsin', 'Wyoming']
 
-<<<<<<< HEAD
 
 //-----------MONGO / MONGOOSE DB CONNECTION-------------
 
-
-=======
->>>>>>> 4e2c3d80202033c58658b2a56594f7114bfd3637
-//connects Mongoose to Mongo database
 mongoose.connect('mongodb://localhost:27017/apprentice', {
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -71,7 +66,8 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 //allows me to parse information from the body of the POST request
 app.use(express.urlencoded({ extended: true }))
-app.use(morgan('dev'))
+//allows use of 'dev' version of morgan. 
+//app.use(morgan('dev'))
 
 
 
