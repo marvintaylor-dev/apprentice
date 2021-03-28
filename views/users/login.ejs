@@ -12,19 +12,19 @@
             <div class="underline"></div>
         </div>
 
-        <form class="row g-3 mt-3">
+        <form class="row g-3 mt-3 validated-form" novalidate>
             <div class="row g-3 section">
                 <label for="username" class="form-label col-md">Username</label>
                 <div class="col-md-8">
                     <input type="username" id="username" placeholder="username" class="form-control"
-                        aria-label="username">
+                        aria-label="username" required>
                 </div>
             </div>
             <div class="row g-3 section">
                 <label for="password" class="form-label col-md">Password</label>
                 <div class="col-md-8">
                     <input type="password" id="password" placeholder="*********" class="form-control"
-                        aria-label="password">
+                        aria-label="password" required>
                     <a href="/" class="forgotPassword d-flex justify-content-start">Forgot your Password?</a>
                 </div>
 
@@ -42,3 +42,5 @@
         </form>
     </div>
 </div>
+
+<script src="/javascripts/validation.js"></script>
