@@ -9,12 +9,17 @@ const engine = require('ejs-mate');
 const mongoose = require('mongoose');
 //provides a log for activity such as log in.
 const morgan = require('morgan')
-
 //access to our Mentor user model
 const Mentor = require('./models/user');
-
+//custom Error Handler
+const ExpressError = require('./utils/ExpressError')
+//error catching middleware for asyncronous functions
+const catchAsync = require('./utils/catchAsync');
+//access to schemas
+const { mentorSchema } = require('./schemas.js');
 //allows us to use PUT and DELETE requests 
 const methodOverride = require('method-override');
+const Joi = require('joi');
 
 //form information in the 'select' categories.
 const tiers = ['1', '2', '3'];
@@ -26,14 +31,9 @@ const states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Color
     'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia',
     'Wisconsin', 'Wyoming']
 
-<<<<<<< HEAD
 
 //-----------MONGO / MONGOOSE DB CONNECTION-------------
 
-
-=======
->>>>>>> 4e2c3d80202033c58658b2a56594f7114bfd3637
-//connects Mongoose to Mongo database
 mongoose.connect('mongodb://localhost:27017/apprentice', {
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -71,9 +71,19 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 //allows me to parse information from the body of the POST request
 app.use(express.urlencoded({ extended: true }))
-app.use(morgan('dev'))
+//allows use of 'dev' version of morgan. 
+//app.use(morgan('dev'))
 
-
+//Schema Validation
+const validateMentor = (req, res, next) => {
+    const { error } = mentorSchema.validate(req.body)
+    if (error) {
+        const msg = error.details.map(el => el.message).join(',')
+        throw new ExpressError(msg, 400)
+    } else {
+        next()
+    }
+}
 
 //-------------------WEB PAGES-----------------
 
@@ -104,12 +114,12 @@ app.get('/mentor/new', (req, res) => {
 })
 
 //create a new mentor
-app.post('/list', async (req, res) => {
+app.post('/list', validateMentor, catchAsync(async (req, res) => {
     const newMentor = new Mentor(req.body);
     await newMentor.save()
     console.log(req.body)
     return res.redirect('/list')
-})
+}))
 
 //mentee vs mentor page
 app.get('/faq', (req, res) => {
@@ -117,13 +127,13 @@ app.get('/faq', (req, res) => {
 })
 
 //show the list of academic subjects
-app.get('/explore', async (req, res) => {
+app.get('/explore', catchAsync(async (req, res) => {
     const mentors = await Mentor.find({})
     res.render('explore/explore', { fields, mentors })
-})
+}))
 
 //show the list of mentors
-app.get('/list', async (req, res) => {
+app.get('/list', catchAsync(async (req, res) => {
     const { field_of_study } = req.query
     if (field_of_study) {
         const mentors = await Mentor.find({ field_of_study })
@@ -132,15 +142,15 @@ app.get('/list', async (req, res) => {
         const mentors = await Mentor.find({})
         return res.render('explore/list', { mentors, field_of_study })
     }
-})
+}))
 
 
 //Mentor page from Mentee point of view
-app.get('/explore/:id', async (req, res) => {
+app.get('/explore/:id', catchAsync(async (req, res) => {
     const { id } = req.params
     const mentor = await Mentor.findById(id);
     res.render('explore/show', { mentor })
-})
+}))
 
 //tiers page explaining what tiers are 
 app.get('/tiers', (req, res) => {
@@ -148,32 +158,36 @@ app.get('/tiers', (req, res) => {
 })
 
 //Mentor profile access - should be restricted by permissions
-app.get('/restricted/:id', async (req, res) => {
+app.get('/restricted/:id', catchAsync(async (req, res) => {
     const { id } = req.params
     const mentor = await Mentor.findById(id);
     return res.render('restricted/profile', { mentor, fields, states, tiers })
-})
+}))
 
 //mentor additional profile information
-app.put('/restricted/:id', async (req, res) => {
+app.put('/restricted/:id', catchAsync(async (req, res) => {
     const { id } = req.params
     const edited = await Mentor.findByIdAndUpdate(id, req.body,
         { runValidators: true, new: true })
     return res.redirect('/list')
-})
+}))
 
 //deletion of a mentor
-app.delete('/restricted/:id', async (req, res) => {
+app.delete('/restricted/:id', catchAsync(async (req, res) => {
     const { id } = req.params
     const userDeleted = await Mentor.findByIdAndDelete(id)
     return res.redirect('/list')
+}))
+
+app.all('*', (req, res, next) => {
+    next(new ExpressError('Page Not Found', 404))
 })
 
-app.use((req, res) => {
-    res.status(404)
-    res.send('Not Found')
+app.use((err, req, res, next) => {
+    const { statusCode = 500 } = err;
+    if (!err.message) err.message = 'Oh no, something went wrong!'
+    res.status(statusCode).render('error', { err });
 })
-
 
 //---------------------LOCAL CONNECTION-----------------
 
