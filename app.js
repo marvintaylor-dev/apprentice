@@ -10,13 +10,15 @@ const mongoose = require('mongoose');
 //provides a log for activity such as log in.
 const morgan = require('morgan')
 //access to our Mentor user model
-const Mentor = require('./models/user');
+const Mentor = require('./models/mentor');
+//access to Review model
+const Review = require('./models/review');
 //custom Error Handler
 const ExpressError = require('./utils/ExpressError')
 //error catching middleware for asyncronous functions
 const catchAsync = require('./utils/catchAsync');
 //access to schemas
-const { mentorSchema } = require('./schemas.js');
+const { mentorSchema, reviewSchema } = require('./schemas.js');
 //allows us to use PUT and DELETE requests 
 const methodOverride = require('method-override');
 const Joi = require('joi');
@@ -85,6 +87,16 @@ const validateMentor = (req, res, next) => {
     }
 }
 
+const validateReview = (req, res, next) => {
+    const { error } = reviewSchema.validate(req.body)
+    if (error) {
+        const msg = error.details.map(el => el.message).join(',')
+        throw new ExpressError(msg, 400)
+    } else {
+        next()
+    }
+}
+
 //-------------------WEB PAGES-----------------
 
 
@@ -145,11 +157,15 @@ app.get('/list', catchAsync(async (req, res) => {
 }))
 
 
+
 //Mentor page from Mentee point of view
 app.get('/explore/:id', catchAsync(async (req, res) => {
     const { id } = req.params
-    const mentor = await Mentor.findById(id);
-    res.render('explore/show', { mentor })
+    const reviews = await Review.find({})
+    const mentor = await Mentor.findById(id).populate('reviews');
+    console.log(reviews)
+
+    res.render('explore/show', { mentor, reviews })
 }))
 
 //tiers page explaining what tiers are 
@@ -164,12 +180,24 @@ app.get('/restricted/:id', catchAsync(async (req, res) => {
     return res.render('restricted/profile', { mentor, fields, states, tiers })
 }))
 
-//mentor additional profile information
-app.put('/restricted/:id', catchAsync(async (req, res) => {
+//Update and edit mentor additional profile information
+app.put('/restricted/:id', validateMentor, catchAsync(async (req, res) => {
     const { id } = req.params
     const edited = await Mentor.findByIdAndUpdate(id, req.body,
         { runValidators: true, new: true })
     return res.redirect('/list')
+}))
+
+//create a new review
+app.post('/explore/:id/reviews', catchAsync(async (req, res) => {
+    const { id } = req.params
+    const mentor = await Mentor.findById(id);
+    const review = new Review(req.body.review)
+    mentor.reviews.push(review)
+    await review.save();
+    await mentor.save();
+    console.log(review)
+    return res.redirect(`/explore/${mentor._id}`);
 }))
 
 //deletion of a mentor

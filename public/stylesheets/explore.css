@@ -179,6 +179,13 @@ margin-bottom: 5rem;
     }
 }
 
+.mentee_slots {
+    width: 80%;
+}
+
+#mentee_slot_label {
+    font-size: 2rem;
+}
 
 /* .mentors::before {
     content: "<";
