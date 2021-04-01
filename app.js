@@ -139,7 +139,7 @@ app.get('/faq', (req, res) => {
 })
 
 //show the list of academic subjects
-app.get('/explore', catchAsync(async (req, res) => {
+app.get('/explore', validateReview, catchAsync(async (req, res) => {
     const mentors = await Mentor.find({})
     res.render('explore/explore', { fields, mentors })
 }))
@@ -156,15 +156,11 @@ app.get('/list', catchAsync(async (req, res) => {
     }
 }))
 
-
-
 //Mentor page from Mentee point of view
 app.get('/explore/:id', catchAsync(async (req, res) => {
     const { id } = req.params
     const reviews = await Review.find({})
     const mentor = await Mentor.findById(id).populate('reviews');
-    console.log(reviews)
-
     res.render('explore/show', { mentor, reviews })
 }))
 
@@ -196,8 +192,15 @@ app.post('/explore/:id/reviews', catchAsync(async (req, res) => {
     mentor.reviews.push(review)
     await review.save();
     await mentor.save();
-    console.log(review)
     return res.redirect(`/explore/${mentor._id}`);
+}))
+
+//delete a review
+app.delete('/explore/:id/reviews/:reviewId', catchAsync(async (req, res) => {
+    const { id, reviewId } = req.params;
+    await Mentor.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+    await Review.findByIdAndDelete(reviewId);
+    res.redirect(`/explore/${id}`)
 }))
 
 //deletion of a mentor

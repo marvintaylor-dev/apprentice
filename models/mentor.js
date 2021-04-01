@@ -2,8 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 //for schema validation
 const Joi = require('joi');
+const Review = require('./review');
 
-const mentorSchema = new Schema({
+const MentorSchema = new Schema({
     job_title: {
         type: String,
     },
@@ -72,7 +73,15 @@ const mentorSchema = new Schema({
     ]
 })
 
-const Mentor = mongoose.model('Mentor', mentorSchema)
+MentorSchema.post('findOneAndDelete', async function (doc) {
+    if (doc) {
+        await Review.deleteMany({
+            _id: {
+                $in: doc.reviews
+            }
+        })
+    }
+})
 
+module.exports = mongoose.model('Mentor', MentorSchema);
 
-module.exports = Mentor;

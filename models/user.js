@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const Joi = require('joi');
 
 
-const userSchema = new Schema({
+const UserSchema = new Schema({
     name: {
         first: {
             type: String,
@@ -59,9 +59,7 @@ const userSchema = new Schema({
     }
 })
 
-const User = mongoose.model('User', userSchema)
 
-
-module.exports = User;
+module.exports = mongoose.model('User', UserSchema)
 
 

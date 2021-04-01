@@ -55,16 +55,14 @@
             <label for="mentee_slots" id="mentee_slot_label" class="text-white">Mentoring Spots Available</label>
         </div>
         <input type="range" class="mentee_slots" id="mentee_slots" name="mentee_slots" min="0" max="10">
-        <!-- <div class="progress">
-            <div class="progress-bar progress_color" role="progressbar" style="width: 90%;" aria-valuenow="9"
-                aria-valuemin="0" aria-valuemax="10"></div>
-        </div> -->
     </div>
     <div id="reviews" class="text-white row justify-content-between">
         <div class="col-5">
-            <h5>Add a Review Below:</h5>
+            <h4 class="card-title">Leave Your Review Below:</h4>
             <form action="/explore/<%=mentor._id%>/reviews" method="POST" class="validated-form" novalidate>
                 <fieldset class="starability-basic">
+                    <input type="radio" id="no-rate" class="input-no-rate" name="review[score]" value="1" checked
+                        aria-label="No rating." />
                     <input type="radio" id="first-rate1" name="review[score]" value="1" />
                     <label for="first-rate1" title="Terrible">1 star</label>
                     <input type="radio" id="first-rate2" name="review[score]" value="2" />
@@ -76,8 +74,12 @@
                     <input type="radio" id="first-rate5" name="review[score]" value="5" />
                     <label for="first-rate5" title="Amazing">5 stars</label>
                 </fieldset>
-                <textarea class="mb-2 form-control" name="review[body]" id="review" cols="60" rows="5"
-                    required></textarea>
+                <div class="mb-3">
+                    <textarea class="form-control" name="review[body]" id="body" cols="60" rows="5" required></textarea>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
                 <div>
                     <button class="navigation btn btn-info mt-2">Submit Review</button>
                 </div>
@@ -85,13 +87,16 @@
         </div>
         <div class="col-5">
             <div>
-                <h3 class="card-title mb-3">Mentor Reviews</h3>
+                <h4 class="card-title mb-3">Mentor Reviews</h4>
                 <% for(let review of mentor.reviews) {%>
                 <div class="card bg-dark text-white p-3">
                     <p class="starability-result" data-rating="<%=review.score%>">
                         <%= review.score %>
                     </p>
                     <p class="reviewText card-text"><%= review.body %></p>
+                    <form action="/explore/<%= mentor._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
+                        <button class="btn btn-sm btn-danger">Delete</button>
+                    </form>
                 </div>
                 <% } %>
             </div>
@@ -103,3 +108,6 @@
 </div>
 
 </div>
+
+
+<script src="/javascripts/validation.js"></script>
