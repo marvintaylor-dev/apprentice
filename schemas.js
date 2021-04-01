@@ -18,9 +18,9 @@ module.exports.mentorSchema = Joi.object({
         .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
     age: Joi.number()
         .min(0),
+    profile_pic: Joi.any(),
     tier: Joi.string(),
-    salary: Joi.string()
-        .min(0),
+    salary: Joi.string(),
     location: Joi.object({
         city: Joi.string(),
         state: Joi.string(),
@@ -28,8 +28,13 @@ module.exports.mentorSchema = Joi.object({
     }),
     job_description: Joi.string()
         .label('Job Description'),
-    education_required: Joi.string()
+    education_required: Joi.any()
         .label('Education Required'),
     field_of_study: Joi.string()
         .label('Field of Study')
 })
+
+module.exports.reviewSchema = Joi.object({
+    score: Joi.number(),
+    body: Joi.string()
+}).required()

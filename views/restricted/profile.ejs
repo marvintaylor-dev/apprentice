@@ -16,11 +16,11 @@
             <div class="row g-3 section">
                 <label for="firstname" class="form-label col-sm">Name</label>
                 <div class="col-md-4">
-                    <input type="text" id="firstname" name="name.first" placeholder="First Name" class="form-control"
+                    <input type="text" id="firstname" name="name[first]" placeholder="First Name" class="form-control"
                         aria-label="First name" value="<%=mentor.name.first%>">
                 </div>
                 <div class="col-md-4">
-                    <input type="text" id="lastname" name="name.last" placeholder="Last Name" class="form-control"
+                    <input type="text" id="lastname" name="name[last]" placeholder="Last Name" class="form-control"
                         aria-label="Last name" value="<%=mentor.name.last%>">
                 </div>
 
@@ -121,11 +121,11 @@
             <div class="row g-3 section">
                 <label class="form-label col-4" for="location">Location</label>
                 <div class="col-sm-5">
-                    <input type="text" id="city" name="location.city" class="form-control" placeholder="City"
+                    <input type="text" id="city" name="location[city]" class="form-control" placeholder="City"
                         aria-label="City" value="<%=mentor.location.city%>">
                 </div>
                 <div class="col-sm">
-                    <select id="state" name="location.state" class="form-control" aria-label="State"
+                    <select id="state" name="location[state]" class="form-control" aria-label="State"
                         value="<%=mentor.location.state%>">
                         <% for(let state of states) { %>
                         <option value="<%=state%>" <%= mentor.location.state === state ? 'selected' : '' %>>
@@ -135,7 +135,7 @@
                     </select>
                 </div>
                 <div class="col-sm">
-                    <input type="text" name="location.zip" class="form-control" placeholder="Zip" aria-label="Zip"
+                    <input type="text" name="location[zip]" class="form-control" placeholder="Zip" aria-label="Zip"
                         value="<%=mentor.location.zip%>">
                 </div>
             </div>
