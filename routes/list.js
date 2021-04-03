@@ -11,8 +11,8 @@ const Review = require('../models/review');
 const list = require('../controllers/list')
 const { validateMentor, validateReview } = require('../middleware.js')
 
-router.post('/list', validateMentor, catchAsync(list.createMentor))
+router.post('/', validateMentor, catchAsync(list.createMentor))
 
-router.get('/list', catchAsync(list.mentorList))
+router.get('/', catchAsync(list.mentorList))
 
 module.exports = router;

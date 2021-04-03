@@ -18,6 +18,7 @@ module.exports.createReview = async (req, res) => {
     mentor.reviews.push(review)
     await review.save();
     await mentor.save();
+    req.flash('success', 'Successfully left a review!')
     return res.redirect(`/explore/${mentor._id}`);
 }
 
@@ -26,6 +27,7 @@ module.exports.deleteReview = async (req, res) => {
     const { id, reviewId } = req.params;
     await Mentor.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
     await Review.findByIdAndDelete(reviewId);
+    req.flash('success', 'Successfully deleted the review!')
     res.redirect(`/explore/${id}`)
 }
 
