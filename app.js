@@ -76,6 +76,25 @@ app.use(cookieParser())
 //connect flash
 app.use(flash())
 
+const sessionConfig = {
+    secret: 'badsecret',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        expires: Date.now() + 3600000 * 24 * 7,
+        maxAge: 3600000 * 24 * 7
+    }
+}
+
+app.use(session(sessionConfig))
+
+app.use((req, res, next) => {
+    res.locals.success = req.flash('success')
+    res.locals.error = req.flash('error');
+    next()
+})
+
 //-------------------WEB PAGES-----------------
 
 //home page
@@ -84,9 +103,9 @@ app.get('/', (req, res) => {
 })
 
 app.use('/', userRoutes)
-app.use('/', listRoutes)
+app.use('/list', listRoutes)
 app.use('/explore', exploreRoutes)
-app.use('/', restrictedRoutes)
+app.use('/restricted/:id', restrictedRoutes)
 
 //mentee vs mentor page
 app.get('/faq', (req, res) => {

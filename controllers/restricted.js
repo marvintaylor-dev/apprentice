@@ -25,6 +25,7 @@ module.exports.updateMentorProfile = async (req, res) => {
     const { id } = req.params
     const edited = await Mentor.findByIdAndUpdate(id, req.body,
         { runValidators: true, new: true })
+    req.flash('success', 'Successfully updated your profile!')
     return res.redirect('/list')
 }
 
@@ -32,6 +33,7 @@ module.exports.updateMentorProfile = async (req, res) => {
 module.exports.deleteMentor = async (req, res) => {
     const { id } = req.params
     const userDeleted = await Mentor.findByIdAndDelete(id)
+    req.flash('success', 'Successfully deleted Mentor profile')
     return res.redirect('/list')
 }
 

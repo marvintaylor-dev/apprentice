@@ -8,6 +8,7 @@ module.exports.createMentor = async (req, res) => {
     const newMentor = new Mentor(req.body);
     await newMentor.save()
     console.log(req.body)
+    req.flash('success', 'Successfully created Mentor Profile')
     return res.redirect('/list')
 }
 
