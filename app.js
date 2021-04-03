@@ -14,6 +14,7 @@ const Mentor = require('./models/mentor');
 //access to Review model
 const Review = require('./models/review');
 //custom Error Handler
+const User = require('./models/user')
 const ExpressError = require('./utils/ExpressError')
 //allows us to use PUT and DELETE requests 
 const methodOverride = require('method-override');
@@ -24,11 +25,17 @@ const cookieParser = require('cookie-parser')
 const session = require('express-session')
 //flashes a message before redirecting
 const flash = require('connect-flash')
+
+//connect to passport
+const passport = require('passport')
+const LocalStrategy = require('passport-local')
+
 //Route connections to access webpages
 const listRoutes = require('./routes/list')
 const exploreRoutes = require('./routes/explore')
 const restrictedRoutes = require('./routes/restricted')
-const userRoutes = require('./routes/user')
+const userRoutes = require('./routes/users');
+
 
 
 //-----------MONGO / MONGOOSE DB CONNECTION-------------
@@ -54,7 +61,7 @@ db.once("open", () => {
 });
 
 
-//--------------------MIDDLEWARE--------------------
+//--------------------MIDDLEWARE--------------------//
 
 
 //Tells express to serve static files and parse the body as JSON
@@ -68,13 +75,13 @@ app.set('view engine', 'ejs');
 //route to views folder
 app.set('views', path.join(__dirname, 'views'));
 //allows me to parse information from the body of the POST request
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }));
 //allows use of 'dev' version of morgan. 
 //app.use(morgan('dev'))
 //use cookie parser on every request
-app.use(cookieParser())
+app.use(cookieParser());
 //connect flash
-app.use(flash())
+app.use(flash());
 
 const sessionConfig = {
     secret: 'badsecret',
@@ -89,13 +96,26 @@ const sessionConfig = {
 
 app.use(session(sessionConfig))
 
+//initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+//flash middleware
 app.use((req, res, next) => {
     res.locals.success = req.flash('success')
     res.locals.error = req.flash('error');
     next()
 })
 
-//-------------------WEB PAGES-----------------
+//authenticate method comes from passport-local-mongoose
+passport.use(new LocalStrategy(User.authenticate()))
+//methods to store or unstore our user session. Also comes from passport-local-mongoose
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
+
+//-------------------WEB PAGES------------------//
 
 //home page
 app.get('/', (req, res) => {

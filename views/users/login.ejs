@@ -12,18 +12,18 @@
             <div class="underline"></div>
         </div>
 
-        <form class="row g-3 mt-3 validated-form" novalidate>
+        <form class="row g-3 mt-3 validated-form" action="/faq" method="POST" novalidate>
             <div class="row g-3 section">
                 <label for="username" class="form-label col-md">Username</label>
                 <div class="col-md-8">
-                    <input type="username" id="username" placeholder="username" class="form-control"
+                    <input type="username" name="username" id="username" placeholder="username" class="form-control"
                         aria-label="username" required>
                 </div>
             </div>
             <div class="row g-3 section">
                 <label for="password" class="form-label col-md">Password</label>
                 <div class="col-md-8">
-                    <input type="password" id="password" placeholder="*********" class="form-control"
+                    <input type="password" name="password" id="password" placeholder="*********" class="form-control"
                         aria-label="password" required>
                     <a href="/" class="forgotPassword d-flex justify-content-start">Forgot your Password?</a>
                 </div>
@@ -32,6 +32,7 @@
             <div class="col-12 mb-6 d-flex justify-content-end">
                 <button id="login" type="submit" class="btn btn-primary mb-3">Log In</button>
             </div>
+
             <div id="spacing-line" class="d-flex justify-content-end">
                 <div>Don't have a profile?</div>
                 <a id="create_profile_link" href="/signup">Create One!</a>
