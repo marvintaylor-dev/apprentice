@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-module.exports.mentorSchema = Joi.object({
+module.exports.userSchema = Joi.object({
     job_title: Joi.string()
         .label('Job Title'),
     name: Joi.object({

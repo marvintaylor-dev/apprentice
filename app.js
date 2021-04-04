@@ -9,12 +9,11 @@ const engine = require('ejs-mate');
 const mongoose = require('mongoose');
 //provides a log for activity such as log in.
 const morgan = require('morgan')
-//access to our Mentor user model
-const Mentor = require('./models/mentor');
+//access to our User model
+const User = require('./models/user');
 //access to Review model
 const Review = require('./models/review');
 //custom Error Handler
-const User = require('./models/user')
 const ExpressError = require('./utils/ExpressError')
 //allows us to use PUT and DELETE requests 
 const methodOverride = require('method-override');

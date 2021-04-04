@@ -4,14 +4,14 @@
 
 <div class="container">
     <div class="header mt-5 d-flex justify-content-center">
-        <h1><%= mentor.name.first %> <%= mentor.name.last %></h1>
+        <h1><%= user.name.first %> <%= user.name.last %></h1>
     </div>
     <div class="job-title d-flex justify-content-center mb-5">
-        <h2 id="job_title"><%= mentor.job_title.toUpperCase()  %> </h2>
+        <h2 id="job_title"><%= user.job_title.toUpperCase()  %> </h2>
     </div>
 
     <div class="mentorContainer d-flex justify-content-center">
-        <!-- mentor image -->
+        <!-- user image -->
         <div class="mentors"></div>
     </div>
     <div class="information">
@@ -19,21 +19,21 @@
             <div class="d-flex justify-content-center col-11">
                 <div class="job-description info-section">
                     <h3>Job Description</h3>
-                    <p class="unique_info"><%= mentor.job_description %></p>
+                    <p class="unique_info"><%= user.job_description %></p>
                 </div>
             </div>
             <div class="d-flex justify-content-between">
                 <div class="compensation info-section">
                     <h3>Annual Compensation</h3>
-                    <p class="unique_info">$<%= mentor.salary %></p>
+                    <p class="unique_info">$<%= user.salary %></p>
                 </div>
                 <div class="education info-section">
                     <h3>Education Requirements</h3>
-                    <p class="unique_info"> <%= mentor.education_required  %></p>
+                    <p class="unique_info"> <%= user.education_required  %></p>
                 </div>
                 <div class="field info-section">
                     <h3>Field</h3>
-                    <p class="unique_info"><%= mentor.field_of_study  %></p>
+                    <p class="unique_info"><%= user.field_of_study  %></p>
                 </div>
             </div>
         </div>
@@ -59,7 +59,7 @@
     <div id="reviews" class="text-white row justify-content-between">
         <div class="col-5">
             <h4 class="card-title">Leave Your Review Below:</h4>
-            <form action="/explore/<%=mentor._id%>/reviews" method="POST" class="validated-form" novalidate>
+            <form action="/explore/<%=user._id%>/reviews" method="POST" class="validated-form" novalidate>
                 <fieldset class="starability-basic">
                     <input type="radio" id="no-rate" class="input-no-rate" name="review[score]" value="1" checked
                         aria-label="No rating." />
@@ -88,13 +88,13 @@
         <div class="col-5">
             <div>
                 <h4 class="card-title mb-3">Mentor Reviews</h4>
-                <% for(let review of mentor.reviews) {%>
+                <% for(let review of user.reviews) {%>
                 <div class="card bg-dark text-white p-3">
                     <p class="starability-result" data-rating="<%=review.score%>">
                         <%= review.score %>
                     </p>
                     <p class="reviewText card-text"><%= review.body %></p>
-                    <form action="/explore/<%= mentor._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
+                    <form action="/explore/<%= user._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
                         <button class="btn btn-sm btn-danger">Delete</button>
                     </form>
                 </div>

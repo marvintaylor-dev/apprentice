@@ -5,14 +5,13 @@ const catchAsync = require("../utils/catchAsync")
 //custom Error Handler
 const ExpressError = require('../utils/ExpressError')
 //access to our Mentor user model
-const Mentor = require('../models/mentor');
+const User = require('../models/user');
 //access to Review model
 const Review = require('../models/review');
 const list = require('../controllers/list')
 const { validateMentor, validateReview } = require('../middleware.js')
 
-router.post('/', validateMentor, catchAsync(list.createMentor))
 
-router.get('/', catchAsync(list.mentorList))
+router.get('/', catchAsync(list.userList))
 
 module.exports = router;

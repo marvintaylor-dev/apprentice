@@ -1,6 +1,6 @@
 
 //access to our Mentor user model
-const Mentor = require('../models/mentor');
+const User = require('../models/user');
 //access to Review model
 const Review = require('../models/review');
 const tiers = ['1', '2', '3'];
@@ -14,25 +14,25 @@ const states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Color
 
 
 //Mentor profile access - should be restricted by permissions
-module.exports.restrictedMentorProfile = async (req, res) => {
+module.exports.restrictedUserProfile = async (req, res) => {
     const { id } = req.params
-    const mentor = await Mentor.findById(id);
-    return res.render('restricted/profile', { mentor, fields, states, tiers })
+    const user = await User.findById(id);
+    return res.render('restricted/profile', { user, fields, states, tiers })
 }
 
 //Update and edit mentor additional profile information
-module.exports.updateMentorProfile = async (req, res) => {
+module.exports.updateUserProfile = async (req, res) => {
     const { id } = req.params
-    const edited = await Mentor.findByIdAndUpdate(id, req.body,
+    const edited = await User.findByIdAndUpdate(id, req.body,
         { runValidators: true, new: true })
     req.flash('success', 'Successfully updated your profile!')
     return res.redirect('/list')
 }
 
 //deletion of a mentor
-module.exports.deleteMentor = async (req, res) => {
+module.exports.deleteUser = async (req, res) => {
     const { id } = req.params
-    const userDeleted = await Mentor.findByIdAndDelete(id)
+    const userDeleted = await User.findByIdAndDelete(id)
     req.flash('success', 'Successfully deleted Mentor profile')
     return res.redirect('/list')
 }
