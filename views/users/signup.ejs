@@ -1,25 +1,61 @@
 <% layout('layouts/boilerplate') %>
-<link rel="stylesheet" href="/stylesheets/signup.css">
 
-<div class="d-flex justify-content-center mt-5">
-    <h1 id="header">Choose One</h1>
-</div>
+<link rel="stylesheet" href="/stylesheets/register.css">
 
 
-<div class="row row-2 d-flex justify-content-center">
-    <div class="contained col-md-3">
-        <form action="/mentor/new" method="GET">
-            <button id="mentorButton" class="category">
-                <p class="category_title">Mentor</p>
-            </button>
+<div class="card">
+    <div class="container-sm">
+        <div class="d-flex justify-content-center">
+            <h1>Create a Profile</h1>
+        </div>
+        <div class="underlineContainer">
+            <div class="underline"></div>
+        </div>
+        <form action="/path" method="POST" class="row g-3 mt-3 validated-form" novalidate>
+            <div class="row g-3 section">
+                <label for="email" class="form-label col-4">Email</label>
+                <div class="col-md-8">
+                    <input type="email" id="email" name="email" placeholder="username@email.com" class="form-control"
+                        aria-label="Email" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+            </div>
+            <div class="row g-3 section">
+                <label for="username" class="form-label col-sm">Username</label>
+                <div class="col-md-8">
+                    <input type="username" name="username" id="username" placeholder="username" class="form-control"
+                        aria-label="username" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+            </div>
+            <div class="row g-3 section">
+                <label for="password" class="form-label col-sm">Password</label>
+                <div class="col-md-8">
+                    <input type="password" id="password" name="password" placeholder="*********" class="form-control"
+                        aria-label="password" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 section d-flex justify-content-end">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck" required>
+                    <label class="form-check-label" for="gridCheck">
+                        I agree to Terms and Conditions
+                    </label>
+                </div>
+            </div>
+            <div class="col-12 mb-6 d-flex justify-content-end">
+                <button class="btn btn-primary">Create Profile</button>
+            </div>
+
         </form>
     </div>
-
-    <div class="contained col-md-3">
-        <form action="/mentee/new" method="GET">
-            <button id="menteeButton" class="category">
-                <p class="category_title">Mentee</p>
-            </button>
-        </form>
-    </div>
 </div>
+
+<script src="/javascripts/validation.js"></script>

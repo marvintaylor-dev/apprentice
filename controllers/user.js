@@ -1,5 +1,4 @@
 
-const Mentor = require("../models/mentor");
 const User = require("../models/user");
 
 
@@ -12,26 +11,29 @@ module.exports.loginPage = (req, res) => {
     const { username, em }
 }
  */
-//choose a path page
-module.exports.selectPath = (req, res) => {
+
+//User sign up page
+module.exports.userSignup = (req, res) => {
     res.render('users/signup')
 }
 
-//mentee sign up page
-module.exports.menteeSignup = (req, res) => {
-    res.render('users/mentee')
-}
 
-//mentor sign up page
-module.exports.mentorSignup = (req, res) => {
-    res.render('users/mentor')
+//choose a path page
+module.exports.selectPath = (req, res) => {
+    res.render('users/path')
 }
-
 //create a new mentor
-module.exports.createMentor = async (req, res) => {
-    const newMentor = new Mentor(req.body);
-    await newMentor.save()
+module.exports.createUser = async (req, res) => {
+    const newUser = new User(req.body);
+    await newUser.save()
     console.log(req.body)
-    req.flash('success', 'Successfully created Mentor')
-    return res.redirect('/list')
+    req.flash('success', 'Successfully created User!')
+    return res.redirect('/path')
 }
+
+
+//mentee sign up page
+/* module.exports.menteeSignup = (req, res) => {
+    res.render('users/mentee')
+} */
+

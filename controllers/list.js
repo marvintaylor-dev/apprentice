@@ -1,25 +1,25 @@
 //access to our Mentor user model
-const Mentor = require('../models/mentor');
+const User = require('../models/user');
 //access to Review model
 const Review = require('../models/review');
 
 //create a new mentor
-module.exports.createMentor = async (req, res) => {
-    const newMentor = new Mentor(req.body);
-    await newMentor.save()
+module.exports.createUser = async (req, res) => {
+    const newUser = new User(req.body);
+    await newUser.save()
     console.log(req.body)
-    req.flash('success', 'Successfully created Mentor Profile')
+    req.flash('success', 'Successfully created User Profile')
     return res.redirect('/list')
 }
 
 //show the list of mentors
-module.exports.mentorList = async (req, res) => {
+module.exports.userList = async (req, res) => {
     const { field_of_study } = req.query
     if (field_of_study) {
-        const mentors = await Mentor.find({ field_of_study })
-        return res.render('explore/list', { mentors, field_of_study })
+        const users = await User.find({ field_of_study })
+        return res.render('explore/list', { users, field_of_study })
     } else {
-        const mentors = await Mentor.find({})
-        return res.render('explore/list', { mentors, field_of_study })
+        const users = await User.find({})
+        return res.render('explore/list', { users, field_of_study })
     }
 }

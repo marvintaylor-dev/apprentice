@@ -10,13 +10,13 @@
 <div class="container d-flex justify-content-left mt-5">
     <div class="mentorContainer">
         <ul>
-            <% for (let mentor of mentors) {%>
-            <li><a class="list_of_mentors" href="/explore/<%=mentor._id%>">
-                    <%= mentor.name.first %>
-                    <%= mentor.name.last %>
+            <% for (let user of users) {%>
+            <li><a class="list_of_mentors" href="/explore/<%=user._id%>">
+                    <%= user.name.first %>
+                    <%= user.name.last %>
                 </a>
-                <%= mentor.job_title %>
-                <button id="profile_access"><a href="/restricted/<%=mentor._id%>">Restricted Access Profile</a></button>
+                <%= user.job_title %>
+                <button id="profile_access"><a href="/restricted/<%=user._id%>">Restricted Access Profile</a></button>
             </li>
             <% } %>
         </ul>

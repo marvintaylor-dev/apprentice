@@ -1,31 +1,30 @@
 //access to our Mentor user model
-const Mentor = require('../models/mentor');
+const User = require('../models/user');
 //access to Review model
 const Review = require('../models/review');
 const fields = ['Psychology', 'Engineering', 'Biology', 'Physics', 'Arts', 'Trades', 'Content-Creation', 'Business'];
-
 //show the list of all mentors
 module.exports.showExplore = async (req, res) => {
-    const mentors = await Mentor.find({})
-    res.render('explore/explore', { fields, mentors })
+    const users = await User.find({})
+    res.render('explore/explore', { fields, users })
 }
 
 //create a new review
 module.exports.createReview = async (req, res) => {
     const { id } = req.params
-    const mentor = await Mentor.findById(id);
+    const user = await User.findById(id);
     const review = new Review(req.body.review)
-    mentor.reviews.push(review)
+    user.reviews.push(review)
     await review.save();
-    await mentor.save();
+    await user.save();
     req.flash('success', 'Successfully left a review!')
-    return res.redirect(`/explore/${mentor._id}`);
+    return res.redirect(`/explore/${user._id}`);
 }
 
 //delete a review
 module.exports.deleteReview = async (req, res) => {
     const { id, reviewId } = req.params;
-    await Mentor.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+    await User.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
     await Review.findByIdAndDelete(reviewId);
     req.flash('success', 'Successfully deleted the review!')
     res.redirect(`/explore/${id}`)
@@ -34,7 +33,7 @@ module.exports.deleteReview = async (req, res) => {
 module.exports.viewMentorProfile = async (req, res) => {
     const { id } = req.params
     const reviews = await Review.find({})
-    const mentor = await Mentor.findById(id).populate('reviews');
-    res.render('explore/show', { mentor, reviews })
+    const user = await User.findById(id).populate('reviews');
+    res.render('explore/show', { user, reviews })
 }
 

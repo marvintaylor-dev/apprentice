@@ -5,7 +5,7 @@ const catchAsync = require("../utils/catchAsync")
 //custom Error Handler
 const ExpressError = require('../utils/ExpressError')
 //access to our Mentor user model
-const Mentor = require('../models/mentor');
+const User = require('../models/user');
 //access to Review model
 const Review = require('../models/review');
 const explore = require('../controllers/explore')

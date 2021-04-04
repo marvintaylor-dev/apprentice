@@ -7,21 +7,21 @@
         <h1>Edit Profile</h1>
     </div>
 
-    <form action="/restricted/<%= mentor._id%>?_method=PUT" method="POST">
+    <form action="/restricted/<%= user._id%>?_method=PUT" method="POST">
         <div class="profile_info">
-            <h2><%= mentor.name.first %> <%= mentor.name.last %> </h2>
+            <h2><%= user.name.first %> <%= user.name.last %> </h2>
             <div class="pic_container">
-                <div id="profile_picture"> <%= mentor.profile_picture %> </div>
+                <div id="profile_picture"> <%= user.profile_picture %> </div>
             </div>
             <div class="row g-3 section">
                 <label for="firstname" class="form-label col-sm">Name</label>
                 <div class="col-md-4">
                     <input type="text" id="firstname" name="name[first]" placeholder="First Name" class="form-control"
-                        aria-label="First name" value="<%=mentor.name.first%>">
+                        aria-label="First name" value="<%=user.name.first%>">
                 </div>
                 <div class="col-md-4">
                     <input type="text" id="lastname" name="name[last]" placeholder="Last Name" class="form-control"
-                        aria-label="Last name" value="<%=mentor.name.last%>">
+                        aria-label="Last name" value="<%=user.name.last%>">
                 </div>
 
             </div>
@@ -29,21 +29,21 @@
                 <label for="email" class="form-label col-4">Email</label>
                 <div class="col-md-8">
                     <input type="email" id="email" name="email" placeholder="username@email.com" class="form-control"
-                        aria-label="Email" value="<%=mentor.email%>">
+                        aria-label="Email" value="<%=user.email%>">
                 </div>
             </div>
             <div class="row g-3 section">
                 <label for="username" class="form-label col-sm">Username</label>
                 <div class="col-md-8">
                     <input type="username" id="username" name="username" placeholder="username" class="form-control"
-                        aria-label="username" value="<%=mentor.username%>">
+                        aria-label="username" value="<%=user.username%>">
                 </div>
             </div>
             <div class="row g-3 section">
                 <label for="password" class="form-label col-sm">Password</label>
                 <div class="col-md-8">
                     <input type="input" id="password" name="password" placeholder="password" class="form-control"
-                        aria-label="password" value="<%=mentor.password%>">
+                        aria-label="password" value="<%=user.password%>">
                 </div>
             </div>
 
@@ -51,7 +51,7 @@
                 <label for="age" class="form-label col-4">Age</label>
                 <div class="col-md-8">
                     <input class="age" type="text" name="age" id="age" placeholder="Enter your age" aria-label="Age"
-                        value="<%=mentor.age%>">
+                        value="<%=user.age%>">
                 </div>
             </div>
             <div class=" row g-3 section">
@@ -65,7 +65,7 @@
                 <div class="col-md-8">
                     <select name="tier" id="tier" class="form-control">
                         <% for(let tier of tiers) {%>
-                        <option value="<%= tier %>" <%= mentor.tier === tier ? 'selected' : ''%>><%= tier %></option>
+                        <option value="<%= tier %>" <%= user.tier === tier ? 'selected' : ''%>><%= tier %></option>
                         <% } %>
                     </select>
                 </div>
@@ -74,14 +74,14 @@
                 <label for="jobTitle" class="form-label col-sm">Job Title</label>
                 <div class="col-md-8">
                     <input type="jobTitle" id="jobTitle" name="job_title" placeholder="Job Title" class="form-control"
-                        aria-label="jobTitle" value="<%=mentor.job_title%>">
+                        aria-label="jobTitle" value="<%=user.job_title%>">
                 </div>
             </div>
             <div class="row g-3 section">
                 <label for="jobDescription" class="form-label col-sm">Job Description</label>
                 <div class="col-md-8">
                     <textarea id="jobDescription" name="job_description" placeholder="Job Description" rows="5"
-                        cols="100" aria-label=" jobDescription"><%=mentor.job_description%>
+                        cols="100" aria-label=" jobDescription"><%=user.job_description%>
                 </textarea>
                 </div>
             </div>
@@ -92,7 +92,7 @@
                     <div class="col-md-8">
                         <select name="field_of_study" id="field_of_study" class="form-label">
                             <% for(let field of fields) { %>
-                            <option value="<%= field %>" <%= mentor.field_of_study === field ? 'selected' : ''%>>
+                            <option value="<%= field %>" <%= user.field_of_study === field ? 'selected' : ''%>>
                                 <%= field %>
                             </option>
                             <% } %>
@@ -105,7 +105,7 @@
                     <label for="salary" class="form-label col-sm">Salary</label>
                     <div class="col-md-8">
                         <input type="salary" id="salary" name="salary" placeholder="Average salary" class="form-control"
-                            aria-label="salary" value="<%=mentor.salary%>">
+                            aria-label="salary" value="<%=user.salary%>">
                     </div>
                 </div>
             </div>
@@ -114,7 +114,7 @@
                 <div class="col-md-8">
                     <input class="education_required form-control" type="text" name="education_required"
                         id="education_required" placeholder="Education Required" aria-label="Education Required"
-                        value="<%=mentor.education_required%>">
+                        value="<%=user.education_required%>">
                 </div>
             </div>
 
@@ -122,13 +122,13 @@
                 <label class="form-label col-4" for="location">Location</label>
                 <div class="col-sm-5">
                     <input type="text" id="city" name="location[city]" class="form-control" placeholder="City"
-                        aria-label="City" value="<%=mentor.location.city%>">
+                        aria-label="City" value="<%=user.location.city%>">
                 </div>
                 <div class="col-sm">
                     <select id="state" name="location[state]" class="form-control" aria-label="State"
-                        value="<%=mentor.location.state%>">
+                        value="<%=user.location.state%>">
                         <% for(let state of states) { %>
-                        <option value="<%=state%>" <%= mentor.location.state === state ? 'selected' : '' %>>
+                        <option value="<%=state%>" <%= user.location.state === state ? 'selected' : '' %>>
                             <%= state %>
                         </option>
                         <% } %>
@@ -136,7 +136,7 @@
                 </div>
                 <div class="col-sm">
                     <input type="text" name="location[zip]" class="form-control" placeholder="Zip" aria-label="Zip"
-                        value="<%=mentor.location.zip%>">
+                        value="<%=user.location.zip%>">
                 </div>
             </div>
 
@@ -148,7 +148,7 @@
         </div>
     </form>
     <div class="buttons">
-        <form action="/restricted/<%=mentor._id%>?_method=DELETE" method="POST">
+        <form action="/restricted/<%=user._id%>?_method=DELETE" method="POST">
             <button id="delete" class="btn btn-danger">Delete Profile</button>
         </form>
     </div>
