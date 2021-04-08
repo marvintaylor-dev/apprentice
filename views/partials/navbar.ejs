@@ -10,10 +10,21 @@
 
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link" aria-current="page" href="/login">Log in</a>
+                <% if(currentUser){ %>
+                <div class="user_message d-flex">
+                    <div>Welcome back,</div>
+                    <div class="displayed_username"><%= currentUser.username  %>! </div>
+                    <% } %>
+                </div>
+                <% if(!currentUser) {%>
+                <a class="nav-link active" aria-current="page" href="/login">Log in</a>
                 <a class="nav-link" href="/signup">Sign Up</a>
+                <% } if (!currentUser || currentUser){%>
                 <a class="nav-link" href="/faq">Mentee vs Mentor</a>
                 <a class="nav-link" href="/explore">Explore</a>
+                <% } if(currentUser){ %>
+                <a class="nav-link" href="/logout">Logout</a>
+                <% } %>
             </div>
         </div>
     </div>

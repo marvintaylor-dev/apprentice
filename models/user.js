@@ -63,6 +63,11 @@ const UserSchema = new Schema({
         type: String,
         enum: ['Psychology', 'Engineering', 'Biology', 'Physics', 'Arts', 'Trades', 'Content-Creation', 'Business']
     },
+    author:
+    {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
     reviews: [
         {
             type: Schema.Types.ObjectId,

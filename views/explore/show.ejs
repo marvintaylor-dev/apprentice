@@ -7,7 +7,11 @@
         <h1><%= user.name.first %> <%= user.name.last %></h1>
     </div>
     <div class="job-title d-flex justify-content-center mb-5">
-        <h2 id="job_title"><%= user.job_title.toUpperCase()  %> </h2>
+        <% if(user.job_title){ %>
+        <h2 id="job_title"><%= user.job_title.toUpperCase() %></h2>
+        <% } else { %>
+        <h2 id="job_title">Job Title</h2>
+        <% } %>
     </div>
 
     <div class="mentorContainer d-flex justify-content-center">
@@ -58,6 +62,7 @@
     </div>
     <div id="reviews" class="text-white row justify-content-between">
         <div class="col-5">
+            <% if(currentUser){ %>
             <h4 class="card-title">Leave Your Review Below:</h4>
             <form action="/explore/<%=user._id%>/reviews" method="POST" class="validated-form" novalidate>
                 <fieldset class="starability-basic">
@@ -84,12 +89,14 @@
                     <button class="navigation btn btn-info mt-2">Submit Review</button>
                 </div>
             </form>
+            <% } %>
         </div>
         <div class="col-5">
             <div>
                 <h4 class="card-title mb-3">Mentor Reviews</h4>
                 <% for(let review of user.reviews) {%>
                 <div class="card bg-dark text-white p-3">
+                    <h5><%= review.author.username %></h5>
                     <p class="starability-result" data-rating="<%=review.score%>">
                         <%= review.score %>
                     </p>
@@ -111,3 +118,4 @@
 
 
 <script src="/javascripts/validation.js"></script>
+<script src="/javascripts/scroll.js"></script>
