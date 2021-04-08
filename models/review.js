@@ -5,9 +5,11 @@ const Joi = require('joi');
 
 const reviewSchema = new Schema({
     score: Number,
-    body: String
+    body: String,
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }
 })
 
-const Review = mongoose.model('Review', reviewSchema)
-
-module.exports = Review
+module.exports = mongoose.model('Review', reviewSchema)

@@ -1,0 +1,41 @@
+module.exports.first = [
+    'Marvin',
+    'Jared',
+    'John',
+    'Harold',
+    'Tom',
+    'Jennifer',
+    'Fran',
+    'Jamee',
+    'Anne',
+    'Fernando',
+    'Misty',
+    'Rob',
+    'Kyler',
+    'Sarah',
+    'Manu',
+    'Lexi',
+    'Dusty',
+    'Melanie'
+]
+
+module.exports.last = [
+    'Taylor',
+    'Fryer',
+    'Louder',
+    'Johnson',
+    'Uman',
+    'Edison',
+    'Thomason',
+    'Mason',
+    'Rudolf',
+    'Capucci',
+    'Brown',
+    'Williams',
+    'Garcia',
+    'Miller',
+    'Davis',
+    'Smith',
+    'Bateau',
+    'Tejkel'
+]

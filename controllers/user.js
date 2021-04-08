@@ -1,7 +1,7 @@
 
 const User = require("../models/user");
 const passport = require('passport');
-const { nextTick } = require("process");
+
 
 //login page
 module.exports.loginPage = (req, res) => {
@@ -14,6 +14,12 @@ module.exports.userLogin = async (req, res) => {
     const redirectUrl = req.session.returnTo || '/explore';
     delete req.session.returnTo;
     res.redirect(redirectUrl);
+}
+
+module.exports.logoutPage = (req, res) => {
+    req.logout();
+    req.flash('success', 'Logged out successfully')
+    res.redirect('/login')
 }
 
 //User sign up page
@@ -42,8 +48,5 @@ module.exports.createUser = async (req, res) => {
         req.flash('error', e.message);
         return res.redirect('signup');
     }
-
-
-
 }
 

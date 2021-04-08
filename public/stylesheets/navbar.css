@@ -10,3 +10,15 @@
 .nav-link:hover {
     border-bottom: 2px solid #96EAC3;
 }
+
+.user_message {
+    color: white;
+    font-size: large;
+    align-items: center;
+    margin-right: 2rem;
+}
+
+.displayed_username {
+    margin-left: .5rem;
+    color: #21D883;
+} 
