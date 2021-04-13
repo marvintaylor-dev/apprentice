@@ -3,6 +3,7 @@
 const User = require('../models/user');
 //access to Review model
 const Review = require('../models/review');
+const paths = ['Mentor', 'Mentee'];
 const tiers = ['1', '2', '3'];
 const fields = ['Psychology', 'Engineering', 'Biology', 'Physics', 'Arts', 'Trades', 'Content-Creation', 'Business'];
 const states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'District Of Columbia', 'Florida', 'Georgia', 'Hawaii', 'Idaho',
@@ -17,7 +18,7 @@ const states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Color
 module.exports.restrictedUserProfile = async (req, res) => {
     const { id } = req.params
     const user = await User.findById(id);
-    return res.render('restricted/profile', { user, fields, states, tiers })
+    return res.render('restricted/profile', { user, fields, states, tiers, paths })
 }
 
 //Update and edit mentor additional profile information
@@ -36,4 +37,11 @@ module.exports.deleteUser = async (req, res) => {
     req.flash('success', 'Successfully deleted Mentor profile')
     return res.redirect('/list')
 }
+
+module.exports.mentorDashboard = async (req, res) => {
+    const { id } = req.params
+    const user = await User.findById(id);
+    return res.render('restricted/dashboard', { user })
+}
+
 

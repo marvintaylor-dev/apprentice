@@ -125,7 +125,7 @@ app.get('/', (req, res) => {
 app.use('/', userRoutes)
 app.use('/list', listRoutes)
 app.use('/explore', exploreRoutes)
-app.use('/restricted/:id', restrictedRoutes)
+app.use('/', restrictedRoutes)
 
 //mentee vs mentor page
 app.get('/faq', (req, res) => {

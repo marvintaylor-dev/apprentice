@@ -9,12 +9,14 @@ const User = require('../models/user');
 //access to Review model
 const Review = require('../models/review');
 const restricted = require('../controllers/restricted')
-const { validateMentor, validateReview } = require('../middleware.js')
+const { validateMentor, validateReview, loggedIn } = require('../middleware.js')
 
-router.get('/', catchAsync(restricted.restrictedUserProfile))
+router.get('/restricted/:id', loggedIn, catchAsync(restricted.restrictedUserProfile))
 
-router.put('/', validateMentor, catchAsync(restricted.updateUserProfile))
+router.put('/restricted/:id', loggedIn, validateMentor, catchAsync(restricted.updateUserProfile))
 
-router.delete('/', catchAsync(restricted.deleteUser))
+router.delete('/restricted/:id', loggedIn, catchAsync(restricted.deleteUser))
+
+router.get('/dashboard/:id', loggedIn, catchAsync(restricted.mentorDashboard))
 
 module.exports = router

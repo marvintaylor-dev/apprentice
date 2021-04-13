@@ -3,12 +3,12 @@ body {
     background: linear-gradient(180deg, #393939 0%, #0c0c06 100%);
 }
 
-a {
+.explore__link {
     text-decoration: none;
     color: #21D883;
 }
 
-a:hover {
+.explore__link:hover {
     color: rgb(255, 218, 7);
 }
 

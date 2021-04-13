@@ -1,0 +1,27 @@
+#brand {
+        color: $secondary;
+        font-weight: bold;
+}
+
+.nav__tag {
+    color: $white;
+    transition: all ease-out .25s;
+    &:hover {
+        color: $highlight;
+        border-bottom: 1px solid $primary;
+        border-right: 1px solid $primary;
+        border-top: 1px solid $primary;
+    }
+}
+
+.welcomeMessage {
+    color: white;
+    font-size: large;
+    align-items: center;
+    margin-right: 2rem;
+}
+
+.welcomeMessage__username {
+    margin-left: .5rem;
+    color: $redOrange;
+} 

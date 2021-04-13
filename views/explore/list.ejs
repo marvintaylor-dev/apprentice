@@ -11,6 +11,7 @@
     <div class="mentorContainer">
         <ul>
             <% for (let user of users) {%>
+            <% if(user.path){ %>
             <li><a class="list_of_mentors" href="/explore/<%=user._id%>">
                     <%= user.name.first %>
                     <%= user.name.last %>
@@ -18,6 +19,7 @@
                 <%= user.job_title %>
                 <button id="profile_access"><a href="/restricted/<%=user._id%>">Restricted Access Profile</a></button>
             </li>
+            <% } %>
             <% } %>
         </ul>
     </div>

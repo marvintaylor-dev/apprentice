@@ -57,6 +57,7 @@ const seedDB = async (req, res) => {
                 job_description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor omnis, quas perspiciatis ipsum unde corrupti optio, praesentium ducimus error ullam iste. Rem a illo facilis veritatis aliquid fugiat ut molestiae. Quae sint laboriosam nulla neque excepturi assumenda possimus?',
                 education_required: sample(['High School Diploma', 'College Degree', 'Post Graduate Degree', 'Certificate', 'Skills']),
                 field_of_study: sample(fields),
+                path: sample(['Mentor', 'Mentee'])
             })
             const registeredUser = await User.register(user, password);
             req.login(registeredUser, err => {

@@ -19,6 +19,7 @@ module.exports.userSchema = Joi.object({
     age: Joi.number()
         .min(0),
     profile_pic: Joi.any(),
+    path: Joi.string(),
     tier: Joi.string(),
     salary: Joi.string(),
     location: Joi.object({

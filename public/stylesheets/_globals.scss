@@ -1,0 +1,29 @@
+html {
+    font-size: 100%;
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+//button styling
+.btn--green {
+    background-color: $primary;
+    border: none;
+    border-radius: 3rem;
+    margin-top: 2rem;
+}
+
+//Responsiveness
+.change {
+    @include breakpoint-down(medium){
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+}
