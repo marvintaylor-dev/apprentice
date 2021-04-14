@@ -5,10 +5,22 @@ const Review = require('../models/review');
 const fields = ['Psychology', 'Engineering', 'Biology', 'Physics', 'Arts', 'Trades', 'Content-Creation', 'Business'];
 
 
-//show the list of all mentors
+//show the explore page
 module.exports.showExplore = async (req, res) => {
     const users = await User.find({})
     res.render('explore/explore', { fields, users })
+}
+
+//show the list of mentors
+module.exports.userList = async (req, res) => {
+    const { field_of_study } = req.query
+    if (field_of_study) {
+        const users = await User.find({ field_of_study })
+        return res.render('explore/list', { users, field_of_study })
+    } else {
+        const users = await User.find({})
+        return res.render('explore/list', { users, field_of_study })
+    }
 }
 
 //create a new review

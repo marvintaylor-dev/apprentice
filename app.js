@@ -30,7 +30,6 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local')
 
 //Route connections to access webpages
-const listRoutes = require('./routes/list')
 const exploreRoutes = require('./routes/explore')
 const restrictedRoutes = require('./routes/restricted')
 const userRoutes = require('./routes/users');
@@ -123,8 +122,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/', userRoutes)
-app.use('/list', listRoutes)
-app.use('/explore', exploreRoutes)
+app.use('/', exploreRoutes)
 app.use('/', restrictedRoutes)
 
 //mentee vs mentor page

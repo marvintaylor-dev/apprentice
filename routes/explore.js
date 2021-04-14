@@ -2,24 +2,20 @@ const express = require('express');
 const app = express();
 const router = express.Router({ mergeParams: true });
 const catchAsync = require("../utils/catchAsync")
-//custom Error Handler
-const ExpressError = require('../utils/ExpressError')
-//access to our Mentor user model
-const User = require('../models/user');
-//access to Review model
-const Review = require('../models/review');
 const explore = require('../controllers/explore')
 const { validateMentor, validateReview, loggedIn, isAuthor } = require('../middleware.js')
 
 
 
-router.get('/', validateReview, catchAsync(explore.showExplore))
+router.get('/explore', validateReview, catchAsync(explore.showExplore)) //render explore page
 
-router.get('/:id', catchAsync(explore.viewMentorProfile))
+router.get('/list', catchAsync(explore.userList)) //view list of users registered as mentors
 
-router.post('/:id/reviews', loggedIn, catchAsync(explore.createReview))
+router.get('/explore/:id', catchAsync(explore.viewMentorProfile)) //render individual mentor page
 
-router.delete('/:id/reviews/:reviewId', isAuthor, loggedIn, catchAsync(explore.deleteReview))
+router.post('explore/:id/reviews', loggedIn, catchAsync(explore.createReview)) //create a review for a mentor
+
+router.delete('/explore/:id/reviews/:reviewId', isAuthor, loggedIn, catchAsync(explore.deleteReview)) //delete your review of a mentor
 
 
 module.exports = router;
