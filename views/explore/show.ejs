@@ -101,9 +101,11 @@
                         <%= review.score %>
                     </p>
                     <p class="reviewText card-text"><%= review.body %></p>
+                    <% if(currentUser && review.author.id === currentUser.id) {%>
                     <form action="/explore/<%= user._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
                         <button class="btn btn-sm btn-danger">Delete</button>
                     </form>
+                    <% } %>
                 </div>
                 <% } %>
             </div>

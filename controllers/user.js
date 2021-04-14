@@ -32,7 +32,7 @@ module.exports.userSignup = (req, res) => {
 module.exports.selectPath = (req, res) => {
     res.render('users/path')
 }
-//create a new mentor
+//create a new user
 module.exports.createUser = async (req, res) => {
     try {
         const { email, username, password } = req.body

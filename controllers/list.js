@@ -3,14 +3,6 @@ const User = require('../models/user');
 //access to Review model
 const Review = require('../models/review');
 
-//create a new mentor
-module.exports.createUser = async (req, res) => {
-    const newUser = new User(req.body);
-    await newUser.save()
-    console.log(req.body)
-    req.flash('success', 'Successfully created User Profile')
-    return res.redirect('/list')
-}
 
 //show the list of mentors
 module.exports.userList = async (req, res) => {
