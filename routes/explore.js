@@ -13,7 +13,7 @@ router.get('/list', catchAsync(explore.userList)) //view list of users registere
 
 router.get('/explore/:id', catchAsync(explore.viewMentorProfile)) //render individual mentor page
 
-router.post('explore/:id/reviews', loggedIn, catchAsync(explore.createReview)) //create a review for a mentor
+router.post('/explore/:id/reviews', loggedIn, catchAsync(explore.createReview)) //create a review for a mentor
 
 router.delete('/explore/:id/reviews/:reviewId', isAuthor, loggedIn, catchAsync(explore.deleteReview)) //delete your review of a mentor
 

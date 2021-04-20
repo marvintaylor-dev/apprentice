@@ -1,20 +1,33 @@
-body {
-    height: 150vh;
-    background-image: linear-gradient(180deg, #39393980 0%, #06070ca1 100%),
-    url();
-    background-size: cover;
-    background-position: bottom;
-}
 
 .profile_container{
     h1 {
-    color: #21D883;
+    color: $primary;
     }
 }
 
-label{
+.label {
     font-weight: bold;
+    color: $lightGray;
 }
+
+.profile__head {
+    display: flex;
+    justify-items: flex-start;
+    font-weight: bold;
+    color: $lightGray;
+
+    .profile__pic {
+        width: 10rem;
+        height: 10rem;
+        border-radius: 50%;
+        border: 2px solid $primary;
+        margin-right: 3rem;
+    }
+}
+
+
+
+
 
 .section {
     padding: .5rem;

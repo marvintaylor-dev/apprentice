@@ -10,8 +10,13 @@
     <header class="dashboardNav__head">
 
         <!-- insert profile picture -->
-        <div class="dashboardNav--picture" src="" alt=""></div>
-
+        <% if(user.avatar.url){ %>
+        <img class="dashboardNav--picture" src="<%= user.avatar.url  %> " alt="">
+        <% } else { %>
+        <img class="dashboardNav--picture"
+            src="https://images.unsplash.com/photo-1517849845537-4d257902454a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80"
+            alt="">
+        <% } %>
         <div class="dashboardNav--username">Welcome, <%= user.name.first %> </div>
     </header>
     <div class="dashboardNav__links">

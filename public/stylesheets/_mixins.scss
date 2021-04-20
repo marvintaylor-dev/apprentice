@@ -32,6 +32,21 @@ $breakpoints-down: ("small": "39.9375em", "medium": "63.9375em", "large": "87.43
     }
 }
 
+@mixin user_form{
+@media (max-width: 1232px){
+    .user_form{
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+}
+@media (max-width: 760px){
+   .user_form{
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
+}
+
 //Form Styling
 @mixin form__style {
     display: flex;

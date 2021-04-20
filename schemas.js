@@ -1,6 +1,7 @@
 const Joi = require('joi');
 
 module.exports.userSchema = Joi.object({
+
     job_title: Joi.string()
         .label('Job Title'),
     name: Joi.object({
@@ -18,7 +19,7 @@ module.exports.userSchema = Joi.object({
         .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
     age: Joi.number()
         .min(0),
-    profile_pic: Joi.any(),
+    //profile_pic: Joi.any(),
     path: Joi.string(),
     tier: Joi.string(),
     salary: Joi.string(),
@@ -32,8 +33,9 @@ module.exports.userSchema = Joi.object({
     education_required: Joi.any()
         .label('Education Required'),
     field_of_study: Joi.string()
-        .label('Field of Study')
-})
+        .label('Field of Study'),
+    deleteImage: Joi.string()
+});
 
 module.exports.reviewSchema = Joi.object({
     score: Joi.number(),

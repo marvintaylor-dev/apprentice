@@ -3,6 +3,7 @@
 const User = require('../models/user');
 //access to Review model
 const Review = require('../models/review');
+const { cloudinary } = require('../cloudinary');
 const paths = ['Mentor', 'Mentee'];
 const tiers = ['1', '2', '3'];
 const fields = ['Psychology', 'Engineering', 'Biology', 'Physics', 'Arts', 'Trades', 'Content-Creation', 'Business'];
@@ -22,18 +23,24 @@ module.exports.restrictedUserProfile = async (req, res) => {
 }
 
 //Update and edit mentor additional profile information
-module.exports.updateUserProfile = async (req, res) => {
+module.exports.updateUserProfile = async (req, res, next) => {
     const { id } = req.params
-    const edited = await User.findByIdAndUpdate(id, req.body,
-        { runValidators: true, new: true })
+    const user = await User.findByIdAndUpdate(id, { ...req.body });
+    user.avatar = ({ url: req.file.path, filename: req.file.filename })
+    await user.save();
+    if (req.body.deleteImage) {
+        await cloudinary.uploader.destroy(user.avatar.filename);
+        await user.updateOne({ $pull: { avatar: { filename: { $in: req.body.deleteImage } } } })
+        console.log(req.body.deleteImage)
+    }
     req.flash('success', 'Successfully updated your profile!')
     return res.redirect('/list')
 }
 
 //deletion of a mentor
 module.exports.deleteUser = async (req, res) => {
-    const { id } = req.params
-    const userDeleted = await User.findByIdAndDelete(id)
+    const { id } = req.params;
+    await User.findByIdAndDelete(id);
     req.flash('success', 'Successfully deleted Mentor profile')
     return res.redirect('/list')
 }

@@ -1,28 +1,24 @@
-body {
-    height: 200%;
-    background: linear-gradient(180deg, #393939 0%, #06070c 100%);
-} 
-
-.mentorContainer {
-    color: white;
-} 
-
 ul {
     list-style-type: none;
     margin-left: 0;
     padding: 0;
 }
 
-.list_of_mentors {
+.mentorInformation__name {
     text-decoration: none;
-    color: #96EAC3;
+    color: $secondary;
     font-size: 2rem;
     transition: all .2s;
+    &:hover {
+        color: $primary;
+    }
 }
 
-.list_of_mentors:hover {
-    color: #21D883;
+.mentorInformation__jobTitle {
+    color: $white;
 }
+
+
 
 #profile_access {
    margin-left: 5rem;

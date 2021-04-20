@@ -10,10 +10,13 @@ html {
 body {
     margin: 0;
     padding: 0;
+    height: 100vh;
+    background: linear-gradient(180deg, #393939 0%, #06070c 100%);    
 }
 
 //button styling
 .btn--green {
+    padding: 1em 2em 1em ;
     background-color: $primary;
     border: none;
     border-radius: 3rem;

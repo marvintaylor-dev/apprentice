@@ -3,6 +3,7 @@ const User = require("../models/user");
 const passport = require('passport');
 
 
+
 //login page
 module.exports.loginPage = (req, res) => {
     res.render('users/login')

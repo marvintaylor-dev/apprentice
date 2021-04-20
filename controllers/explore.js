@@ -4,7 +4,6 @@ const User = require('../models/user');
 const Review = require('../models/review');
 const fields = ['Psychology', 'Engineering', 'Biology', 'Physics', 'Arts', 'Trades', 'Content-Creation', 'Business'];
 
-
 //show the explore page
 module.exports.showExplore = async (req, res) => {
     const users = await User.find({})
@@ -45,9 +44,15 @@ module.exports.deleteReview = async (req, res) => {
     res.redirect(`/explore/${id}`)
 }
 
+//show detailed mentor profile view
 module.exports.viewMentorProfile = async (req, res) => {
     const { id } = req.params
+    const idArray = [];
     const reviews = await Review.find({})
+    const users = await User.find({})
+    for (let user of users) {
+        idArray.push(user.id)
+    }
     const user = await User.findById(id).populate({
         path: 'reviews',
         populate: {
@@ -58,6 +63,6 @@ module.exports.viewMentorProfile = async (req, res) => {
         req.flash('error', 'Cannot find that mentor');
         return res.redirect('/list')
     }
-    res.render('explore/show', { user, reviews })
+    res.render('explore/show', { user, idArray, reviews })
 }
 

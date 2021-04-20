@@ -1,6 +1,5 @@
 
-body {
-    height: 150vh;
+.loginBody {
     background-image: linear-gradient(180deg, #39393980 0%, #06070ca1 100%),
     url(https://images.unsplash.com/photo-1573497491208-6b1acb260507?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1500&q=80);
     background-size: cover;
@@ -13,38 +12,13 @@ body {
     font-size: .8rem;
 }
 
-#login {
-    padding: 1em 2em 1em ;
-}
 
-#login-card{
-    margin-top: 8rem;
-    margin-left: 40%;
-    margin-right: 40%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color:  rgba(242, 242, 242, 0.872);
-    margin-top: 2rem;
-    margin-left: 30%;
-    margin-right: 30%;
-    margin-bottom: 5rem;
-    padding: 2rem;
-    border-radius: 1rem;
-    box-shadow: 2px 2px 20px 10px rgba(0, 0, 0, 0.2);
+.user_form {
+    margin-left: 35%;
+    margin-right: 35%;
 }
-@media (max-width: 1232px){
-    #login-card{
-        margin-left: 20%;
-        margin-right: 20%;
-    }
-}
-@media (max-width: 760px){
-    #login-card{
-        margin-left: 5%;
-        margin-right: 5%;
-    }
-}
+@include user_form;
+
 
 #spacing-line {
     padding: 2rem;
@@ -58,29 +32,10 @@ body {
 
 
 .underlineContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.underline {
-    width: 25rem;
-    height: 2px;
-    background-color: #21D883;
-}
-
-label{
-    font-weight: bold;
-}
-
-#login {
-    background-color: #21D883;
-    border: none;
-    border-radius: 3rem;
-    margin-top: 2rem;
+    @include flexCenter(row);
 }
 
 
-.section {
-    padding: .5rem;
-}
+
+
+

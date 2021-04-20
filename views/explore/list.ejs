@@ -8,15 +8,15 @@
 </div>
 
 <div class="container d-flex justify-content-left mt-5">
-    <div class="mentorContainer">
+    <div class="mentorInformation">
         <ul>
             <% for (let user of users) {%>
             <% if(user.path){ %>
-            <li><a class="list_of_mentors" href="/explore/<%=user._id%>">
+            <li><a class="mentorInformation__name" href="/explore/<%=user._id%>">
                     <%= user.name.first %>
                     <%= user.name.last %>
                 </a>
-                <%= user.job_title %>
+                <span class="mentorInformation__jobTitle"><%= user.job_title %></span>
                 <button id="profile_access"><a href="/restricted/<%=user._id%>">Restricted Access Profile</a></button>
             </li>
             <% } %>

@@ -6,9 +6,11 @@ const { validateMentor, validateReview, loggedIn } = require('../middleware.js')
 const passport = require('passport')
 
 
+
 router.route('/login')
     .get(user.loginPage) //rendered login form
     .post(passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), user.userLogin)  //perform login
+
 router.get('/logout', user.logoutPage) //logout
 router.get('/signup', user.userSignup) //view registration or signup page
 
