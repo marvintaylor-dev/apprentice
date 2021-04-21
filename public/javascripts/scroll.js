@@ -1,17 +1,16 @@
-/* const express = require('express');
-const mongoose = require('mongoose');
-const User = require('../../models/user')
+const move = document.querySelectorAll('.navigation')
 
+document.addEventListener('keydown', function (event) {
+    switch (event.key) {
+        case "ArrowLeft":
+            const left = () => move[0].click()
+            left()
+            break;
+        case "ArrowRight":
+            // Right pressed
+            const right = () => move[1].click()
+            right()
+            break;
+    }
+})
 
-const buttons = document.querySelectorAll('.navigation')
-
-for (let button of buttons) {
-    button.addEventListener('click', async (req, res) => {
-        const { id } = req.params
-        const users = User.findById({ id })
-        const array = users._id
-        console.log(array)
-    })
-} */
-
-/* Learn WEBPACK to move forward with this code */

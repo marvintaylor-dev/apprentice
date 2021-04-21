@@ -2,19 +2,19 @@ const express = require('express');
 const app = express();
 const router = express.Router({ mergeParams: true });
 const catchAsync = require("../utils/catchAsync")
-//custom Error Handler
-const ExpressError = require('../utils/ExpressError')
-//access to our Mentor user model
-const User = require('../models/user');
-//access to Review model
-const Review = require('../models/review');
 const restricted = require('../controllers/restricted')
-const { validateMentor, validateReview } = require('../middleware.js')
+const { validateMentor, validateReview, loggedIn } = require('../middleware.js')
+const multer = require('multer')
+const { storage } = require('../cloudinary')
+const upload = multer({ storage })
 
-router.get('/', catchAsync(restricted.restrictedUserProfile))
+const User = require('../models/user')
 
-router.put('/', validateMentor, catchAsync(restricted.updateUserProfile))
+router.route('/restricted/:id')
+    .get(loggedIn, catchAsync(restricted.restrictedUserProfile)) //view user profile sensitive information
+    .put(loggedIn, upload.single('avatar'), validateMentor, catchAsync(restricted.updateUserProfile))  //update user profile information
+    .delete(loggedIn, catchAsync(restricted.deleteUser))  //delete user profile information
 
-router.delete('/', catchAsync(restricted.deleteUser))
+router.get('/dashboard/:id', loggedIn, catchAsync(restricted.mentorDashboard)) //view mentor dashboard
 
 module.exports = router

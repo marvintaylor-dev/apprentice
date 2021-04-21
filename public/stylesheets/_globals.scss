@@ -1,0 +1,32 @@
+html {
+    font-size: 100%;
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: linear-gradient(180deg, #393939 0%, #06070c 100%);    
+}
+
+//button styling
+.btn--green {
+    padding: 1em 2em 1em ;
+    background-color: $primary;
+    border: none;
+    border-radius: 3rem;
+    margin-top: 2rem;
+}
+
+//Responsiveness
+.change {
+    @include breakpoint-down(medium){
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+}

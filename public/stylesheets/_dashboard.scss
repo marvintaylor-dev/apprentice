@@ -1,0 +1,190 @@
+body {
+    height: 100%;
+}
+
+.dashHeader {
+    margin: 1rem 0rem 1rem 0rem;
+}
+
+
+.dashboardNav {
+    @include flexCenter(column);
+    justify-content: start;
+    position: absolute;
+    background-color: lighten(black, 20%);
+    width: 10rem;
+    height: 50vh;
+    box-shadow: 2px 2px 20px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+
+    .dashboardNav__head {
+        @include flexCenter(column);
+    }
+
+    .dashboardNav__head .dashboardNav--picture {
+        width: 5rem;
+        height: 5rem;
+        background-color: lighten(black, 20%);
+        box-shadow: 2px 2px 20px 10px rgba(0, 0, 0, 0.2);
+        border-radius: 50%;
+        margin-top: 1.5rem;
+       
+    }
+
+    .dashboardNav__head .dashboardNav--username{
+        margin-top: .5rem;
+        color: $primary;
+        font-weight: bold;
+    }
+
+    .dashboardNav__links {
+        @include flexCenter(column);
+
+        .dashboardNav--link {
+            padding: 1rem 0rem 1rem 0rem;
+            text-decoration: none;
+            color: $white;
+            font-weight: bold;
+            margin-top: 2rem;
+            &:hover {
+                color: $lightGray;
+            }
+        }
+    }
+    @include breakpoint-up(large){
+        height: 80%;
+    }
+}
+
+.messages {
+    width: 62%;
+    height: 50vh;
+    margin-left: 11rem;
+    margin-bottom: 1rem;
+    background-color: lighten(black, 20%);
+    box-shadow: 2px 2px 20px 10px rgba(0, 0, 0, 0.2);
+
+    .messages__content {
+        @include flexCenter(row);
+        color: $white;
+    }
+
+    @include breakpoint-up(medium){
+        width: 50%;
+    }
+    @include breakpoint-up(large){
+        width: 30%;
+    }
+    @include breakpoint-up(xlarge){
+        width: 20%;
+    }
+}
+
+.addContentLink {
+    text-decoration: none;
+
+    .addContent {
+        @include flexCenter(row);
+        width: 100%;
+        margin-bottom: 1.5rem;
+
+    .addContent__video {
+        @include flexCenter(row);
+        width: 95%;
+        height: 15rem;
+        border: 1px solid $lightGray;
+        background-color: lighten(black, 20%);
+        box-shadow: 2px 2px 20px 10px rgba(0, 0, 0, 0.2);
+        opacity: 50%;
+    
+        .addContent--circle {
+            @include flexCenter(row);
+            width: 10rem;
+            height: 10rem;
+            border: 2px solid $lightGray;
+            border-radius: 50%;
+    
+            .addContent--plus{
+                font-size: 10rem;
+                color:$lightGray;
+                margin-bottom: 1.8rem;
+            }
+        }
+    }
+    }
+    @include breakpoint-up(large){
+        display: flex;
+        align-content: center;
+        margin-left: 11rem;
+        width: 20%;
+    }
+}
+
+
+.uploads {
+    @include flexCenter(row);
+    width: 100%;
+    margin-bottom: 1.5rem;
+
+    .uploaded__video {
+        border: 1px solid $lightGray;
+        box-shadow: 2px 2px 20px 10px rgba(0, 0, 0, 0.2);
+        opacity: 50%;
+    }
+    @include breakpoint-up(large){
+        display: flex;
+        align-content: center;
+        margin-left: 11rem;
+        width: 21%;
+    }
+}
+
+.analytics {
+    @include flexCenter(row);
+    width: 100%;
+
+    .analytics__graph {
+        @include flexCenter(row);
+        width: 95%;
+        height: 20rem;
+        border: 1px solid $lightGray;
+        background-color: lighten(black, 20%);
+        box-shadow: 2px 2px 20px 10px rgba(0, 0, 0, 0.2);
+        margin-bottom: 2rem;
+        opacity: 50%;
+    
+        .analytics--information {
+            @include flexCenter(row);
+            color: $white;
+        }
+    }
+
+    @include breakpoint-up(large){
+        margin-left: 1rem;
+        width: 60%;
+    }
+}
+
+.dashHeader {
+    @include flexCenter(row);
+    
+    .dashHeader__content {
+        color: $primary;
+    }
+}
+
+.mediaRow {
+    @include breakpoint-up(large){
+        display: flex;
+        flex-direction: row;
+
+    }
+}
+
+.largeView {
+    @include breakpoint-up(large){
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+    }
+}

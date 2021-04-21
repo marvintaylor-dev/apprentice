@@ -1,9 +1,9 @@
 <% layout('/layouts/boilerplate') %>
 
-    <link rel="stylesheet" href="/stylesheets/login.css">
+<link rel="stylesheet" href="/stylesheets/login.css">
 
-
-    <div id="login-card" class="card">
+<body class="loginBody">
+    <div id="login-card" class="user_form form">
         <div class="container-sm">
             <div class="d-flex justify-content-center">
                 <h1>Log In</h1>
@@ -30,7 +30,7 @@
 
                 </div>
                 <div class="col-12 mb-6 d-flex justify-content-end">
-                    <button id="login" type="submit" class="btn btn-primary mb-3">Log In</button>
+                    <button type="submit" class="btn btn-primary btn--green mb-3">Log In</button>
                 </div>
 
                 <div id="spacing-line" class="d-flex justify-content-end">
@@ -43,5 +43,7 @@
             </form>
         </div>
     </div>
+</body>
 
-    <script src="/javascripts/validation.js"></script>
+
+<script src="/javascripts/validation.js"></script>

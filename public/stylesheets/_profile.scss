@@ -1,0 +1,46 @@
+
+.profile_container{
+    h1 {
+    color: $primary;
+    }
+}
+
+.label {
+    font-weight: bold;
+    color: $lightGray;
+}
+
+.profile__head {
+    display: flex;
+    justify-items: flex-start;
+    font-weight: bold;
+    color: $lightGray;
+
+    .profile__pic {
+        width: 10rem;
+        height: 10rem;
+        border-radius: 50%;
+        border: 2px solid $primary;
+        margin-right: 3rem;
+    }
+}
+
+
+
+
+
+.section {
+    padding: .5rem;
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 3rem;
+}
+
+#delete {
+    margin-left: 2rem;
+}
+

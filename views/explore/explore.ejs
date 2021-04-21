@@ -1,24 +1,24 @@
 <% layout('layouts/boilerplate') %>
-    <link rel="stylesheet" href="/stylesheets/explore.css">
+<link rel="stylesheet" href="/stylesheets/style.css">
 
-    <div class="d-flex justify-content-center">
-        <h1 class="header mt-5">Explore By Subject</h1>
-    </div>
-    <div class="d-flex justify-content-center">
-        <h3 class="mt-2 text-white">or <a href="/list">Explore All</a></h3>
-    </div>
+<div class="d-flex justify-content-center">
+    <h1 class="explore__header mt-5">Explore By Subject</h1>
+</div>
+<div class="d-flex justify-content-center">
+    <h3 class="mt-2 text-white">or <a class="explore__link" href="/list">Explore All</a></h3>
+</div>
 
+<div class="d-flex justify-content-center">
     <div class="d-flex justify-content-center">
-        <div class="d-flex justify-content-center">
-            <div class="container">
-                <div class="row row-cols-2 justify-content-center">
-                    <% for(let field of fields) {%>
-                        <a href="/list?field_of_study=<%=field%>" id="<%=field%>" class="subject col">
-                            <%= field %>
-                        </a>
-                        <% } %>
-                </div>
-
+        <div class="container">
+            <div class="row row-cols-2 justify-content-center">
+                <% for(let field of fields) {%>
+                <a href="/list?field_of_study=<%=field%>" id="<%=field%>" class="subject col">
+                    <%= field %>
+                </a>
+                <% } %>
             </div>
+
         </div>
     </div>
+</div>

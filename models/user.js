@@ -6,6 +6,10 @@ const Review = require('./review');
 const passportLocalMongoose = require('passport-local-mongoose');
 
 const UserSchema = new Schema({
+    avatar: {
+        url: String,
+        filename: String
+    },
     job_title: {
         type: String,
     },
@@ -73,7 +77,11 @@ const UserSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: 'Review'
         }
-    ]
+    ],
+    path: {
+        type: String,
+        enum: ['Mentor', 'Mentee']
+    }
 })
 
 //Deletes any reviews leading to a mentor which no longer exists

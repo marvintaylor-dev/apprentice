@@ -3,6 +3,7 @@ const User = require("../models/user");
 const passport = require('passport');
 
 
+
 //login page
 module.exports.loginPage = (req, res) => {
     res.render('users/login')
@@ -32,7 +33,7 @@ module.exports.userSignup = (req, res) => {
 module.exports.selectPath = (req, res) => {
     res.render('users/path')
 }
-//create a new mentor
+//create a new user
 module.exports.createUser = async (req, res) => {
     try {
         const { email, username, password } = req.body
@@ -49,4 +50,5 @@ module.exports.createUser = async (req, res) => {
         return res.redirect('signup');
     }
 }
+
 
