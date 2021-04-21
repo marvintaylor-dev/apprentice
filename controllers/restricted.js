@@ -26,16 +26,25 @@ module.exports.restrictedUserProfile = async (req, res) => {
 module.exports.updateUserProfile = async (req, res, next) => {
     const { id } = req.params
     const user = await User.findByIdAndUpdate(id, { ...req.body });
-    user.avatar = ({ url: req.file.path, filename: req.file.filename })
-    await user.save();
-    if (req.body.deleteImage) {
-        await cloudinary.uploader.destroy(user.avatar.filename);
-        await user.updateOne({ $pull: { avatar: { filename: { $in: req.body.deleteImage } } } })
-        console.log(req.body.deleteImage)
+    try {
+        user.avatar = ({ url: req.file.path, filename: req.file.filename })
+        await user.save();
+        if (req.body.deleteImage) {
+            await cloudinary.uploader.destroy(user.avatar.filename);
+            await user.updateOne({ $unset: { avatar: { filename: req.body.deleteImage } } })
+        }
+        req.flash('success', 'Successfully updated your profile!')
+        return res.redirect('/list')
+    } catch (e) {
+        if (req.body.deleteImage) {
+            await cloudinary.uploader.destroy(user.avatar.filename);
+            await user.updateOne({ $unset: { avatar: { filename: req.body.deleteImage } } })
+        }
+        req.flash('success', 'Successfully updated your profile!')
+        return res.redirect('/list')
     }
-    req.flash('success', 'Successfully updated your profile!')
-    return res.redirect('/list')
 }
+
 
 //deletion of a mentor
 module.exports.deleteUser = async (req, res) => {
