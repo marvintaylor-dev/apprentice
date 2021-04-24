@@ -17,5 +17,7 @@ router.post('/explore/:id/reviews', loggedIn, catchAsync(explore.createReview)) 
 
 router.delete('/explore/:id/reviews/:reviewId', isAuthor, loggedIn, catchAsync(explore.deleteReview)) //delete your review of a mentor
 
+router.post('/explore/:id/mentor', loggedIn, catchAsync(explore.requestMentorship)) //add to mentee array
+
 
 module.exports = router;

@@ -81,7 +81,13 @@ const UserSchema = new Schema({
     path: {
         type: String,
         enum: ['Mentor', 'Mentee']
-    }
+    },
+    mentees: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ]
 })
 
 //Deletes any reviews leading to a mentor which no longer exists

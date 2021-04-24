@@ -56,15 +56,19 @@
                 href="<%= idArray[idArray.indexOf(user.id) - 1] %>">Previous</a>
             <a class="navigation btn btn-info right" href="<%= idArray[idArray.indexOf(user.id) + 1] %>">Next</a>
         </div>
-        <button id="request_btn" class="btn btn-warning">Request Mentorship</button>
+
+        <form action="/explore/<%=user._id%>/mentor" method="POST">
+            <button id="request_btn" class="btn btn-warning" name="mentees">Request Mentorship</button>
+        </form>
     </div>
 
 
     <div class="progress_bar_container">
         <div>
-            <label for="mentee_slots" id="mentee_slot_label" class="text-white">Mentoring Spots Available</label>
+            <label for="mentee_slots" id="mentee_slot_label" class="text-white">Number of Mentees</label>
         </div>
-        <input type="range" class="mentee_slots" id="mentee_slots" name="mentee_slots" min="0" max="10">
+        <input type="range" value="<%= user.mentees > -1 ? user.mentees.length : 0 %>" class="mentee_slots"
+            id="mentee_slots" name="mentee_slots" min="0" max="10">
     </div>
     <div id="reviews" class="text-white row justify-content-between">
         <div class="col-5">
