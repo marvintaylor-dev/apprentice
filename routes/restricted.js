@@ -17,4 +17,8 @@ router.route('/restricted/:id')
 
 router.get('/dashboard/:id', loggedIn, catchAsync(restricted.mentorDashboard)) //view mentor dashboard
 
+router.get('/chat', restricted.getChat)
+
+router.get('/messages/:id', loggedIn, catchAsync(restricted.getMessages))
+
 module.exports = router
