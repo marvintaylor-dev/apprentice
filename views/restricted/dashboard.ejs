@@ -1,6 +1,10 @@
 <% layout('/layouts/boilerplate') %>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+    integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="/stylesheets/chat.css">
 <link rel="stylesheet" href="/stylesheets/style.css">
+
 
 <div class="dashHeader">
     <h1 class="dashHeader__content">Mentor Dashboard</h1>
@@ -21,15 +25,34 @@
     </header>
     <div class="dashboardNav__links">
         <a class="dashboardNav--link" href="#content">Upload Content</a>
-        <a class="dashboardNav--link" href="#messages">Messaging</a>
+        <a class="dashboardNav--link" href="#messages">Chat</a>
         <a class="dashboardNav--link" href="#analytics">Analytics</a>
     </div>
 </nav>
 
 <div class="largeView">
     <div id="messages" class="messages">
-        <div class="messages__content">
-            <div class="messages--mentee">Messages</div>
+        <div class="join-container">
+            <header class="join-header">
+                <h1><i class=""></i> Group Chat</h1>
+            </header>
+            <main class="join-main">
+                <form action="/chat">
+                    <div class="join__inputContainer form-control">
+                        <label for="username">Username</label>
+                        <input type="text" name="username" id="username" value="<%= user.username %>" required />
+                    </div>
+                    <div class="join__inputContainer form-control">
+                        <label for="room">Room</label>
+                        <select name="room" id="room">
+                            <option value="Group 1">All</option>
+                            <option value="Group 2">Mentee 1</option>
+                            <option value="Group 3">Mentee 2</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn">Join Chat</button>
+                </form>
+            </main>
         </div>
     </div>
 
@@ -55,12 +78,13 @@
     <div id="uploads" class="uploads">
         <div class="uploaded__video">
             <video class="uploaded--style" width="400" loop controls>
-                <source
-                    src="https://vod-progressive.akamaized.net/exp=1618260237~acl=%2Fvimeo-prod-skyfire-std-us%2F01%2F4460%2F14%2F372304294%2F1546922542.mp4~hmac=c2dcbfe2d3df46e7c292cbbb49516edae117c2ccfca0fc0c17c2f8cc767fe03b/vimeo-prod-skyfire-std-us/01/4460/14/372304294/1546922542.mp4">
-            </video>
+                <source src="" </video>
         </div>
     </div>
 </div>
+
+
+
 
 
 

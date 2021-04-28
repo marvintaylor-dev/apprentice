@@ -28,6 +28,7 @@ module.exports.createReview = async (req, res) => {
     const user = await User.findById(id);
     const review = new Review(req.body.review)
     review.author = req.user._id
+    console.log(user)
     user.reviews.push(review)
     await review.save();
     await user.save();
@@ -64,5 +65,16 @@ module.exports.viewMentorProfile = async (req, res) => {
         return res.redirect('/list')
     }
     res.render('explore/show', { user, idArray, reviews })
+}
+
+
+// Request Mentorship
+module.exports.requestMentorship = async (req, res) => {
+    const { id } = req.params
+    const user = await User.findById(id);
+    user.mentees.push(req.user)
+    await user.save();
+    req.flash('success', `Successfully became ${user.username}'s Newest Mentee!`)
+    return res.redirect(`/explore/${user._id}`);
 }
 

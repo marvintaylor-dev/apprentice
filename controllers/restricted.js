@@ -60,4 +60,14 @@ module.exports.mentorDashboard = async (req, res) => {
     return res.render('restricted/dashboard', { user })
 }
 
+module.exports.getChat = async (req, res) => {
+    const { id } = req.params
+    const user = await User.findById(id);
+    return res.render('restricted/chat', { user })
+}
 
+module.exports.getMessages = async (req, res) => {
+    const { id } = req.params
+    const user = await User.findById(id)
+    return res.render('restricted/messages', { user })
+}

@@ -63,6 +63,7 @@ body {
     margin-bottom: 1rem;
     background-color: lighten(black, 20%);
     box-shadow: 2px 2px 20px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
 
     .messages__content {
         @include flexCenter(row);
@@ -73,7 +74,7 @@ body {
         width: 50%;
     }
     @include breakpoint-up(large){
-        width: 30%;
+        width: 40%;
     }
     @include breakpoint-up(xlarge){
         width: 20%;
@@ -177,7 +178,6 @@ body {
     @include breakpoint-up(large){
         display: flex;
         flex-direction: row;
-
     }
 }
 

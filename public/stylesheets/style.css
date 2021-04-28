@@ -59,9 +59,9 @@ body {
 
 .nav__tag:hover {
   color: #ffda07;
-  border-bottom: 1px solid #21D883;
-  border-right: 1px solid #21D883;
-  border-top: 1px solid #21D883;
+  border-bottom: 2px solid #21D883;
+  border-right: 2px solid #21D883;
+  border-radius: 30%;
 }
 
 .welcomeMessage {
@@ -352,6 +352,7 @@ body {
   background-color: #333333;
   -webkit-box-shadow: 2px 2px 20px 10px rgba(0, 0, 0, 0.2);
           box-shadow: 2px 2px 20px 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
 }
 
 .messages .messages__content {
@@ -379,7 +380,7 @@ body {
 
 @media (min-width: 64em) {
   .messages {
-    width: 30%;
+    width: 40%;
   }
 }
 

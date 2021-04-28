@@ -24,8 +24,9 @@
                 <a class="nav-link nav__tag" href="/explore">Explore</a>
                 <% } if(currentUser){ %>
                 <a class="nav-link nav__tag" href="/dashboard/<%=currentUser._id %>">Dashboard</a>
+                <a class="nav-link nav__tag" href="/messages/<%= currentUser._id  %>">Messages</a>
                 <a class="nav-link nav__tag" href="/restricted/<%=currentUser._id %>">Profile</a>
-                <a class="nav-link nav__tag" href="/explore || /dashboard">Switch View</a>
+                <a class="nav-link nav__tag" href="#">Switch View</a>
                 <a class="nav-link nav__tag" href="/logout">Logout</a>
                 <% } %>
             </div>

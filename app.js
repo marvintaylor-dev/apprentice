@@ -28,6 +28,15 @@ const cookieParser = require('cookie-parser')
 const session = require('express-session')
 //flashes a message before redirecting
 const flash = require('connect-flash')
+const port = process.env.PORT || 3000;
+
+
+//messaging
+const server = require('http').createServer(app);
+const io = require("socket.io")(server);
+const formatMessage = require('./public/javascripts/messages.js')
+const botname = 'Chat Bot'
+const { userJoin, getCurrentUser, userLeave, getRoomUsers } = require('./public/javascripts/users')
 
 //connect to passport
 const passport = require('passport')
@@ -37,7 +46,6 @@ const LocalStrategy = require('passport-local')
 const exploreRoutes = require('./routes/explore')
 const restrictedRoutes = require('./routes/restricted')
 const userRoutes = require('./routes/users');
-
 
 
 //-----------MONGO / MONGOOSE DB CONNECTION-------------
@@ -68,6 +76,7 @@ db.once("open", () => {
 
 //Tells express to serve static files and parse the body as JSON
 app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(express.json());
 //allows you to use ?method_ to turn POST requests into PUT / PATCH requests
 app.use(methodOverride('_method'))
@@ -76,6 +85,7 @@ app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 //route to views folder
 app.set('views', path.join(__dirname, 'views'));
+app.use(express.static(path.join(__dirname, 'views')));
 //allows me to parse information from the body of the POST request
 app.use(express.urlencoded({ extended: true }));
 //allows use of 'dev' version of morgan. 
@@ -110,11 +120,69 @@ app.use((req, res, next) => {
     next()
 })
 
+
 //authenticate method comes from passport-local-mongoose
 passport.use(new LocalStrategy(User.authenticate()))
 //methods to store or unstore our user session. Also comes from passport-local-mongoose
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+
+
+
+// ---------- MESSAGING VIA SOCKET.IO ---------
+
+//socket.broadcast.emit = notifies everyone except the user
+//socket.emit = only notifies the user
+//io.emit = notifies everyone
+
+//run when the client connects
+io.on('connection', socket => {
+    socket.on('joinRoom', ({ username, room }) => {
+        const user = userJoin(socket.id, username, room);
+        socket.join(user.room);
+
+        // welcome current user
+        socket.emit('message', formatMessage(botname, 'Welcome to Apprentice Chat!'));
+
+        // Broadcast when a user connects
+        socket.broadcast
+            .to(user.room)
+            .emit('message', formatMessage(botname, `${user.username} has joined the chat`));
+
+        // Send users and room info
+        io.to(user.room).emit('roomUsers', {
+            room: user.room,
+            users: getRoomUsers(user.room)
+        });
+    });
+
+    // Listen for chatMessage
+    socket.on('chatMessage', (msg) => {
+        const user = getCurrentUser(socket.id);
+
+        io
+            .to(user.room)
+            .emit('message', formatMessage(user.username, msg));
+    })
+
+    // Runs when client disconnects
+    socket.on('disconnect', () => {
+        const user = userLeave(socket.id);
+        if (user) {
+            io.to(user.room)
+                .emit('message', formatMessage(botname, `${user.username} has left the chat`));
+
+            // Send users and room info
+            io.to(user.room).emit('roomUsers', {
+                room: user.room,
+                users: getRoomUsers(user.room)
+            });
+        }
+    });
+
+})
+
 
 
 
@@ -152,8 +220,8 @@ app.use((err, req, res, next) => {
 //---------------------LOCAL CONNECTION-----------------
 
 
-app.listen(3000, () => {
-    console.log("App is listening on Port 3000!")
+server.listen(port, () => {
+    console.log(`App is listening on Port ${port}!`)
 })
 
 
