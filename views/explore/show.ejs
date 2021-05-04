@@ -2,11 +2,13 @@
 <link rel="stylesheet" href="/stylesheets/stars.css" />
 <link rel="stylesheet" href="/stylesheets/style.css">
 
+
 <div class="container">
     <div class="showPg__name mt-5 d-flex justify-content-center">
         <h1><%= user.name.first %> <%= user.name.last %></h1>
     </div>
     <div class="line__styling"></div>
+    <div id='map'></div>
     <div class="job-title d-flex justify-content-center mb-5">
         <% if(user.job_title){ %>
         <h2 id="job_title"><%= user.job_title.toUpperCase() %></h2>
@@ -20,10 +22,10 @@
         <img class="avatar__image" src="<%= user.avatar.url %>" alt="Mentor Image">
         <% } else {%>
         <img class="avatar__image"
-            src="https://images.unsplash.com/photo-1618085220188-b4f210d22703?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"></img>
+            src="https://images.unsplash.com/photo-1618085220188-b4f210d22703?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80">/>
         <% } %>
     </div>
-    <div class="information">
+    <div class=" information">
         <div class="profileInformation col-sm">
             <div class="d-flex justify-content-center col-11">
                 <div class="job-description info-section">
@@ -51,6 +53,13 @@
 
 
     <div class="button_container d-flex justify-content-end align-items-center">
+        <div class="progress_bar_container">
+            <div>
+                <label for="mentee_slots" id="mentee_slot_label" class="text-white">Number of Mentees</label>
+            </div>
+            <input type="range" value="<%= user.mentees.length %>" class="mentee_slots" id="mentee_slots"
+                name="mentee_slots" min="0" max="10">
+        </div>
         <div class="me-5">
             <a class="navigation btn btn-info me-3 left"
                 href="<%= idArray[idArray.indexOf(user.id) - 1] %>">Previous</a>
@@ -60,16 +69,16 @@
         <form action="/explore/<%=user._id%>/mentor" method="POST">
             <button id="request_btn" class="btn btn-warning" name="mentees">Request Mentorship</button>
         </form>
+
     </div>
 
+    <!-- 
+        message button
+        onclick opens a socket connection for you and other user
+        open conversations are placed under inbox
+     -->
 
-    <div class="progress_bar_container">
-        <div>
-            <label for="mentee_slots" id="mentee_slot_label" class="text-white">Number of Mentees</label>
-        </div>
-        <input type="range" value="<%= user.mentees > -1 ? user.mentees.length : 0 %>" class="mentee_slots"
-            id="mentee_slots" name="mentee_slots" min="0" max="10">
-    </div>
+
     <div id="reviews" class="text-white row justify-content-between">
         <div class="col-5">
             <% if(currentUser){ %>
@@ -122,12 +131,23 @@
         </div>
     </div>
 </div>
-<div class="user_content text-white mt-5">
-    <div class="video">Video Content</div>
+
+
 </div>
 
-</div>
 
 
+<script>  const mapToken = '<%-process.env.MAPBOX_TOKEN%>'; </script>
+
+<!-- Workaround for JSON.stringify as it does not work any longer. Pass in numbers and parseFloat on map.js -->
+<script> const coordinate1 = '<%- user.geometry.coordinates[0] %>';</script>
+<script> const coordinate2 = '<%- user.geometry.coordinates[1] %>';</script>
+<script>const userName = '<%- `${user.name.first} ${user.name.last}`%>'; </script>
+<script>const title = '<%- user.job_title %>'; </script>
+
+
+
+<script src="/javascripts/map.js"></script>
 <script src="/javascripts/validation.js"></script>
+<script src="/javascripts/private.js"></script>
 <script src="/javascripts/scroll.js"></script>

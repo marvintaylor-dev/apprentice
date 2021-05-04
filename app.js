@@ -34,9 +34,13 @@ const port = process.env.PORT || 3000;
 //messaging
 const server = require('http').createServer(app);
 const io = require("socket.io")(server);
-const formatMessage = require('./public/javascripts/messages.js')
-const botname = 'Chat Bot'
-const { userJoin, getCurrentUser, userLeave, getRoomUsers } = require('./public/javascripts/users')
+const formatMessage = require('./public/javascripts/messages.js');
+const botname = 'Chat Bot';
+const { userJoin, getCurrentUser, userLeave, getRoomUsers } = require('./public/javascripts/users');
+const connectedUser = {};
+
+const passportSocketIo = require("passport.socketio");
+const MongoStore = require('connect-mongo');
 
 //connect to passport
 const passport = require('passport')
@@ -95,9 +99,11 @@ app.use(cookieParser());
 //connect flash
 app.use(flash());
 
+
 const sessionConfig = {
     secret: 'badsecret',
     resave: false,
+    store: MongoStore.create({ mongoUrl: 'mongodb://localhost:27017/apprentice' }),
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
@@ -111,6 +117,7 @@ app.use(session(sessionConfig))
 //initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 //flash middleware
 app.use((req, res, next) => {
@@ -127,10 +134,45 @@ passport.use(new LocalStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+// ========= socket.io / passport auth ===========
 
+//With Socket.io >= 1.0
+io.use(passportSocketIo.authorize({
+    cookieParser: cookieParser,
+    key: 'connect.sid',       // the name of the cookie where express/connect stores its session_id
+    secret: sessionConfig.secret,    // the session_secret to parse the cookie
+    store: sessionConfig.store,        // we NEED to use a sessionstore. no memorystore please
+    success: onAuthorizeSuccess,  // *optional* callback on success - read more below
+    fail: onAuthorizeFail,     // *optional* callback on fail/error - read more below
+}));
+
+function onAuthorizeSuccess(data, accept) {
+    console.log('successful connection to socket.io');
+
+    // The accept-callback still allows us to decide whether to
+    // accept the connection or not.
+    accept(null, true);
+}
+
+function onAuthorizeFail(data, message, error, accept) {
+    if (error)
+        throw new Error(message);
+    console.log('failed connection to socket.io:', message);
+
+    // We use this callback to log all of our failed connections.
+    accept(null, false);
+}
 
 
 // ---------- MESSAGING VIA SOCKET.IO ---------
+
+io.on('Connection', (socket) => {
+    console.log(`User connected: ${socket.id}`)
+})
+
+
+
+// ---------- CHAT VIA SOCKET.IO ---------
 
 //socket.broadcast.emit = notifies everyone except the user
 //socket.emit = only notifies the user
@@ -139,7 +181,7 @@ passport.deserializeUser(User.deserializeUser());
 //run when the client connects
 io.on('connection', socket => {
     socket.on('joinRoom', ({ username, room }) => {
-        const user = userJoin(socket.id, username, room);
+        const user = userJoin(socket.id, socket.request.user.username, room);
         socket.join(user.room);
 
         // welcome current user

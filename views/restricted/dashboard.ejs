@@ -15,7 +15,7 @@
 
         <!-- insert profile picture -->
         <% if(user.avatar.url){ %>
-        <img class="dashboardNav--picture" src="<%= user.avatar.url  %> " alt="">
+        <img class="dashboardNav--picture" src="<%= user.avatar.url  %>" alt="">
         <% } else { %>
         <img class="dashboardNav--picture"
             src="https://images.unsplash.com/photo-1517849845537-4d257902454a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80"
@@ -27,6 +27,18 @@
         <a class="dashboardNav--link" href="#content">Upload Content</a>
         <a class="dashboardNav--link" href="#messages">Chat</a>
         <a class="dashboardNav--link" href="#analytics">Analytics</a>
+
+        <div class="dropdown dashboardNav--link" href="#">Mentees
+            <form action="/dashboard/<%= user.id %>/?_method=PUT" method="POST">
+                <div class="dropdown-content">
+                    <% for(let mentee of user.mentees){ %>
+                    <input type="checkbox" value="<%= mentee %>" id="deleteMentee" name="deleteMentee">
+                    <label for="mentee"> <%= mentee %> </label>
+                    <button class="removeMentee">Delete</button>
+                    <% } %>
+                </div>
+            </form>
+        </div>
     </div>
 </nav>
 
@@ -37,11 +49,7 @@
                 <h1><i class=""></i> Group Chat</h1>
             </header>
             <main class="join-main">
-                <form action="/chat">
-                    <div class="join__inputContainer form-control">
-                        <label for="username">Username</label>
-                        <input type="text" name="username" id="username" value="<%= user.username %>" required />
-                    </div>
+                <form action="/chat" target="_blank" rel="noreferrer noopener">
                     <div class="join__inputContainer form-control">
                         <label for="room">Room</label>
                         <select name="room" id="room">
@@ -78,13 +86,14 @@
     <div id="uploads" class="uploads">
         <div class="uploaded__video">
             <video class="uploaded--style" width="400" loop controls>
-                <source src="" </video>
+                <source src="">
+            </video>
         </div>
     </div>
 </div>
 
 
-
+<script src="https://d3js.org/d3.v6.min.js"></script>
 
 
 

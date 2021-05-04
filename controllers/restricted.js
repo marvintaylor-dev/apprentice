@@ -13,6 +13,11 @@ const states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Color
     'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
     'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia',
     'Wisconsin', 'Wyoming']
+const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
+const user = require('../models/user');
+const mapBoxToken = process.env.MAPBOX_TOKEN;
+const geocoder = mbxGeocoding({ accessToken: mapBoxToken })
+
 
 
 //Mentor profile access - should be restricted by permissions
@@ -24,8 +29,14 @@ module.exports.restrictedUserProfile = async (req, res) => {
 
 //Update and edit mentor additional profile information
 module.exports.updateUserProfile = async (req, res, next) => {
+    const geoData = await geocoder.forwardGeocode({
+        query: `${req.body.location.city},${req.body.location.state}`,
+        limit: 1
+    }).send()
     const { id } = req.params
     const user = await User.findByIdAndUpdate(id, { ...req.body });
+    user.geometry = geoData.body.features[0].geometry;
+    await user.save();
     try {
         user.avatar = ({ url: req.file.path, filename: req.file.filename })
         await user.save();
@@ -57,7 +68,20 @@ module.exports.deleteUser = async (req, res) => {
 module.exports.mentorDashboard = async (req, res) => {
     const { id } = req.params
     const user = await User.findById(id);
-    return res.render('restricted/dashboard', { user })
+    const mentees = await User.findById(user.mentees)
+    return res.render('restricted/dashboard', { user, id, mentees })
+}
+
+module.exports.deleteMentee = async (req, res) => {
+    const { id } = req.params
+    const user = await User.findById(id);
+    const index = user.mentees.indexOf(req.body.deleteMentee)
+    if (req.body.deleteMentee) {
+        user.mentees.splice(index, 1)
+        req.flash('success', `Removed mentee.`)
+    }
+    await user.save();
+    return res.redirect(`/dashboard/${user._id}`);
 }
 
 module.exports.getChat = async (req, res) => {
@@ -71,3 +95,4 @@ module.exports.getMessages = async (req, res) => {
     const user = await User.findById(id)
     return res.render('restricted/messages', { user })
 }
+

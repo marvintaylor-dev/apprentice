@@ -19,7 +19,21 @@ ul {
 }
 
 
-
 #profile_access {
    margin-left: 5rem;
 }
+
+.mentorsList {
+    color: $primary;
+}
+
+
+#cluster {
+    position: absolute;
+    top: 14rem;
+    bottom: 10rem;
+    right: 10rem;
+    width: 30%;
+    border-radius: 2em;
+    border: 2px solid $primary;
+} 

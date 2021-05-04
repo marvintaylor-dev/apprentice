@@ -45,6 +45,10 @@
     border: none;
 }
 
+.progress_bar_container {
+    width: 25rem;
+}
+
 .progress_color{
     background: rgb(255, 89, 0);
 }
@@ -106,6 +110,16 @@ margin-bottom: 5rem;
         font-size: 1rem;
         padding: .5rem;
     }
+    #map {
+        width: 400px;
+        height: 250px;
+        border-radius: 5em;
+        border: 2px solid $primary;
+        position: absolute;
+        margin-left: 60vw;
+        top: 5rem;
+    }
+    
 }
 
 .mentee_slots {
@@ -123,4 +137,25 @@ h3 {
 .line__styling {
     @include line__styling;
     width: 100%;
+}
+
+#map {
+    width: 400px;
+    height: 250px;
+    border-radius: 5em;
+    border: 2px solid $primary;
+    position: absolute;
+    margin-left: 60vw;
+    top: 5rem;
+}
+
+
+.mapboxgl-popup {
+    max-width: 200px; 
+}
+
+.mapboxgl-popup-content {
+    color: white;
+    background-color: rgb(52, 52, 52);
+    border-radius: 2em;
 }
