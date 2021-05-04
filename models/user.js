@@ -57,6 +57,15 @@ const UserSchema = new Schema({
             type: Number
         }
     },
+    geometry: {
+        type: {
+            type: String, // Don't do `{ location: { type: String } }`
+            enum: ['Point'], // 'location.type' must be 'Point'
+        },
+        coordinates: {
+            type: [Number],
+        }
+    },
     job_description: {
         type: String
     },

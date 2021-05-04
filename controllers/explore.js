@@ -3,6 +3,9 @@ const User = require('../models/user');
 //access to Review model
 const Review = require('../models/review');
 const fields = ['Psychology', 'Engineering', 'Biology', 'Physics', 'Arts', 'Trades', 'Content-Creation', 'Business'];
+const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
+const mapBoxToken = process.env.MAPBOX_TOKEN;
+const geocoder = mbxGeocoding({ accessToken: mapBoxToken })
 
 //show the explore page
 module.exports.showExplore = async (req, res) => {
@@ -28,7 +31,6 @@ module.exports.createReview = async (req, res) => {
     const user = await User.findById(id);
     const review = new Review(req.body.review)
     review.author = req.user._id
-    console.log(user)
     user.reviews.push(review)
     await review.save();
     await user.save();
@@ -74,7 +76,7 @@ module.exports.requestMentorship = async (req, res) => {
     const user = await User.findById(id);
     user.mentees.push(req.user)
     await user.save();
-    req.flash('success', `Successfully became ${user.username}'s Newest Mentee!`)
+    req.flash('success', `Successfully became ${user.username.toUpperCase()}'s newest MENTEE!`)
     return res.redirect(`/explore/${user._id}`);
 }
 

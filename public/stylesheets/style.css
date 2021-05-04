@@ -244,6 +244,20 @@ ul {
   margin-left: 5rem;
 }
 
+.mentorsList {
+  color: #21D883;
+}
+
+#cluster {
+  position: absolute;
+  top: 14rem;
+  bottom: 10rem;
+  right: 10rem;
+  width: 30%;
+  border-radius: 2em;
+  border: 2px solid #21D883;
+}
+
 body {
   height: 100%;
 }
@@ -272,7 +286,7 @@ body {
   position: absolute;
   background-color: #333333;
   width: 10rem;
-  height: 50vh;
+  height: 60vh;
   -webkit-box-shadow: 2px 2px 20px 10px rgba(0, 0, 0, 0.2);
           box-shadow: 2px 2px 20px 10px rgba(0, 0, 0, 0.2);
   overflow: hidden;
@@ -346,7 +360,7 @@ body {
 
 .messages {
   width: 62%;
-  height: 50vh;
+  height: 60vh;
   margin-left: 11rem;
   margin-bottom: 1rem;
   background-color: #333333;
@@ -381,6 +395,7 @@ body {
 @media (min-width: 64em) {
   .messages {
     width: 40%;
+    height: 50vh;
   }
 }
 
@@ -458,7 +473,6 @@ body {
 .addContentLink .addContent .addContent__video .addContent--circle .addContent--plus {
   font-size: 10rem;
   color: rgba(242, 242, 242, 0.872);
-  margin-bottom: 1.8rem;
 }
 
 @media (min-width: 64em) {
@@ -622,6 +636,42 @@ body {
   }
 }
 
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Links inside the dropdown */
+.dropdown-content {
+  color: black;
+  text-decoration: none;
+  display: block;
+}
+
+.removeMentee {
+  background-color: #ff5900;
+  color: white;
+  padding: 5px;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #21D883;
+  padding: 10px 10px;
+  width: 320px;
+  -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
 .explore__link {
   text-decoration: none;
   color: #21D883;
@@ -758,6 +808,10 @@ body {
   border: none;
 }
 
+.progress_bar_container {
+  width: 25rem;
+}
+
 .progress_color {
   background: #ff5900;
 }
@@ -827,6 +881,15 @@ body {
     font-size: 1rem;
     padding: .5rem;
   }
+  #map {
+    width: 400px;
+    height: 250px;
+    border-radius: 5em;
+    border: 2px solid #21D883;
+    position: absolute;
+    margin-left: 60vw;
+    top: 5rem;
+  }
 }
 
 .mentee_slots {
@@ -846,5 +909,25 @@ h3 {
   height: 2px;
   background-color: #21D883;
   width: 100%;
+}
+
+#map {
+  width: 400px;
+  height: 250px;
+  border-radius: 5em;
+  border: 2px solid #21D883;
+  position: absolute;
+  margin-left: 60vw;
+  top: 5rem;
+}
+
+.mapboxgl-popup {
+  max-width: 200px;
+}
+
+.mapboxgl-popup-content {
+  color: white;
+  background-color: #343434;
+  border-radius: 2em;
 }
 /*# sourceMappingURL=style.css.map */
