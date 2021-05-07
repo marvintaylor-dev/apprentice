@@ -26,11 +26,10 @@ db.once("open", () => {
 
 const sample = array => array[Math.floor(Math.random() * array.length)];
 
-
 const seedDB = async (req, res) => {
     await User.deleteMany({});
     for (let i = 0; i < 20; i++) {
-        const random10 = Math.floor(Math.random() * 10);
+        const random20 = Math.floor(Math.random() * 20);
         const random100 = Math.floor(Math.random() * 100);
         const random1000 = Math.floor(Math.random() * 1000);
         const salary = Math.floor(Math.random() * 200000) + 1000;

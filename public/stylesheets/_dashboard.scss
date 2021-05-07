@@ -21,18 +21,28 @@ body {
     .dashboardNav__head {
         @include flexCenter(column);
     }
-
-    .dashboardNav__head .dashboardNav--picture {
-        width: 5rem;
-        height: 5rem;
-        background-color: lighten(black, 20%);
-        box-shadow: 2px 2px 20px 10px rgba(0, 0, 0, 0.2);
-        border-radius: 50%;
-        margin-top: 1.5rem;
-       
+    & .dashboardNav__picture--container{
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    font-weight: bold;
+    color: $lightGray;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid $primary;
+    overflow: hidden;
+    margin-top: 1rem;
     }
 
-    .dashboardNav__head .dashboardNav--username{
+    & .dashboardNav--picture {
+        width: 100%;
+        background-color: lighten(black, 20%);
+        box-shadow: 2px 2px 20px 10px rgba(0, 0, 0, 0.2);
+        margin-top: 1.5rem;
+    }
+
+    & .dashboardNav--username{
         margin-top: .5rem;
         color: $primary;
         font-weight: bold;

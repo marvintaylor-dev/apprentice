@@ -5,6 +5,8 @@ const Joi = require('joi');
 const Review = require('./review');
 const passportLocalMongoose = require('passport-local-mongoose');
 
+const opts = { toJSON: { virtuals: true } };
+
 const UserSchema = new Schema({
     avatar: {
         url: String,
@@ -97,6 +99,11 @@ const UserSchema = new Schema({
             ref: 'User'
         }
     ]
+}, opts)
+
+UserSchema.virtual('properties.popUpMarkup').get(function () {
+    return `<strong><a href="/explore/${this._id}">${this.username}</a></strong>
+    <p>${this.job_title}</p>`
 })
 
 //Deletes any reviews leading to a mentor which no longer exists

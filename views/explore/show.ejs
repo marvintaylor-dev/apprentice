@@ -22,7 +22,7 @@
         <img class="avatar__image" src="<%= user.avatar.url %>" alt="Mentor Image">
         <% } else {%>
         <img class="avatar__image"
-            src="https://images.unsplash.com/photo-1618085220188-b4f210d22703?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80">/>
+            src="https://images.unsplash.com/photo-1618085220188-b4f210d22703?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80">
         <% } %>
     </div>
     <div class=" information">
@@ -68,6 +68,11 @@
 
         <form action="/explore/<%=user._id%>/mentor" method="POST">
             <button id="request_btn" class="btn btn-warning" name="mentees">Request Mentorship</button>
+        </form>
+
+        <form action="/messages" target="_blank" rel="noreferrer noopener">
+            <button id="room" name="room" value="<%= user.id %>" type="submit" class="btn btn-info mx-3">Private <br>
+                Message</button>
         </form>
 
     </div>

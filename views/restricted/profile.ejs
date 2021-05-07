@@ -13,17 +13,21 @@
                 <input type="checkbox" id="checkbox__delete" name="deleteImage" value="<%= user.avatar.filename %> ">
                 <label for="checkbox__delete" class="text-white">Delete?</label>
             </div>
-            <h2 class="profile__head">
-                <% if(user.avatar.url){ %>
-                <img class="profile__pic" src="<%= user.avatar.url %> " alt="">
-                <% } else { %>
-                <img class="profile__pic"
-                    src="https://images.unsplash.com/photo-1517849845537-4d257902454a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80"
-                    alt="">
-                <% } %>
-                <%= user.name.first %>
-                <%= user.name.last %>
-            </h2>
+            <div class="profile__header">
+                <div class="profile__head">
+                    <% if(user.avatar.url){ %>
+                    <img class="profile__pic" src="<%= user.avatar.url %> " alt="">
+                    <% } else { %>
+                    <img class="profile__pic"
+                        src="https://images.unsplash.com/photo-1517849845537-4d257902454a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80"
+                        alt="">
+                    <% } %>
+                </div>
+                <h2 class="name">
+                    <%= user.name.first %>
+                    <%= user.name.last %>
+                </h2>
+            </div>
 
             <div class="row row-col-6">
                 <div class="col">
