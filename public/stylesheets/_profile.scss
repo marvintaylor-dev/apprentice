@@ -10,17 +10,31 @@
     color: $lightGray;
 }
 
+.profile__header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+}
+
+.name {
+    color: white;
+}
+
 .profile__head {
     display: flex;
-    justify-items: flex-start;
+    justify-items: center;
+    align-items: center;
     font-weight: bold;
     color: $lightGray;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid $primary;
+    overflow: hidden;
 
     .profile__pic {
-        width: 10rem;
-        height: 10rem;
-        border-radius: 50%;
-        border: 2px solid $primary;
+        width: 100%;
         margin-right: 3rem;
     }
 }

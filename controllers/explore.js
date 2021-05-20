@@ -80,3 +80,8 @@ module.exports.requestMentorship = async (req, res) => {
     return res.redirect(`/explore/${user._id}`);
 }
 
+module.exports.messageMentor = async (req, res) => {
+    const { id } = req.params
+    const user = await User.findById(id)
+    return res.render('explore/messages', { user })
+}

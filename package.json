@@ -21,8 +21,10 @@
     "ejs": "^3.1.5",
     "ejs-mate": "^3.0.0",
     "express": "^4.17.1",
+    "express-mongo-sanitize": "^2.0.2",
     "express-session": "^1.17.1",
     "flash": "^1.1.0",
+    "helmet": "^4.6.0",
     "joi": "^17.4.0",
     "jquery": "^3.5.1",
     "method-override": "^3.0.0",
@@ -36,6 +38,7 @@
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.1.0",
     "passport.socketio": "^3.7.0",
+    "sanitize-html": "^2.3.3",
     "session": "^0.1.0",
     "socket.io": "^4.0.1"
   }

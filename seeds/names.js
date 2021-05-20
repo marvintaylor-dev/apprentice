@@ -17,7 +17,7 @@ module.exports.first = [
     'Lexi',
     'Dusty',
     'Melanie'
-]
+];
 
 module.exports.last = [
     'Taylor',
@@ -38,4 +38,4 @@ module.exports.last = [
     'Smith',
     'Bateau',
     'Tejkel'
-]
+];

@@ -29,6 +29,11 @@ const session = require('express-session')
 //flashes a message before redirecting
 const flash = require('connect-flash')
 const port = process.env.PORT || 3000;
+//Protect mongo DB from attacks within the URL. Finding all users for example
+const mongoSanitize = require('express-mongo-sanitize');
+// 
+const helmet = require('helmet');
+
 
 
 //messaging
@@ -98,6 +103,60 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 //connect flash
 app.use(flash());
+app.use(mongoSanitize());
+app.use(helmet());
+
+const scriptSrcUrls = [
+    "https://d3js.org/d3.v6.min.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css",
+    "https://cdnjs.cloudflare.com/ajax/libs/qs/6.10.1/qs.min.js",
+    "https://code.jquery.com/jquery-3.5.1.min.js",
+    "https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css",
+    "https://api.tiles.mapbox.com",
+    "https://api.mapbox.com",
+    "https://kit.fontawesome.com",
+    "https://cdnjs.cloudflare.com",
+    "https://cdn.jsdelivr.net",
+];
+const styleSrcUrls = [
+    "https://d3js.org/d3.v6.min.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css",
+    "https://cdnjs.cloudflare.com/ajax/libs/qs/6.10.1/qs.min.js",
+    "https://code.jquery.com/jquery-3.5.1.min.js",
+    "https://kit-free.fontawesome.com",
+    "https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css",
+    "https://api.mapbox.com",
+    "https://api.tiles.mapbox.com",
+    "https://fonts.googleapis.com",
+    "https://use.fontawesome.com",
+];
+const connectSrcUrls = [
+    "https://api.mapbox.com",
+    "https://*.tiles.mapbox.com",
+    "https://events.mapbox.com",
+];
+const fontSrcUrls = [];
+app.use(
+    helmet.contentSecurityPolicy({
+        directives: {
+            defaultSrc: [],
+            connectSrc: ["'self'", ...connectSrcUrls],
+            scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
+            styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
+            workerSrc: ["'self'", "blob:"],
+            childSrc: ["blob:"],
+            objectSrc: [],
+            imgSrc: [
+                "'self'",
+                "blob:",
+                "data:",
+                "https://res.cloudinary.com/dvjzkwc3a/", //SHOULD MATCH YOUR CLOUDINARY ACCOUNT! 
+                "https://images.unsplash.com",
+            ],
+            fontSrc: ["'self'", ...fontSrcUrls],
+        },
+    })
+);
 
 
 const sessionConfig = {
@@ -107,6 +166,7 @@ const sessionConfig = {
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
+        // secure: true,
         expires: Date.now() + 3600000 * 24 * 7,
         maxAge: 3600000 * 24 * 7
     }
@@ -166,8 +226,22 @@ function onAuthorizeFail(data, message, error, accept) {
 
 // ---------- MESSAGING VIA SOCKET.IO ---------
 
-io.on('Connection', (socket) => {
-    console.log(`User connected: ${socket.id}`)
+io.on('connection', (socket) => {
+    socket.on('joinPrivate', ({ username, room }) => {
+        console.log(`User connected`)
+        const user = userJoin(socket.id, socket.request.user.username, room);
+        socket.join(user.room)
+    })
+
+    // Listen for privateMessage
+    socket.on('privateMessage', (msg) => {
+        const user = getCurrentUser(socket.id);
+
+        io
+            .to(user.room)
+            .emit('message', formatMessage(user.username, msg));
+    })
+
 })
 
 

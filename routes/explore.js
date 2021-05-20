@@ -19,5 +19,6 @@ router.delete('/explore/:id/reviews/:reviewId', isAuthor, loggedIn, catchAsync(e
 
 router.post('/explore/:id/mentor', loggedIn, catchAsync(explore.requestMentorship)) //add to mentee array
 
+router.get('/messages', loggedIn, catchAsync(explore.messageMentor)) // message mentor from the show page
 
 module.exports = router;

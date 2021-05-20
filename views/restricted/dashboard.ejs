@@ -12,15 +12,16 @@
 
 <nav class="dashboardNav">
     <header class="dashboardNav__head">
-
-        <!-- insert profile picture -->
-        <% if(user.avatar.url){ %>
-        <img class="dashboardNav--picture" src="<%= user.avatar.url  %>" alt="">
-        <% } else { %>
-        <img class="dashboardNav--picture"
-            src="https://images.unsplash.com/photo-1517849845537-4d257902454a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80"
-            alt="">
-        <% } %>
+        <div class="dashboardNav__picture--container">
+            <!-- insert profile picture -->
+            <% if(user.avatar.url){ %>
+            <img class="dashboardNav--picture" src="<%= user.avatar.url  %>" alt="">
+            <% } else { %>
+            <img class="dashboardNav--picture"
+                src="https://images.unsplash.com/photo-1517849845537-4d257902454a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80"
+                alt="">
+            <% } %>
+        </div>
         <div class="dashboardNav--username">Welcome, <%= user.name.first %> </div>
     </header>
     <div class="dashboardNav__links">
@@ -46,7 +47,7 @@
     <div id="messages" class="messages">
         <div class="join-container">
             <header class="join-header">
-                <h1><i class=""></i> Group Chat</h1>
+                <h1>Group Chat</h1>
             </header>
             <main class="join-main">
                 <form action="/chat" target="_blank" rel="noreferrer noopener">
@@ -66,8 +67,8 @@
 
     <div id="analytics" class="analytics">
         <div class="analytics__graph">
-            <div class="analytics--information">
-                Graph information
+            <div class="analytics--chart">
+                <canvas id="myChart"></canvas>
             </div>
         </div>
     </div>
@@ -92,8 +93,17 @@
     </div>
 </div>
 
+<!-- Data Visualization -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/javascripts/charts.js"></script>
+<script>
+    // === include 'setup' then 'config' above ===
 
-<script src="https://d3js.org/d3.v6.min.js"></script>
+    var myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+</script>
 
 
 

@@ -19,7 +19,7 @@ router.get('/dashboard/:id', loggedIn, catchAsync(restricted.mentorDashboard)) /
 
 router.get('/chat', loggedIn, restricted.getChat);
 
-router.get('/messages/:id', loggedIn, catchAsync(restricted.getMessages));
+router.get('/messages?room=:id', loggedIn, validateMentor, catchAsync(restricted.getMessages));
 
 router.put('/dashboard/:id', loggedIn, catchAsync(restricted.deleteMentee));
 

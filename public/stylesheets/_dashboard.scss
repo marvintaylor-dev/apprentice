@@ -21,18 +21,28 @@ body {
     .dashboardNav__head {
         @include flexCenter(column);
     }
-
-    .dashboardNav__head .dashboardNav--picture {
-        width: 5rem;
-        height: 5rem;
-        background-color: lighten(black, 20%);
-        box-shadow: 2px 2px 20px 10px rgba(0, 0, 0, 0.2);
-        border-radius: 50%;
-        margin-top: 1.5rem;
-       
+    & .dashboardNav__picture--container{
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    font-weight: bold;
+    color: $lightGray;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid $primary;
+    overflow: hidden;
+    margin-top: 1rem;
     }
 
-    .dashboardNav__head .dashboardNav--username{
+    & .dashboardNav--picture {
+        width: 100%;
+        background-color: lighten(black, 20%);
+        box-shadow: 2px 2px 20px 10px rgba(0, 0, 0, 0.2);
+        margin-top: 1.5rem;
+    }
+
+    & .dashboardNav--username{
         margin-top: .5rem;
         color: $primary;
         font-weight: bold;
@@ -143,21 +153,33 @@ body {
 
 .analytics {
     @include flexCenter(row);
-    width: 100%;
 
     .analytics__graph {
         @include flexCenter(row);
-        width: 95%;
-        height: 20rem;
-        border: 1px solid $lightGray;
+        width: 40rem;
+        height: 50vh;
         background-color: lighten(black, 20%);
         box-shadow: 2px 2px 20px 10px rgba(0, 0, 0, 0.2);
-        margin-bottom: 2rem;
+        margin: 0 1rem 2rem 0;
         opacity: 50%;
-    
-        .analytics--information {
-            @include flexCenter(row);
-            color: $white;
+    }
+
+    .analytics__graph .analytics--chart {
+       width: 100%;
+       background-color: rgb(38, 38, 38);
+    }
+
+    @media (max-width: 1100px) {
+        .analytics__graph {
+            width: 30rem;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .analytics__graph {
+            width: 100%;
+            height: 40vh;
+            margin: 0 1rem 1rem 1rem;
         }
     }
 
@@ -166,6 +188,8 @@ body {
         width: 60%;
     }
 }
+
+
 
 .dashHeader {
     @include flexCenter(row);
