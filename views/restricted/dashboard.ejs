@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="/stylesheets/chat.css">
 <link rel="stylesheet" href="/stylesheets/style.css">
 
-
+<div class="dashBody">
 <div class="dashHeader">
     <h1 class="dashHeader__content">Mentor Dashboard</h1>
 </div>
@@ -22,7 +22,11 @@
                 alt="">
             <% } %>
         </div>
+        <% if(user.name.first){ %> 
         <div class="dashboardNav--username">Welcome, <%= user.name.first %> </div>
+        <% } else { %>
+            <div class="dashboardNav--username">Welcome, <%= user.username %> </div> 
+        <% } %> 
     </header>
     <div class="dashboardNav__links">
         <a class="dashboardNav--link" href="#content">Upload Content</a>
@@ -47,7 +51,7 @@
     <div id="messages" class="messages">
         <div class="join-container">
             <header class="join-header">
-                <h1>Group Chat</h1>
+                <h3>Group Chat</h3>
             </header>
             <main class="join-main">
                 <form action="/chat" target="_blank" rel="noreferrer noopener">
@@ -59,7 +63,7 @@
                             <option value="Group 3">Mentee 2</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn">Join Chat</button>
+                    <button type="submit" class="joinChatBtn btn">Join Chat</button>
                 </form>
             </main>
         </div>
@@ -74,24 +78,13 @@
     </div>
 </div>
 
-<div class="mediaRow">
-    <a class="addContentLink" href="#">
-        <div id="addContent" class="addContent">
-            <div class="addContent__video">
-                <div class="addContent--circle">
-                    <div class="addContent--plus">+</div>
-                </div>
-            </div>
-        </div>
-    </a>
-    <div id="uploads" class="uploads">
-        <div class="uploaded__video">
-            <video class="uploaded--style" width="400" loop controls>
-                <source src="">
-            </video>
-        </div>
+<div class="assignments">
+    <div class="assignments__title">
+        <h3>Assignments</h3>
     </div>
 </div>
+</div>
+
 
 <!-- Data Visualization -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

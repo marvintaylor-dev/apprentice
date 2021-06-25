@@ -1,32 +1,32 @@
 #brand {
-        color: $secondary;
-        font-weight: bold;
+  color: $secondary;
+  font-weight: bold;
 }
 
 .navbar {
-    position: sticky;
-    top:0;
-    z-index: 1000;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .nav__tag {
-    color: $white;
-    transition: all ease-out .25s;
-    &:hover {
-        color: $highlight;
-        border-bottom: 2px solid $redOrange;
-        border-radius: 25%;
-    }
+  color: $white;
+  transition: all ease-out 0.25s;
+  &:hover {
+    color: $highlight;
+    border-bottom: 2px solid $redOrange;
+    border-radius: 25%;
+  }
 }
 
 .welcomeMessage {
-    color: white;
-    font-size: large;
-    align-items: center;
-    margin-right: 2rem;
+  color: white;
+  font-size: large;
+  align-items: center;
+  margin-right: 2rem;
 }
 
 .welcomeMessage__username {
-    margin-left: .5rem;
-    color: $redOrange;
-} 
+  margin-left: 0.5rem;
+  color: $redOrange;
+}

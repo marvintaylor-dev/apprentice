@@ -1,30 +1,35 @@
 <% layout('layouts/boilerplate') %>
 <link rel="stylesheet" href="/stylesheets/list.css">
 
-<div class="container d-flex justify-content-left mt-5">
+<div class="listBody">
+<div class="listContainer mt-5">
     <h1 class="mentorsList">
-        <%= field_of_study %> Mentors
+        <%= field_of_study || 'All' %> Mentors
     </h1>
 </div>
 
-<div class="container d-flex justify-content-left mt-5">
+<div class="listContainer mt-5">
+    <div id="cluster"></div>
     <div class="mentorInformation">
         <ul>
             <% for (let user of users) {%>
             <% if(user.path){ %>
-            <li><a class="mentorInformation__name" href="/explore/<%=user._id%>">
+            
+            <li class="mentor_component"><a class="mentorInformation__name" href="/explore/<%=user._id%>">
                     <%= user.name.first %>
                     <%= user.name.last %>
                 </a>
-                <span class="mentorInformation__jobTitle"><%= user.job_title %></span>
-                <button id="profile_access"><a href="/restricted/<%=user._id%>">Restricted Access Profile</a></button>
+                <a class="mentorInformation__jobTitle" href="/explore/<%=user._id%>"><%= user.job_title %></a>
+                <!-- <button id="profile_access"><a href="/restricted/<%=user._id%>">Restricted Access Profile</a></button> -->            
             </li>
+       
             <% } %>
             <% } %>
         </ul>
     </div>
-    <div id="cluster"></div>
+   
 
+</div>
 </div>
 
 

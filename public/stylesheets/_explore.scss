@@ -1,77 +1,75 @@
 .explore__link {
-    text-decoration: none;
-    color: $primary;
-    &:hover {
-        color: $redOrange;
-    }
+  text-decoration: none;
+  color: $primary;
+  &:hover {
+    color: $redOrange;
+  }
 }
 
 .explore__header {
-    color: $white;
-    border-bottom: .3rem solid $primary;
+  color: $white;
+  border-bottom: 0.3rem solid $primary;
 }
 
 .subject {
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    font-weight: bold;
-    color: white;
-    width: 20rem;
-    height: 20rem;
-    background-position: center;
-    background-size: cover;
-    border: 2px solid #21D883;
-    margin: 1rem;
-    padding: 1rem;
-    transition: all;
-    transition-duration: .2s;
-    &:hover {
-        border: 3px solid $highlight;
-        color: $highlight;
-        font-size: 3.5rem;
-        cursor: pointer;
-        width: 21rem;
-        height: 21rem;
-    }
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+  width: 20rem;
+  height: 20rem;
+  background-position: center;
+  background-size: cover;
+  border: 2px solid #21d883;
+  margin: 1rem;
+  padding: 1rem;
+  transition: all ease-in-out;
+  transition-duration: 0.3s;
+  &:hover {
+    border: 3px solid $highlight;
+    border-radius: 1em;
+    color: $highlight;
+    font-size: 3.5rem;
+    cursor: pointer;
+  }
 }
-
-
 
 #psychology {
-    background-image: linear-gradient(180deg, #39393980 0%, #06070c82 100%),
+  background-image: linear-gradient(180deg, #39393980 0%, #06070c82 100%),
     url(https://images.unsplash.com/photo-1517346665566-17b938c7f3ad?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80);
 }
-#engineering { 
-    background-image: linear-gradient(180deg, #39393980 0%, #06070c82 100%),
+#engineering {
+  background-image: linear-gradient(180deg, #39393980 0%, #06070c82 100%),
     url(https://images.unsplash.com/photo-1581094480465-4e6c25fb4a52?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80);
 }
 #biology {
-    background-image: linear-gradient(180deg, #39393980 0%, #06070c82 100%),
+  background-image: linear-gradient(180deg, #39393980 0%, #06070c82 100%),
     url(https://images.unsplash.com/photo-1567427018141-0584cfcbf1b8?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80);
 }
 #physics {
-    background-image: linear-gradient(180deg, #39393980 0%, #06070c82 100%),
+  background-image: linear-gradient(180deg, #39393980 0%, #06070c82 100%),
     url(https://images.unsplash.com/photo-1576319155264-99536e0be1ee?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1275&q=80);
 }
 #arts {
-    background-image: linear-gradient(180deg, #39393980 0%, #06070c82 100%),
+  background-image: linear-gradient(180deg, #39393980 0%, #06070c82 100%),
     url(https://images.unsplash.com/photo-1556321360-f492c2ffea64?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80);
 }
 #trades {
-    background-image: linear-gradient(180deg, #39393980 0%, #06070c82 100%),
+  background-image: linear-gradient(180deg, #39393980 0%, #06070c82 100%),
     url(https://images.unsplash.com/photo-1473621038790-b778b4750efe?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1952&q=80);
 }
 #content-creation {
-    background-image: linear-gradient(180deg, #39393980 0%, #06070c82 100%),
+  background-image: linear-gradient(180deg, #39393980 0%, #06070c82 100%),
     url(https://images.unsplash.com/photo-1599999904375-417412f2813c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1300&q=80);
 }
 #business {
-    background-image: linear-gradient(180deg, #39393980 0%, #06070c82 100%),
+  background-image: linear-gradient(180deg, #39393980 0%, #06070c82 100%),
     url(https://images.unsplash.com/photo-1577415124269-fc1140a69e91?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1300&q=80);
 }
 
-
-
+.container {
+  margin-bottom: 5rem;
+}
