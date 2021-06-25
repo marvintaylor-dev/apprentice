@@ -1,3 +1,4 @@
+
 // <block:setup:1>
 const labels = [
     'January',
@@ -10,17 +11,17 @@ const labels = [
 const data = {
     labels: labels,
     datasets: [{
-        label: 'Review / Mentee Analytics',
+        label: 'Mentee Analytics',
         backgroundColor: '#21D883',
         borderColor: '#21D883',
-        data: [0, 10, 5, 2, 20, 30, 45],
+        data: [5, 10, 5, 25, 20, 30, 45],
     }]
 };
 // </block:setup>
 
 // <block:config:0>
 const config = {
-    type: 'line',
+    type: 'bar',
     data,
     options: {}
 };

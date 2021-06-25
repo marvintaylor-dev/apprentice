@@ -8,6 +8,7 @@ const locations = require('./location');
 const fields = ['Psychology', 'Engineering', 'Biology', 'Physics', 'Arts', 'Trades', 'Content-Creation', 'Business'];
 const passport = require('passport');
 const Joi = require('joi');
+const faker = require('faker')
 
 
 //connects Mongoose to Mongo database
@@ -28,22 +29,23 @@ const sample = array => array[Math.floor(Math.random() * array.length)];
 
 const seedDB = async (req, res) => {
     await User.deleteMany({});
-    for (let i = 0; i < 20; i++) {
-        const random20 = Math.floor(Math.random() * 20);
+    for (let i = 0; i < 50; i++) {
+        const first = faker.name.firstName();
+        const last = faker.name.lastName();
         const random100 = Math.floor(Math.random() * 100);
         const random1000 = Math.floor(Math.random() * 1000);
         const salary = Math.floor(Math.random() * 200000) + 1000;
-        const email = `${sample(first.splice(0, 2))}${random100}@gmail.com`
+        const email = faker.internet.email(first,last);
         const password = 'elf';
         try {
             const user = new User({
-                job_title: sample(jobs),
+                job_title: faker.name.jobTitle(),
                 name: {
-                    first: sample(first),
-                    last: sample(last)
+                    first: first,
+                    last: last
                 },
                 email: email,
-                username: `${sample(last)}${random100}`,
+                username: `${first}${random100}`,
                 password: password,
                 age: random100,
                 tier: sample(['1', '2', '3']),
