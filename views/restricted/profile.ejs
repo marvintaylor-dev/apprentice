@@ -1,23 +1,34 @@
 <% layout('/layouts/boilerplate') %>
 <link rel="stylesheet" href="/stylesheets/style.css">
 
-<!-- modal -->
-<div class="bg-modal">
-    <div class="modal-content">
-        <a class="modal--item" id="uploadAvatar">Upload New Avatar</a>
-        <a class="modal--item" id="deleteAvatar">Delete Avatar</a>
-        <a class="modal--item close" id="cancel">Cancel</a>
-    </div>
-</div>
+
 
 <div class="page_title">
     <h1 class="title">Edit Profile</h1>
 </div>
-<div class="container">
+<div class="profileContainer">
   
         <form action="/restricted/<%= user._id%>?_method=PUT" method="POST" enctype="multipart/form-data">
+            <!-- modal -->
+            <div class="bg-modal">
+                <div class="modal-content">
+                        <label class="modal--item" id="uploadAvatar" for="upload-photo">Upload Photo</label>
+                        <input type="file" name="avatar" id="upload-photo"></input>
+                    <div class="checkbox">
+                        <label class="modal--item" for="checkbox__delete">Delete Image?</label>
+                        <input type="checkbox" id="checkbox__delete" name="deleteImage" value="<%= user.avatar.filename %> ">
+                    </div> 
+                    <div class="modal--item submit_cancel_container">
+                        <button>Submit Changes</button>
+                        <a class="modal--item close" id="cancel">Cancel</a>
+                    </div>
+                </div>
+            </div>
+
+
             <div class="profile_info">
                 <div class="profile__header">    
+                    <p id="changeAvatar">Change Avatar</p>
                     <div class="profile__head" id="profileImage">
                         <% if(user.avatar.url){ %>
                         <img class="profile__pic" src="<%= user.avatar.url %> " alt="">
@@ -27,11 +38,10 @@
                             alt="">
                         <% } %>
                     </div>
-                    <div class="checkbox">
-                        <input type="checkbox" id="checkbox__delete" name="deleteImage" value="<%= user.avatar.filename %> ">
-                        <label for="checkbox__delete">Delete Image?</label>
-                    </div>
+                    <!--  -->
                 </div>
+
+            
 
                     <div>
                         <label for="firstname" class="label form-label col-sm">Name</label>
@@ -66,12 +76,12 @@
                                 aria-label="Age" value="<%=user.age%>">
                         </div>
                     </div>
-                    <div>
+                   <!--  <div>
                         <label for="avatar" class="label form-label col-sm">Upload Profile Picture</label>
                         <div>
                             <input class="form-control" name="avatar" id="avatar" type="file">
                         </div>
-                    </div>
+                    </div> -->
                     <div>
                         <label for="path" class="label form-label col-sm">Path</label>
                         <div>
@@ -179,6 +189,6 @@
     </form>
 </div>
 
-<script src="javascripts/popup.js"></script>    
+<script src="/javascripts/popup.js"></script>    
 
     
