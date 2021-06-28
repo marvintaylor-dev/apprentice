@@ -1,23 +1,18 @@
-
 .signupBody {
-    background-image: linear-gradient(180deg, #39393980 0%, #06070ca1 100%),
+  background-image: linear-gradient(180deg, #39393980 0%, #06070ca1 100%),
     url(https://images.unsplash.com/photo-1531545514256-b1400bc00f31?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1567&q=80);
-    background-size: cover;
-    background-position: center;
+  background-size: cover;
+  background-position: center;
 }
 
 .signup_form {
-    margin: 0 35% 0 35%;
+  margin: 0 35% 0 35%;
 }
 
-
-.form{
-    @include form__style;
+.form {
+  @include form__style;
 }
 
 .underline {
-    @include line__styling;
+  @include line__styling;
 }
-
-
-
