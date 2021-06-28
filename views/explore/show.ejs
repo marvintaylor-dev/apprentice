@@ -18,27 +18,27 @@
                     <% } %>
                </div>
 
-            <a class="navigation btn btn-info right" href="<%= idArray[idArray.indexOf(user.id) + 1] %>">Next</a>
-        </div>
+             <a class="navigation btn btn-info right" href="<%= idArray[idArray.indexOf(user.id) + 1] %>">Next</a>
+         </div>
     
         
-        <div class="showPg__name mt-5 d-flex justify-content-center">
+         <div class="showPg__name mt-5 d-flex justify-content-center">
             <div class="text-white">Tier <%= user.tier %> </div>
             <h1><%= user.name.first %> <%= user.name.last %></h1> 
-        </div>
+         </div>
 
-        <div class="line__styling"></div>
+         <div class="line__styling"></div>
 
-        <div class="job-title d-flex justify-content-center mb-5">
+         <div class="job-title d-flex justify-content-center mb-5">
             <% if(user.job_title){ %>
             <h2 id="job_title"><%= user.job_title.toUpperCase() %></h2> 
             <% } else { %>
             <h2 id="job_title">Job Title</h2>
             <% } %>
-        </div>
+         </div>
 
 
-        <div class=" information">
+         <div class="information">
             <div class="profileInformation col-sm">
                     <div class="job-description info-section">
                         <h3>Job Description</h3>
@@ -59,14 +59,14 @@
                     </div>
                 </div>
             </div>
-        </div>
+         </div>
     
-        </div>
+         </div>
 
 
 
  
-        <div class="progress_bar_container">
+         <div class="progress_bar_container">
             <div>
                 <label for="mentee_slots" id="mentee_slot_label">Number of Mentees</label>
             </div>

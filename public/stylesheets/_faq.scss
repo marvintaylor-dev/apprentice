@@ -1,12 +1,15 @@
 .faqBody {
-  height: 100vh;
+  min-height: 100vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
     url(https://images.unsplash.com/photo-1591710635498-283fe28f75e2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1048&q=80);
   background-size: cover;
   background-position: center;
+  display: flex;
+  justify-content: space-around;
 }
 
 .faq-title {
+  margin-top: 5rem;
   color: #21d883;
 }
 
@@ -23,7 +26,7 @@ dt {
   border: 1px solid #21d883;
 }
 
-.container {
+.faqContainer {
   width: 45%;
 }
 
@@ -31,7 +34,7 @@ dt {
   .faqBody {
     display: inline;
   }
-  .container {
+  .faqContainer {
     width: 80%;
   }
 }

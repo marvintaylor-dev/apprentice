@@ -6,13 +6,13 @@
 <link rel="stylesheet" href="/stylesheets/style.css">
 
 <div class="dashBody">
-<div class="dashHeader">
-    <h1 class="dashHeader__content">Mentor Dashboard</h1>
-</div>
+    <div class="dashHeader">
+        <h1 class="dashHeader__content">Mentor Dashboard</h1>
+    </div>
 
-<nav class="dashboardNav">
-    <header class="dashboardNav__head">
-        <div class="dashboardNav__picture--container">
+    <nav class="dashboardNav">
+        <header class="dashboardNav__head">
+         <div class="dashboardNav__picture--container">
             <!-- insert profile picture -->
             <% if(user.avatar.url){ %>
             <img class="dashboardNav--picture" src="<%= user.avatar.url  %>" alt="">
@@ -45,9 +45,9 @@
             </form>
         </div>
     </div>
-</nav>
+    </nav>
 
-<div class="largeView">
+<div class="dashboardGrid">
     <div id="messages" class="messages">
         <div class="join-container">
             <header class="join-header">
@@ -70,25 +70,31 @@
     </div>
 
     <div id="analytics" class="analytics">
-        <div class="analytics__graph">
+        <div class="analytics__background">
             <div class="analytics--chart">
                 <canvas id="myChart"></canvas>
             </div>
         </div>
     </div>
-</div>
-
-<div class="assignments">
-    <div class="assignments__title">
-        <h3>Assignments</h3>
+    
+    <div class="assignments">
+        <div class="assignments__title">
+            <h3>Notes</h3>
+        </div>
+        <input type="text" class="noteInput" id="noteInput"></input>
+        <button type="submit" class="noteSubmit" >Submit</button>
+        <ul class="noteList">
+           
+        </ul>
     </div>
-</div>
+ </div>
 </div>
 
 
 <!-- Data Visualization -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="/javascripts/charts.js"></script>
+<script src="/javascripts/notes.js"></script>
 <script>
     // === include 'setup' then 'config' above ===
 
