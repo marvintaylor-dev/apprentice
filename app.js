@@ -33,6 +33,8 @@ const port = process.env.PORT || 3000;
 const mongoSanitize = require('express-mongo-sanitize');
 // 
 const helmet = require('helmet');
+const ans = `${1+1}`;
+console.log(ans)
 
 
 
@@ -57,6 +59,7 @@ const exploreRoutes = require('./routes/explore')
 const restrictedRoutes = require('./routes/restricted')
 const userRoutes = require('./routes/users');
 
+
 //----------- DEPLOYMENT -------------
 
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/apprentice'
@@ -64,7 +67,7 @@ const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/apprentice'
 
 //-----------MONGO / MONGOOSE DB CONNECTION-------------
 
-mongoose.connect('mongodb://localhost:27017/apprentice', {
+mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
@@ -171,7 +174,7 @@ const store = MongoStore.create({
     touchAfter: 24 * 60 * 60
 });
 
-store.on('error', function(e) {
+store.on('error', function (e) {
     console.log('SESSION STORE ERROR', e)
 });
 
