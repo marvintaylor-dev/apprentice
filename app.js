@@ -159,11 +159,17 @@ app.use(
     })
 );
 
+const secret = process.env.SECRET || 'badsecret';
+
+const store = MongoStore.create({
+    mongoUrl: 'mongodb://localhost:27017/apprentice',
+})
+
 
 const sessionConfig = {
-    secret: 'badsecret',
+    secret,
     resave: false,
-    store: MongoStore.create({ mongoUrl: 'mongodb://localhost:27017/apprentice' }),
+    store,
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
