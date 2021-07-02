@@ -33,6 +33,8 @@ const port = process.env.PORT || 3000;
 const mongoSanitize = require('express-mongo-sanitize');
 // 
 const helmet = require('helmet');
+const ans = `${1+1}`;
+console.log(ans)
 
 
 
@@ -56,6 +58,7 @@ const LocalStrategy = require('passport-local')
 const exploreRoutes = require('./routes/explore')
 const restrictedRoutes = require('./routes/restricted')
 const userRoutes = require('./routes/users');
+
 
 //----------- DEPLOYMENT -------------
 
@@ -171,7 +174,7 @@ const store = MongoStore.create({
     touchAfter: 24 * 60 * 60
 });
 
-store.on('error', function(e) {
+store.on('error', function (e) {
     console.log('SESSION STORE ERROR', e)
 });
 
