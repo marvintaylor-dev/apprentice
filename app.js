@@ -167,18 +167,19 @@ const secret = process.env.SECRET || 'badsecret';
 
 const store = MongoStore.create({
     mongoUrl: dbUrl,
+    secret,
     touchAfter: 24 * 60 * 60
-})
+});
 
 store.on('error', function(e) {
     console.log('SESSION STORE ERROR', e)
-})
+});
 
 
 const sessionConfig = {
-    secret,
-    resave: false,
     store,
+    resave: false,
+    secret,
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
