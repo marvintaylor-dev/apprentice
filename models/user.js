@@ -99,6 +99,13 @@ const UserSchema = new Schema({
             ref: 'User'
         }
     ]
+}, 
+{
+writeConcern: {
+    w: 'majority',
+    j: true,
+    wtimeout: 1000
+}
 }, opts)
 
 UserSchema.virtual('properties.popUpMarkup').get(function () {

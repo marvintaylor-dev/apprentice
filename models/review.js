@@ -10,6 +10,13 @@ const reviewSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     }
-})
+}, 
+{
+    writeConcern: {
+        w: 'majority',
+        j: true,
+        wtimeout: 1000
+    }
+    })
 
 module.exports = mongoose.model('Review', reviewSchema)
