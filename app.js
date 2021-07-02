@@ -57,6 +57,10 @@ const exploreRoutes = require('./routes/explore')
 const restrictedRoutes = require('./routes/restricted')
 const userRoutes = require('./routes/users');
 
+//----------- DEPLOYMENT -------------
+
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/apprentice'
+
 
 //-----------MONGO / MONGOOSE DB CONNECTION-------------
 
@@ -162,7 +166,12 @@ app.use(
 const secret = process.env.SECRET || 'badsecret';
 
 const store = MongoStore.create({
-    mongoUrl: 'mongodb://localhost:27017/apprentice',
+    mongoUrl: dbUrl,
+    touchAfter: 24 * 60 * 60
+})
+
+store.on('error', function(e) {
+    console.log('SESSION STORE ERROR', e)
 })
 
 
