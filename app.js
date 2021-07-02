@@ -33,10 +33,6 @@ const port = process.env.PORT || 3000;
 const mongoSanitize = require('express-mongo-sanitize');
 // 
 const helmet = require('helmet');
-const ans = `${1+1}`;
-console.log(ans)
-
-
 
 
 //messaging
@@ -48,7 +44,6 @@ const { userJoin, getCurrentUser, userLeave, getRoomUsers } = require('./public/
 const connectedUser = {};
 
 const passportSocketIo = require("passport.socketio");
-const MongoStore = require('connect-mongo');
 
 //connect to passport
 const passport = require('passport')
@@ -61,6 +56,8 @@ const userRoutes = require('./routes/users');
 
 
 //----------- DEPLOYMENT -------------
+
+const MongoStore = require('connect-mongo');
 
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/apprentice'
 
@@ -80,6 +77,8 @@ mongoose.connect(dbUrl, {
         console.log('OH NO, MONGO CONNECTION ERROR!!')
         console.log(err)
     })
+
+
 //confirm database connection
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
@@ -181,8 +180,9 @@ store.on('error', function (e) {
 
 const sessionConfig = {
     store,
-    resave: false,
+    name: 'session',
     secret,
+    resave: false,
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
@@ -360,5 +360,5 @@ server.listen(port, () => {
     console.log(`App is listening on Port ${port}!`)
 })
 
-
+const sadFace = ':('
 
