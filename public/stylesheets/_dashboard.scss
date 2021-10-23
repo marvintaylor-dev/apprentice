@@ -14,7 +14,7 @@
 .dashHeader {
   @include flexCenter(row);
   margin: 1rem 0rem;
-  .dashHeader__content {
+  & .dashHeader__content {
     color: $primary;
   }
 }
@@ -29,7 +29,7 @@
   box-shadow: 2px 2px 20px 10px rgba(0, 0, 0, 0.2);
   overflow: hidden;
 
-  .dashboardNav__head {
+  & .dashboardNav__head {
     @include flexCenter(column);
   }
   & .dashboardNav__picture--container {
@@ -59,10 +59,10 @@
     font-weight: bold;
   }
 
-  .dashboardNav__links {
+  & .dashboardNav__links {
     @include flexCenter(column);
 
-    .dashboardNav--link {
+    & .dashboardNav--link {
       padding: 1rem 0rem 1rem 0rem;
       text-decoration: none;
       color: $white;
@@ -83,19 +83,19 @@
   background-color: lighten(black, 20%);
   box-shadow: 2px 2px 20px 10px rgba(0, 0, 0, 0.2);
 
-  .joinChatBtn:hover {
+  & .joinChatBtn:hover {
     color: $secondary;
     border: 1px solid $highlight;
   }
 
-  .messages__content {
+  & .messages__content {
     @include flexCenter(row);
     color: $white;
   }
 }
 
 .analytics {
-  .analytics__background {
+  & .analytics__background {
     @include flexCenter(row);
     background-color: lighten(black, 20%);
     box-shadow: 2px 2px 20px 10px rgba(0, 0, 0, 0.2);
@@ -104,7 +104,7 @@
     padding-bottom: 5rem;
   }
 
-  .analytics--chart {
+  &  .analytics--chart {
     height: 80%;
     width: 80%;
   }
@@ -164,10 +164,10 @@
     margin: 3rem 0rem 1rem 0rem;
     border: 2px solid $primary;
     padding: 1rem;
-    border-radius: 2em;
+    border-radius: 0em;
     width: 85%;
     background-color: transparent;
-    color: white;
+    color: red;
   }
 
   & .noteSubmit {
@@ -183,10 +183,6 @@
     padding-right: 2rem;
   }
 
-  & .noteInput:focus {
-    border: 2px solid white;
-  }
-
   & .noteList {
     margin: 2rem 0rem;
     width: 90%;
@@ -195,6 +191,7 @@
     align-items: flex-start;
     flex-direction: column;
   }
+
 
   & .note {
     color: white;

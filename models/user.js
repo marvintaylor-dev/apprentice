@@ -99,14 +99,14 @@ const UserSchema = new Schema({
             ref: 'User'
         }
     ]
-}, 
-{
-writeConcern: {
-    w: 'majority',
-    j: true,
-    wtimeout: 1000
-}
-}, opts)
+}, opts,
+    {
+        writeConcern: {
+            w: 'majority',
+            j: true,
+            wtimeout: 1000
+        }
+    })
 
 UserSchema.virtual('properties.popUpMarkup').get(function () {
     return `<strong><a href="/explore/${this._id}">${this.username}</a></strong>

@@ -6,6 +6,7 @@ const Review = require('./models/review');
 //custom Error Handler
 const ExpressError = require('./utils/ExpressError');
 const review = require('./models/review');
+const user = require('./models/user');
 
 module.exports.validateMentor = (req, res, next) => {
     const { error } = userSchema.validate(req.body)
@@ -44,6 +45,16 @@ module.exports.isAuthor = async (req, res, next) => {
         return res.redirect(`/explore/${id}`)
     }
     next();
+}
+
+module.exports.isAuthorized = async (req, res, next) => {
+    const { id } = req.params;
+    if (req.user._id != id) {
+        req.flash('error', 'Not Authorized to view the dashboard of this profile.')
+        return res.redirect(`/dashboard/${req.user._id}`)
+    } else {
+        next();
+    }
 }
 
 

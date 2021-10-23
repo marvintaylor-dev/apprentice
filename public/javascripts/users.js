@@ -15,7 +15,6 @@ function getCurrentUser(id) {
 }
 
 // User leaves
-
 function userLeave(id) {
     const index = users.findIndex(user => user.id === id);
     if (index !== -1) {

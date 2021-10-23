@@ -3,7 +3,7 @@ const app = express();
 const router = express.Router({ mergeParams: true });
 const catchAsync = require("../utils/catchAsync")
 const restricted = require('../controllers/restricted')
-const { validateMentor, validateReview, loggedIn } = require('../middleware.js')
+const { validateMentor, validateReview, loggedIn, isAuthorized } = require('../middleware.js')
 const multer = require('multer')
 const { storage } = require('../cloudinary')
 const upload = multer({ storage })
@@ -15,12 +15,12 @@ router.route('/restricted/:id')
     .put(loggedIn, upload.single('avatar'), validateMentor, catchAsync(restricted.updateUserProfile))  //update user profile information
     .delete(loggedIn, catchAsync(restricted.deleteUser))  //delete user profile information
 
-router.get('/dashboard/:id', loggedIn, catchAsync(restricted.mentorDashboard)) //view mentor dashboard
+router.get('/dashboard/:id', loggedIn, isAuthorized, catchAsync(restricted.mentorDashboard)) //view mentor dashboard
 
 router.get('/chat', loggedIn, restricted.getChat);
 
 router.get('/messages?room=:id', loggedIn, validateMentor, catchAsync(restricted.getMessages));
 
-router.put('/dashboard/:id', loggedIn, catchAsync(restricted.deleteMentee));
+router.put('/dashboard/:id', loggedIn, isAuthorized, catchAsync(restricted.deleteMentee));
 
 module.exports = router
