@@ -29,8 +29,8 @@
 
         <div class="profile_info">
             <div class="profile__header">
-                <p id="changeAvatar">Change Avatar</p>
                 <div class="profile__head" id="profileImage">
+                    <div id="changeAvatar">Change Avatar</div>
                     <% if(user.avatar.url){ %>
                     <img class="profile__pic" src="<%= user.avatar.url %> " alt="">
                     <% } else { %>
@@ -39,8 +39,9 @@
                         alt="">
                     <% } %>
                 </div>
-                <!--  -->
             </div>
+
+
 
 
             <div class="profile_inputs">
