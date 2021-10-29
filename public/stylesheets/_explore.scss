@@ -16,23 +16,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: bold;
   color: white;
-  width: 20rem;
-  height: 20rem;
+  width: 13rem;
+  height: 13rem;
   background-position: center;
   background-size: cover;
   border: 2px solid $primary;
   margin: 1rem;
   padding: 1rem;
-  transition: all ease-in-out;
-  transition-duration: 0.3s;
+  transition: background-position 3s ease-in-out, border .3s ease-in-out, border-radius .3s ease-in-out, color .3s ease-in-out, font-size .3s ease-in-out;
+  
   &:hover {
+    background-position: 25% 75%;
     border: 3px solid $highlight;
     border-radius: 1em;
     color: $highlight;
-    font-size: 3.5rem;
+    font-size: 2.2rem;
     cursor: pointer;
   }
 }

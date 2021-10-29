@@ -10,12 +10,21 @@
 }
 
 .nav__tag {
+  position: relative;
   color: $white;
   transition: all ease-out 0.25s;
-  &:hover {
-    color: $highlight;
-    border-bottom: 2px solid $redOrange;
-    border-radius: 25%;
+
+  &:hover{
+    color: $lightGray;
+  }
+  &:hover::after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: $primary;
   }
 }
 

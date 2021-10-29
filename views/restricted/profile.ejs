@@ -7,181 +7,182 @@
     <h1 class="title">Edit Profile</h1>
 </div>
 <div class="profileContainer">
-  
-        <form action="/restricted/<%= user._id%>?_method=PUT" method="POST" enctype="multipart/form-data">
-            <!-- modal -->
-            <div class="bg-modal">
-                <div class="modal-content">
-                        <label class="modal--item" id="uploadAvatar" for="upload-photo">Upload Photo</label>
-                        <input type="file" name="avatar" id="upload-photo"></input>
-                    <div class="checkbox">
-                        <label class="modal--item" for="checkbox__delete">Delete Image?</label>
-                        <input type="checkbox" id="checkbox__delete" name="deleteImage" value="<%= user.avatar.filename %> ">
-                    </div> 
-                    <div class="modal--item submit_cancel_container">
-                        <button>Submit Changes</button>
-                        <a class="modal--item close" id="cancel">Cancel</a>
-                    </div>
+
+    <form action="/restricted/<%= user._id%>?_method=PUT" method="POST" enctype="multipart/form-data">
+        <!-- modal -->
+        <div class="bg-modal">
+            <div class="modal-content">
+                <label class="modal--item" id="uploadAvatar" for="upload-photo">Upload Photo</label>
+                <input type="file" name="avatar" id="upload-photo"></input>
+                <div class="checkbox">
+                    <label class="modal--item" for="checkbox__delete">Delete Image?</label>
+                    <input type="checkbox" id="checkbox__delete" name="deleteImage"
+                        value="<%= user.avatar.filename %> ">
                 </div>
+                <div class="modal--item submit_cancel_container">
+                    <button>Submit Changes</button>
+                    <a class="modal--item close" id="cancel">Cancel</a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="profile_info">
+            <div class="profile__header">
+                <p id="changeAvatar">Change Avatar</p>
+                <div class="profile__head" id="profileImage">
+                    <% if(user.avatar.url){ %>
+                    <img class="profile__pic" src="<%= user.avatar.url %> " alt="">
+                    <% } else { %>
+                    <img class="profile__pic"
+                        src="https://images.unsplash.com/photo-1517849845537-4d257902454a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80"
+                        alt="">
+                    <% } %>
+                </div>
+                <!--  -->
             </div>
 
 
-            <div class="profile_info">
-                <div class="profile__header">    
-                    <p id="changeAvatar">Change Avatar</p>
-                    <div class="profile__head" id="profileImage">
-                        <% if(user.avatar.url){ %>
-                        <img class="profile__pic" src="<%= user.avatar.url %> " alt="">
-                        <% } else { %>
-                        <img class="profile__pic"
-                            src="https://images.unsplash.com/photo-1517849845537-4d257902454a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80"
-                            alt="">
-                        <% } %>
+            <div class="profile_inputs">
+                <div>
+                    <label for="firstname" class="label form-label col-sm">Name</label>
+                    <div>
+                        <input type="text" id="firstname" name="name[first]" placeholder="First Name"
+                            class="form-control form-control-sm" aria-label="First name" value="<%=user.name.first%>">
                     </div>
-                    <!--  -->
+                    <div>
+                        <input type="text" id="lastname" name="name[last]" placeholder="Last Name"
+                            class="form-control form-control-sm" aria-label="Last name" value="<%=user.name.last%>">
+                    </div>
+                </div>
+                <div>
+                    <label for="email" class="label form-label col-4">Email</label>
+                    <div>
+                        <input type="email" id="email" name="email" placeholder="username@email.com"
+                            class="form-control form-control-sm" aria-label="Email" value="<%=user.email%>">
+                    </div>
+                </div>
+                <div>
+                    <label for="username" class="label form-label col-sm">Username</label>
+                    <div>
+                        <input type="username" id="username" name="username" placeholder="username"
+                            class="form-control form-control-sm" aria-label="username" value="<%=user.username%>">
+                    </div>
                 </div>
 
-            
-
+                <div>
+                    <label for="age" class="label form-label col-4">Age</label>
                     <div>
-                        <label for="firstname" class="label form-label col-sm">Name</label>
-                        <div>
-                            <input type="text" id="firstname" name="name[first]" placeholder="First Name"
-                                class="form-control" aria-label="First name" value="<%=user.name.first%>">
-                        </div>
-                        <div>
-                            <input type="text" id="lastname" name="name[last]" placeholder="Last Name"
-                                class="form-control" aria-label="Last name" value="<%=user.name.last%>">
-                        </div>
+                        <input class="age form-control form-control-sm" type="text" name="age" id="age"
+                            placeholder="Enter your age" aria-label="Age" value="<%=user.age%>">
                     </div>
-                    <div>
-                        <label for="email" class="label form-label col-4">Email</label>
-                        <div>
-                            <input type="email" id="email" name="email" placeholder="username@email.com"
-                                class="form-control" aria-label="Email" value="<%=user.email%>">
-                        </div>
-                    </div>
-                    <div>
-                        <label for="username" class="label form-label col-sm">Username</label>
-                        <div>
-                            <input type="username" id="username" name="username" placeholder="username"
-                                class="form-control" aria-label="username" value="<%=user.username%>">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label for="age" class="label form-label col-4">Age</label>
-                        <div>
-                            <input class="age form-control" type="text" name="age" id="age" placeholder="Enter your age"
-                                aria-label="Age" value="<%=user.age%>">
-                        </div>
-                    </div>
-                   <!--  <div>
+                </div>
+                <!--  <div>
                         <label for="avatar" class="label form-label col-sm">Upload Profile Picture</label>
                         <div>
-                            <input class="form-control" name="avatar" id="avatar" type="file">
+                            <input class="form-control form-control-sm" name="avatar" id="avatar" type="file">
                         </div>
                     </div> -->
+                <div>
+                    <label for="path" class="label form-label col-sm">Path</label>
                     <div>
-                        <label for="path" class="label form-label col-sm">Path</label>
-                        <div>
-                            <select name="path" id="path" class="form-control">
-                                <% for(let path of paths) {%>
-                                <option value="<%= path %>" <%=user.path===path ? 'selected' : '' %>><%= path %>
-                                </option>
-                                <% } %>
-                            </select>
-                        </div>
+                        <select name="path" id="path" class="form-control form-control-sm">
+                            <% for(let path of paths) {%>
+                            <option value="<%= path %>" <%=user.path===path ? 'selected' : '' %>><%= path %>
+                            </option>
+                            <% } %>
+                        </select>
                     </div>
+                </div>
+                <div>
+                    <label for="tier" class="label form-label col-sm">Tier</label>
                     <div>
-                        <label for="tier" class="label form-label col-sm">Tier</label>
-                        <div>
-                            <select name="tier" id="tier" class="form-control">
-                                <% for(let tier of tiers) {%>
-                                <option value="<%= tier %>" <%=user.tier===tier ? 'selected' : '' %>><%= tier %>
-                                </option>
-                                <% } %>
-                            </select>
-                        </div>
+                        <select name="tier" id="tier" class="form-control form-control-sm">
+                            <% for(let tier of tiers) {%>
+                            <option value="<%= tier %>" <%=user.tier===tier ? 'selected' : '' %>><%= tier %>
+                            </option>
+                            <% } %>
+                        </select>
                     </div>
-    
+                </div>
+
+                <div>
+                    <label for="jobTitle" class="label form-label">Job Title</label>
                     <div>
-                        <label for="jobTitle" class="label form-label">Job Title</label>
-                        <div>
-                            <input type="jobTitle" id="jobTitle" name="job_title" placeholder="Job Title"
-                                class="form-control" aria-label="jobTitle" value="<%=user.job_title%>">
-                        </div>
+                        <input type="jobTitle" id="jobTitle" name="job_title" placeholder="Job Title"
+                            class="form-control form-control-sm" aria-label="jobTitle" value="<%=user.job_title%>">
                     </div>
+                </div>
+                <div>
+                    <label for="jobDescription" class="label form-label">Job Description</label>
                     <div>
-                        <label for="jobDescription" class="label form-label">Job Description</label>
-                        <div>
-                            <textarea id="jobDescription" name="job_description" placeholder="Job Description" rows="5"
-                                cols="22" aria-label="jobDescription"><%=user.job_description%>
+                        <textarea id="jobDescription" name="job_description" placeholder="Job Description" rows="5"
+                            cols="22" aria-label="jobDescription"><%=user.job_description%>
                 </textarea>
-                        </div>
                     </div>
+                </div>
 
-                    <div class="section">
-                        <div>
-                            <label for="field_of_study" class="label form-label col-sm">Field of Study</label>
-                            <div>
-                                <select name="field_of_study" id="field_of_study" class="form-label">
-                                    <% for(let field of fields) { %>
-                                    <option value="<%= field %>" <%=user.field_of_study===field ? 'selected' : '' %>>
-                                        <%= field %>
-                                    </option>
-                                    <% } %>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="section">
-                        <div>
-                            <label for="salary" class="label form-label col-sm">Salary</label>
-                            <div>
-                                <input type="salary" id="salary" name="salary" placeholder="Average salary"
-                                    class="form-control" aria-label="salary" value="<%=user.salary%>">
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <label for="education_required" class="label form-label col-4">Education Required</label>
-                        <div>
-                            <input class="education_required form-control" type="text" name="education_required"
-                                id="education_required" placeholder="Education Required" aria-label="Education Required"
-                                value="<%=user.education_required%>">
-                        </div>
-                    </div>
 
+                <div>
+                    <label for="field_of_study" class="label form-label col-sm">Field of Study</label>
                     <div>
-                        <label class="label form-label" for="location">Location</label>
-                        <span>
-                            <input type="text" id="city" name="location[city]" class="form-control" placeholder="City"
-                                aria-label="City" value="<%=user.location.city%>">
-                        </span>
-                        <span>
-                            <select id="state" name="location[state]" class="form-control" aria-label="State"
-                                value="<%=user.location.state%>">
-                                <% for(let state of states) { %>
-                                <option value="<%=state%>" <%=user.location.state===state ? 'selected' : '' %>>
-                                    <%= state %>
-                                </option>
-                                <% } %>
-                            </select>
-                        </span>
-                        <span>
-                            <input type="text" name="location[zip]" class="form-control" placeholder="Zip"
-                                aria-label="Zip" value="<%=user.location.zip%>">
-                        </span>
+                        <select name="field_of_study" id="field_of_study" class="form-label">
+                            <% for(let field of fields) { %>
+                            <option value="<%= field %>" <%=user.field_of_study===field ? 'selected' : '' %>>
+                                <%= field %>
+                            </option>
+                            <% } %>
+                        </select>
                     </div>
-                    <div class="buttons">
-                        <button id="edit" class="btn btn-info">Submit Changes</button>
+                </div>
+
+
+                <div>
+                    <label for="salary" class="label form-label col-sm">Salary</label>
+                    <div>
+                        <input type="salary" id="salary" name="salary" placeholder="Average salary"
+                            class="form-control form-control-sm" aria-label="salary" value="<%=user.salary%>">
                     </div>
-                   
-                
+                </div>
+
+                <div>
+                    <label for="education_required" class="label form-label col-4">Education Required</label>
+                    <div>
+                        <input class="education_required form-control form-control-sm" type="text"
+                            name="education_required" id="education_required" placeholder="Education Required"
+                            aria-label="Education Required" value="<%=user.education_required%>">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="label form-label" for="location">Location</label>
+                    <span>
+                        <input type="text" id="city" name="location[city]" class="form-control form-control-sm"
+                            placeholder="City" aria-label="City" value="<%=user.location.city%>">
+                    </span>
+                    <span>
+                        <select id="state" name="location[state]" class="form-control form-control-sm"
+                            aria-label="State" value="<%=user.location.state%>">
+                            <% for(let state of states) { %>
+                            <option value="<%=state%>" <%=user.location.state===state ? 'selected' : '' %>>
+                                <%= state %>
+                            </option>
+                            <% } %>
+                        </select>
+                    </span>
+                    <span>
+                        <input type="text" name="location[zip]" class="form-control form-control-sm" placeholder="Zip"
+                            aria-label="Zip" value="<%=user.location.zip%>">
+                    </span>
+                </div>
+            </div>
+
+        </div>
+        <div class="buttons">
+            <button id="edit" class="btn btn-info">Submit Changes</button>
         </div>
     </form>
-    
+
 </div>
 <div class="buttons deleteProfile">
     <form action="/restricted/<%=user._id%>?_method=DELETE" method="POST">
@@ -189,6 +190,4 @@
     </form>
 </div>
 
-<script src="/javascripts/popup.js"></script>    
-
-    
+<script src="/javascripts/popup.js"></script>
