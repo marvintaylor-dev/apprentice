@@ -79,8 +79,21 @@
             <div class="assignments__title">
                 <h3>Notes</h3>
             </div>
-            <textarea type="text" class="noteInput" id="noteInput" rows="3" cols="22"></textarea>
-            <button type="submit" class="noteSubmit">Submit</button>
+            <form action="/dashboard/<%=user.id %>/notes" method="POST" novalidate>
+                <textarea type="text" class="noteInput" id="noteBody" rows="3" cols="40" name="note"
+                    required></textarea>
+                <button type="submit" class="noteSubmit">Submit</button>
+            </form>
+
+        </div>
+
+        <div class="board assignments">
+            <div class="assignments__title h3">Assignments</div>
+            <div class="assignments-board">
+                <% for(let note of user.notes) {%>
+                <div><%= note.noteBody  %> </div>
+                <% } %>
+            </div>
             <ul class="noteList"></ul>
         </div>
     </div>

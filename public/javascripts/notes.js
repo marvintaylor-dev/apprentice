@@ -5,6 +5,7 @@ const noteInput = document.querySelector('.noteInput');
 const noteList = document.querySelector('.noteList');
 
 
+
 button.addEventListener('click', (e) => {
     e.preventDefault()
 
@@ -21,6 +22,8 @@ button.addEventListener('click', (e) => {
 
     noteContainer.classList.add('note')
     noteList.append(noteContainer);
+
+
 
     noteInput.value = "";
 })

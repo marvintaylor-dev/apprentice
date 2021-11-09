@@ -151,10 +151,17 @@
   width: 100%;
   height: auto;
   display: flex;
-  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   margin-bottom: 5rem;
+
+  & form {
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
 
   & .assignments__title h3 {
     margin-top: 3rem;
@@ -184,6 +191,7 @@
     justify-content: center;
     padding-left: 2rem;
     padding-right: 2rem;
+    margin-bottom: 4rem;
   }
 
   & .noteList {
@@ -245,6 +253,11 @@
   .dashboardNav__head {
     display: none;
   }
+
+  .assignments {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
 }
 
 @media (max-width: 600px) {
@@ -258,6 +271,7 @@
   .dashboardNav__head {
     display: none;
   }
+
 
   .dashboardNav {
     @include flexCenter(row);
@@ -303,6 +317,17 @@
     }
   }
 }
+
+.board {
+  background-color: lighten(black, 20%);
+  box-shadow: 2px 2px 20px 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: auto;
+  color: $primary;
+  margin-bottom: 5rem; 
+  padding-top: 3rem;
+}
+
 
 /* 
 .addContentLink {

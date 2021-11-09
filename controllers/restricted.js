@@ -3,6 +3,7 @@
 const User = require('../models/user');
 //access to Review model
 const Review = require('../models/review');
+const Note = require('../models/notes');
 const { cloudinary } = require('../cloudinary');
 const paths = ['Mentor', 'Mentee'];
 const tiers = ['1', '2', '3'];
@@ -68,8 +69,21 @@ module.exports.deleteUser = async (req, res) => {
 module.exports.mentorDashboard = async (req, res) => {
     const { id } = req.params
     const user = await User.findById(id);
-    const mentees = await User.findById(user.mentees)
-    return res.render('restricted/dashboard', { user, id, mentees })
+    const mentees = await User.findById(user.mentees);
+    const notes = await Note.find({})
+    return res.render('restricted/dashboard', { user, id, mentees, notes })
+}
+
+module.exports.mentorDashboardCreateNote = async (req, res) => {
+    const { id } = req.params
+    const user = User.findById(id);
+    const note = new Note(req.body.note);
+    note.author = req.user._id;
+    user.notes.push(note);
+    await note.save();
+    await user.save();
+    req.flash('success', 'Successfully posted a note!')
+    return res.redirect(`dashboard/${user._id}`);
 }
 
 module.exports.deleteMentee = async (req, res) => {

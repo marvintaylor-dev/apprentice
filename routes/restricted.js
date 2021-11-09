@@ -16,6 +16,7 @@ router.route('/restricted/:id')
     .delete(loggedIn, catchAsync(restricted.deleteUser))  //delete user profile information
 
 router.get('/dashboard/:id', loggedIn, isAuthorized, catchAsync(restricted.mentorDashboard)) //view mentor dashboard
+router.post('/dashboard/:id/notes', loggedIn, isAuthorized, catchAsync(restricted.mentorDashboardCreateNote))
 
 router.get('/chat', loggedIn, restricted.getChat);
 

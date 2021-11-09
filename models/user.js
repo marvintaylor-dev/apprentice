@@ -83,6 +83,12 @@ const UserSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
+    notes: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Note'
+        }
+    ],
     reviews: [
         {
             type: Schema.Types.ObjectId,

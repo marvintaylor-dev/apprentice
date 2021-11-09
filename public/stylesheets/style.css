@@ -382,9 +382,6 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -393,6 +390,23 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
   margin-bottom: 5rem;
+}
+
+.assignments form {
+  width: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .assignments .assignments__title h3 {
@@ -426,6 +440,7 @@ body {
           justify-content: center;
   padding-left: 2rem;
   padding-right: 2rem;
+  margin-bottom: 4rem;
 }
 
 .assignments .noteList {
@@ -504,6 +519,10 @@ body {
   .dashboardNav__head {
     display: none;
   }
+  .assignments {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
 }
 
 @media (max-width: 600px) {
@@ -579,6 +598,17 @@ body {
   .dashboardNav .dashboardNav__links .dashboardNav--link:hover {
     color: rgba(242, 242, 242, 0.872);
   }
+}
+
+.board {
+  background-color: #333333;
+  -webkit-box-shadow: 2px 2px 20px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 2px 2px 20px 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: auto;
+  color: #21D883;
+  margin-bottom: 5rem;
+  padding-top: 3rem;
 }
 
 /* 

@@ -64,3 +64,7 @@ module.exports.reviewSchema = Joi.object({
     score: Joi.number(),
     body: Joi.string().escapeHTML()
 }).required()
+
+module.exports.noteSchema = Joi.object({
+    noteBody: Joi.string().escapeHTML()
+});
