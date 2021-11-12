@@ -203,17 +203,25 @@
     flex-direction: column;
   }
 
-  & .postedNote {
-    font-size: 40px;
+  .assignments-board {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
-  & .note {
+  & .note-container {
     display: flex;
     justify-content:  space-between;
     align-items: center;
-    width: 100%;
-    color: white;
+    flex-direction: column;
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    color: black;
     margin: 1rem;
+    padding: .5rem;
+    background-color: rgb(233, 233, 144);
   }
 
   .button-container{
@@ -221,13 +229,13 @@
     align-items: center;
     justify-content: center;
     width: 4rem;
-    margin-left: 3rem;
+    gap: 1rem;
   }
 
   .remove-button {
     height: 1.5rem;
     width: 1.5rem;
-    margin: .5rem;    
+       
     background: rgb(218, 0, 0);
     border: none;
     color: $white;
@@ -236,7 +244,7 @@
   .edit-button {
     height: 1.5rem;
     width: 1.5rem;
-    margin: .5rem;
+    
     background-color: $primary;
     border: none;
     color: $white;

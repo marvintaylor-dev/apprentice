@@ -76,14 +76,22 @@ module.exports.mentorDashboard = async (req, res) => {
 
 module.exports.mentorDashboardCreateNote = async (req, res) => {
     const { id } = req.params
-    const user = User.findById(id);
+    const user = await User.findById(id);
     const note = new Note(req.body.note);
     note.author = req.user._id;
     user.notes.push(note);
     await note.save();
     await user.save();
     req.flash('success', 'Successfully posted a note!')
-    return res.redirect(`dashboard/${user._id}`);
+    return res.redirect(`/dashboard/${user._id}`)
+}
+
+module.exports.mentorDashboardDeleteNote = async (req, res) => {
+    const { id, noteId } = req.params;
+    await User.findByIdAndUpdate(id, { $pull: { notes: noteId } });
+    await Note.findByIdAndDelete(noteId);
+    req.flash('success', 'Successfully deleted the review!')
+    res.redirect(`/dashboard/${id}`)
 }
 
 module.exports.deleteMentee = async (req, res) => {

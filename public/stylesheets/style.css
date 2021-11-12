@@ -461,11 +461,21 @@ body {
           flex-direction: column;
 }
 
-.assignments .postedNote {
-  font-size: 40px;
+.assignments .assignments-board {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
-.assignments .note {
+.assignments .note-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -475,9 +485,17 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 100%;
-  color: white;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+  color: black;
   margin: 1rem;
+  padding: .5rem;
+  background-color: #e9e990;
 }
 
 .assignments .button-container {
@@ -491,13 +509,12 @@ body {
       -ms-flex-pack: center;
           justify-content: center;
   width: 4rem;
-  margin-left: 3rem;
+  gap: 1rem;
 }
 
 .assignments .remove-button {
   height: 1.5rem;
   width: 1.5rem;
-  margin: .5rem;
   background: #da0000;
   border: none;
   color: #FFF;
@@ -506,7 +523,6 @@ body {
 .assignments .edit-button {
   height: 1.5rem;
   width: 1.5rem;
-  margin: .5rem;
   background-color: #21D883;
   border: none;
   color: #FFF;

@@ -7,7 +7,6 @@ const noteList = document.querySelector('.noteList');
 
 
 button.addEventListener('click', (e) => {
-    e.preventDefault()
 
     const removeButton = document.createElement("button");
     const editButton = document.createElement("button");
@@ -21,8 +20,8 @@ button.addEventListener('click', (e) => {
     removeButton.classList.add('remove-button');
 
     editButton.innerHTML = "&#9998;"
-    editButton.addEventListener("click", function () {
-        noteList.replaceChild(noteContainer);
+    editButton.addEventListener("click", function (event) {
+        console.log('hello')
     })
     editButton.classList.add('edit-button');
 
@@ -34,11 +33,33 @@ button.addEventListener('click', (e) => {
     noteContainer.append(noteInput.value);
     noteContainer.append(buttonContainer);
 
-
     noteContainer.classList.add('note')
     noteList.append(noteContainer);
-
-
-
-    noteInput.value = "";
 })
+
+
+
+
+
+/* function editItem(event) {
+    let item = event.target.innerHTML;
+    let itemInput = document.createElement('input');
+    itemInput.type = 'text';
+    itemInput.value = item;
+    itemInput.addEventListener('keypress', saveItem);
+    itemInput.addEventListener('click', saveItem);
+    event.target.parentNode.prepend(itemInput);
+    event.target.remove();
+    itemInput.select();
+}
+
+function saveItem(event) {
+    let inputValue = event.target.value;
+    if (event.target.value.length > 0 && (event.keyCode === 13 || event.type === 'click')) {
+        let liElement = document.createElement('li');
+
+        liElement.textContent = event.target.value;
+        event.target.parentNode.prepend(liElement);
+        event.target.remove();
+    }
+} */

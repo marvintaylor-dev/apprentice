@@ -4,8 +4,9 @@ const Schema = mongoose.Schema;
 const Joi = require('joi');
 
 
+
 const noteSchema = new Schema({
-    noteBody: String,
+    body: String,
     author: {
         type: Schema.Types.ObjectId,
         ref: 'User'
