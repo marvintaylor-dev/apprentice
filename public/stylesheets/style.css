@@ -508,24 +508,33 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  width: 4rem;
   gap: 1rem;
 }
 
-.assignments .remove-button {
+.assignments .remove-button,
+.assignments .edit-button,
+.assignments .update-button {
   height: 1.5rem;
   width: 1.5rem;
+}
+
+.assignments .update-button {
+  display: none;
+  background-color: #21D883;
+  color: #FFF;
+  border: none;
+}
+
+.assignments .remove-button {
   background: #da0000;
   border: none;
   color: #FFF;
 }
 
 .assignments .edit-button {
-  height: 1.5rem;
-  width: 1.5rem;
-  background-color: #21D883;
+  background-color: #FFF;
   border: none;
-  color: #FFF;
+  color: black;
 }
 
 @media (max-width: 1200px) {

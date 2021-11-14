@@ -68,10 +68,40 @@ module.exports.deleteUser = async (req, res) => {
 
 module.exports.mentorDashboard = async (req, res) => {
     const { id } = req.params
-    const user = await User.findById(id);
+    const user = await User.findById(id).populate({
+        path: 'notes',
+        populate: {
+            path: 'author'
+        }
+    });
     const mentees = await User.findById(user.mentees);
     const notes = await Note.find({})
     return res.render('restricted/dashboard', { user, id, mentees, notes })
+}
+
+
+module.exports.updateNote = async (req, res) => {
+    const { id, noteId } = req.params
+    const user = await User.findById(id).populate({
+        path: 'notes',
+        populate: {
+            path: 'author'
+        }
+    });
+    const note = await Note.findById(noteId);
+
+    await Note.findByIdAndUpdate(noteId, { body: note.body }, function (err, docs) {
+        if (err) {
+            console.log(err)
+        }
+        else {
+            console.log("Updated User: ", docs);
+        }
+    });
+    await note.save()
+    await user.save()
+
+    return res.redirect(`/dashboard/${user._id}`)
 }
 
 module.exports.mentorDashboardCreateNote = async (req, res) => {
@@ -90,7 +120,7 @@ module.exports.mentorDashboardDeleteNote = async (req, res) => {
     const { id, noteId } = req.params;
     await User.findByIdAndUpdate(id, { $pull: { notes: noteId } });
     await Note.findByIdAndDelete(noteId);
-    req.flash('success', 'Successfully deleted the review!')
+    req.flash('success', 'Successfully deleted the note!')
     res.redirect(`/dashboard/${id}`)
 }
 

@@ -228,27 +228,36 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 4rem;
     gap: 1rem;
   }
 
-  .remove-button {
+  .remove-button,
+  .edit-button,
+  .update-button {
     height: 1.5rem;
-    width: 1.5rem;
-       
+    width: 1.5rem;       
+  }
+
+  .update-button {
+    display: none;
+    background-color: $primary;
+    color: $white;
+    border: none;
+  }
+
+  .remove-button {
     background: rgb(218, 0, 0);
     border: none;
     color: $white;
   }
 
-  .edit-button {
-    height: 1.5rem;
-    width: 1.5rem;
-    
-    background-color: $primary;
+  .edit-button {    
+    background-color: $white;
     border: none;
-    color: $white;
+    color: black;
   }
+
+
 }
 @media (max-width: 1200px) {
   .dashboardGrid {

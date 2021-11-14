@@ -89,11 +89,14 @@
         <div class="board assignments">
             <div class="assignments__title h3">Note Board</div>
             <div class="assignments-board">
-                <% for(let note of notes) {%>
+                <% for(let note of user.notes) {%>
                 <div class="note-container">
-                    <span><%= note.body %> </span>
+                    <span><%= note.body %></span>
                     <div class="button-container">
                         <button class="edit-button">&#9998;</button>
+                        <form action="/dashboard/<%= user._id %>/edit/<%= note._id  %> " method="POST">
+                            <button class="update-button"> &#10003;</button>
+                        </form>
                         <form action="/dashboard/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
                             <button class="remove-button">&#10008;</button>
                         </form>
