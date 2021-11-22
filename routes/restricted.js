@@ -19,6 +19,7 @@ router.get('/dashboard/:id', loggedIn, isAuthorized, catchAsync(restricted.mento
 
 router.post('/dashboard/:id/notes', loggedIn, isAuthorized, catchAsync(restricted.mentorDashboardCreateNote)) //create a note
 
+/* router.get('/dashboard/:id/edit/:noteId', loggedIn, isAuthorized, catchAsync(restricted.mentorDashboard)) */
 router.post('/dashboard/:id/edit/:noteId', loggedIn, isAuthorized, catchAsync(restricted.updateNote)) //update note
 
 router.delete('/dashboard/:id/notes/:noteId', loggedIn, catchAsync(restricted.mentorDashboardDeleteNote))

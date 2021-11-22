@@ -479,9 +479,6 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -489,6 +486,9 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   width: 200px;
   height: 200px;
   border: 1px solid black;
@@ -505,9 +505,9 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   gap: 1rem;
 }
 
@@ -519,10 +519,13 @@ body {
 }
 
 .assignments .update-button {
-  display: none;
   background-color: #21D883;
   color: #FFF;
   border: none;
+}
+
+.assignments .hide {
+  display: none;
 }
 
 .assignments .remove-button {

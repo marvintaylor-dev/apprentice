@@ -82,25 +82,26 @@ module.exports.mentorDashboard = async (req, res) => {
 
 module.exports.updateNote = async (req, res) => {
     const { id, noteId } = req.params
+
     const user = await User.findById(id).populate({
         path: 'notes',
         populate: {
             path: 'author'
         }
     });
-    const note = await Note.findById(noteId);
 
-    await Note.findByIdAndUpdate(noteId, { body: note.body }, function (err, docs) {
+    const updatedNote = await Note.findByIdAndUpdate(noteId, req.body.note, function (err, docs) {
         if (err) {
-            console.log(err)
+            req.flash('error', 'Could not update your note.')
+            res.redirect(`/dashboard/${user._id}`)
         }
         else {
-            console.log("Updated User: ", docs);
+            console.log('Successful update');
         }
     });
-    await note.save()
+    await updatedNote.save()
     await user.save()
-
+    req.flash('Success', 'Your note has been updated.')
     return res.redirect(`/dashboard/${user._id}`)
 }
 

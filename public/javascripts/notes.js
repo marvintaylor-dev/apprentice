@@ -1,14 +1,59 @@
+const editButtons = document.querySelectorAll('.edit-button');
+const currentNotes = document.querySelectorAll('.noteBody');
+const updateButtons = document.querySelectorAll('.update-button');
+const assignments = document.querySelector('.assignments-board')
 
 
-const editButton = document.querySelectorAll('.edit-button');
 
 
 
-editButton.addEventListener('click', (e) => {
-    e.preventDefault()
+for (let i = 0; i < editButtons.length; i++) {
+    editButtons[i].addEventListener('click', (e) => {
+        e.preventDefault();
+        updateButtons[i].classList.remove('hide');
+        createTextArea(currentNotes, i);
+    })
+}
 
-    console.log(e.target);
-})
+
+function createTextArea(arr, idx) {
+    let newInput = document.createElement('textarea');
+
+    const currentMessage = arr[idx].innerHTML
+    newInput.value = currentMessage;
+    newInput.innerText = newInput.value;
+    newInput.name = "note[body]"
+
+    arr[idx].replaceWith(newInput);
+}
+
+/* for (let editButton of editButtons) {
+    editButton.addEventListener('click', function (e) {
+        for (let currentNote of currentNotes) {
+            if (currentNote.id === editButton.id) {
+                for (let container of noteContainers) {
+                    if (container.id === currentNote.id) {
+                        for (let updateButton of updateButtons) {
+
+                            updateButton.classList.toggle('hide');
+                        }
+                        let newInput = document.createElement('textarea')
+                        const currentMessage = currentNote.innerHTML
+                        newInput.value = currentMessage;
+                        currentNote.replaceWith(newInput);
+                    }
+                }
+            }
+        }
+    })
+}
+ */
+
+
+
+//stored in an array list of objects within the notes section of the user.
+//assignments available to show but cannot iterate?
+//
 
 
 

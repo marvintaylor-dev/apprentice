@@ -212,9 +212,9 @@
 
   & .note-container {
     display: flex;
-    justify-content:  space-between;
     align-items: center;
     flex-direction: column;
+    justify-content: space-between;
     width: 200px;
     height: 200px;
     border: 1px solid black;
@@ -227,7 +227,7 @@
   .button-container{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: 1rem;
   }
 
@@ -239,10 +239,13 @@
   }
 
   .update-button {
-    display: none;
     background-color: $primary;
     color: $white;
     border: none;
+  }
+
+  .hide{
+    display: none;
   }
 
   .remove-button {
@@ -361,6 +364,8 @@
   margin-bottom: 5rem; 
   padding-top: 3rem;
 }
+
+
 
 
 /* 
