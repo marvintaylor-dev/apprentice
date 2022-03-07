@@ -58,15 +58,3 @@ module.exports.isAuthorized = async (req, res, next) => {
 }
 
 
-/*
-My solution to isAuthor - because I didn't understand req.params and what was available on the request object
-const { id } = req.params
-const username = req.session.passport.user
-const users = await User.findOne({ 'username': username })
-const reviews = await Review.find({})
-for (let review of reviews) {
-    if (!users._id.equals(review.author)) {
-        req.flash('error', 'You do not have permission to do that')
-        return res.redirect(`/explore/${id}`)
-    }
-} */

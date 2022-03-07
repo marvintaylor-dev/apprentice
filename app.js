@@ -181,21 +181,19 @@ store.on('error', function (e) {
 });
 
 
-const sessionConfig = {
+app.use(session({
     store,
     name: 'session',
     secret,
-    resave: false,
-    saveUninitialized: true,
     cookie: {
         httpOnly: true,
         // secure: true,
         expires: Date.now() + 3600000 * 24 * 7,
         maxAge: 3600000 * 24 * 7
-    }
-}
-
-app.use(session(sessionConfig))
+    },
+    resave: true,
+    saveUninitialized: true
+}))
 
 //initialize passport
 app.use(passport.initialize());
@@ -220,41 +218,41 @@ passport.deserializeUser(User.deserializeUser());
 // ========= socket.io / passport auth ===========
 
 //With Socket.io >= 1.0
-io.use(passportSocketIo.authorize({
-    cookieParser: cookieParser,
-    key: 'connect.sid',              // the name of the cookie where express/connect stores its session_id
-    secret: sessionConfig.secret,    // the session_secret to parse the cookie
-    store: sessionConfig.store,      // we NEED to use a sessionstore. no memorystore please
-    success: onAuthorizeSuccess,     // *optional* callback on success - read more below
-    fail: onAuthorizeFail          // *optional* callback on fail/error - read more below
-}));
 
+const wrap = middleware => (socket, next) => middleware(socket.request, {}, next);
 
+io.use(wrap(session({
+    store,
+    name: 'session',
+    secret,
+    cookie: {
+        httpOnly: true,
+        // secure: true,
+        expires: Date.now() + 3600000 * 24 * 7,
+        maxAge: 3600000 * 24 * 7
+    },
+    resave: true,
+    saveUninitialized: true
+})));
 
-function onAuthorizeSuccess(data, accept) {
-    console.log('successful connection to socket.io');
+io.use(wrap(passport.initialize()));
+io.use(wrap(passport.session()));
 
-    // The accept-callback still allows us to decide whether to
-    // accept the connection or not.
-    accept(null, true);
-}
-
-function onAuthorizeFail(data, message, error, accept) {
-    if (error)
-        throw new Error(message);
-    console.log('failed connection to socket.io:', data.cookie.session);
-
-    // We use this callback to log all of our failed connections.
-    accept(null, false);
-}
-
+io.use((socket, next) => {
+    if (socket.request.user) {
+        next();
+    } else {
+        next(new Error("unauthorized"))
+    }
+});
 
 // ---------- MESSAGING VIA SOCKET.IO ---------
 
 io.on('connection', (socket) => {
     socket.on('joinPrivate', ({ username, room }) => {
-        console.log(`User connected, ${username}`)
-        const user = userJoin(socket.id, username, room);
+        console.log(`User connected, username: ${socket.request.user.name.first}, room: ${room}`)
+        const name = `${socket.request.user.name.first} ${socket.request.user.name.last}`
+        const user = userJoin(socket.id, name, room);
         socket.join(user.room)
     })
 
@@ -280,7 +278,8 @@ io.on('connection', (socket) => {
 //run when the client connects
 io.on('connection', socket => {
     socket.on('joinRoom', ({ username, room }) => {
-        const user = userJoin(socket.id, session, room);
+        const name = `${socket.request.user.name.first} ${socket.request.user.name.last}`
+        const user = userJoin(socket.id, name, room);
         socket.join(user.room);
 
         // welcome current user
@@ -289,7 +288,7 @@ io.on('connection', socket => {
         // Broadcast when a user connects
         socket.broadcast
             .to(user.room)
-            .emit('message', formatMessage(botname, `${user.username} has joined the chat`));
+            .emit('message', formatMessage(botname, `${user.name} has joined the chat`));
 
         // Send users and room info
         io.to(user.room).emit('roomUsers', {
@@ -301,10 +300,11 @@ io.on('connection', socket => {
     // Listen for chatMessage
     socket.on('chatMessage', (msg) => {
         const user = getCurrentUser(socket.id);
+        const username = `${socket.request.user.name.first} ${socket.request.user.name.last}`
 
         io
             .to(user.room)
-            .emit('message', formatMessage(user.username, msg));
+            .emit('message', formatMessage(username, msg));
     })
 
     // Runs when client disconnects
@@ -312,7 +312,7 @@ io.on('connection', socket => {
         const user = userLeave(socket.id);
         if (user) {
             io.to(user.room)
-                .emit('message', formatMessage(botname, `${user.username} has left the chat`));
+                .emit('message', formatMessage(botname, `${user.name} has left the chat`));
 
             // Send users and room info
             io.to(user.room).emit('roomUsers', {
