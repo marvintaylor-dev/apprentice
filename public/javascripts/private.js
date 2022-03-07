@@ -6,12 +6,11 @@ const { username, room } = Qs.parse(location.search, {
     ignoreQueryPrefix: true
 });
 
+
 const socket = io()
 
 // Private Message Join
-
 socket.emit('joinPrivate', { username, room });
-
 
 // Message from server
 socket.on('message', message => {

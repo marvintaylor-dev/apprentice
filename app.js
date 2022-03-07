@@ -42,6 +42,9 @@ const formatMessage = require('./public/javascripts/messages.js');
 const botname = 'Chat Bot';
 const { userJoin, getCurrentUser, userLeave, getRoomUsers } = require('./public/javascripts/users');
 const connectedUser = {};
+const { createAdapter } = require("@socket.io/mongo-adapter");
+const { MongoClient } = require("mongodb");
+const COLLECTION = "socket.io-adapter-events";
 
 const passportSocketIo = require("passport.socketio");
 
@@ -219,12 +222,14 @@ passport.deserializeUser(User.deserializeUser());
 //With Socket.io >= 1.0
 io.use(passportSocketIo.authorize({
     cookieParser: cookieParser,
-    key: 'connect.sid',       // the name of the cookie where express/connect stores its session_id
+    key: 'connect.sid',              // the name of the cookie where express/connect stores its session_id
     secret: sessionConfig.secret,    // the session_secret to parse the cookie
-    store: sessionConfig.store,        // we NEED to use a sessionstore. no memorystore please
-    success: onAuthorizeSuccess,  // *optional* callback on success - read more below
-    fail: onAuthorizeFail,     // *optional* callback on fail/error - read more below
+    store: sessionConfig.store,      // we NEED to use a sessionstore. no memorystore please
+    success: onAuthorizeSuccess,     // *optional* callback on success - read more below
+    fail: onAuthorizeFail          // *optional* callback on fail/error - read more below
 }));
+
+
 
 function onAuthorizeSuccess(data, accept) {
     console.log('successful connection to socket.io');
@@ -237,7 +242,7 @@ function onAuthorizeSuccess(data, accept) {
 function onAuthorizeFail(data, message, error, accept) {
     if (error)
         throw new Error(message);
-    console.log('failed connection to socket.io:', message);
+    console.log('failed connection to socket.io:', data.cookie.session);
 
     // We use this callback to log all of our failed connections.
     accept(null, false);
@@ -248,8 +253,8 @@ function onAuthorizeFail(data, message, error, accept) {
 
 io.on('connection', (socket) => {
     socket.on('joinPrivate', ({ username, room }) => {
-        console.log(`User connected`)
-        const user = userJoin(socket.id, socket.request.user.username, room);
+        console.log(`User connected, ${username}`)
+        const user = userJoin(socket.id, username, room);
         socket.join(user.room)
     })
 
@@ -275,7 +280,7 @@ io.on('connection', (socket) => {
 //run when the client connects
 io.on('connection', socket => {
     socket.on('joinRoom', ({ username, room }) => {
-        const user = userJoin(socket.id, socket.request.user.username, room);
+        const user = userJoin(socket.id, session, room);
         socket.join(user.room);
 
         // welcome current user
@@ -360,5 +365,4 @@ server.listen(port, () => {
     console.log(`App is listening on Port ${port}!`)
 })
 
-const sadFace = ':('
 

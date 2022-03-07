@@ -16,13 +16,14 @@
                     <div class="welcomeMessage__username"><%= currentUser.username  %>! </div>
                     <% } %>
                 </div>
-                <% if(!currentUser) {%>
+                <% if(!currentUser || currentUser){  %>
+                <a class="nav-link nav__tag" href="/explore">Explore</a>
+                <% } if(!currentUser) {%>
                 <a class="nav-link nav__tag" href="/login">Log in</a>
                 <a class="nav-link nav__tag" href="/signup">Sign Up</a>
                 <a class="nav-link nav__tag" href="/faq">Mentee vs Mentor</a>
-                <% } if (!currentUser || currentUser){%>
-                <a class="nav-link nav__tag" href="/explore">Explore</a>
-                <% } if(currentUser){ %>
+                <% }%>
+                <% if(currentUser){ %>
                 <a class="nav-link nav__tag" href="/dashboard/<%=currentUser._id %>">Dashboard</a>
                 <a class="nav-link nav__tag" href="/messages?room=<%= currentUser._id  %>">Messages</a>
                 <a class="nav-link nav__tag" href="/restricted/<%=currentUser._id %>">Profile</a>
