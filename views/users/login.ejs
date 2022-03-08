@@ -12,12 +12,18 @@
                 <div class="underline"></div>
             </div>
 
-            <form class="row g-3 mt-3 validated-form" action="/login" method="POST" novalidate>
+            <form class="row g-3 mt-3 needs-validation validated-form" action="/login" method="POST" novalidate>
                 <div class="row g-3 section">
                     <label for="username" class="form-label col-md">Username</label>
                     <div class="col-md-8">
-                        <input type="username" name="username" id="username" placeholder="username" class="form-control"
+                        <input type="text" name="username" id="username" placeholder="username" class="form-control"
                             aria-label="username" required>
+                        <div class="valid-feedback">
+                            Looks Good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please choose a username.
+                        </div>
                     </div>
                 </div>
                 <div class="row g-3 section">
@@ -25,6 +31,12 @@
                     <div class="col-md-8">
                         <input type="password" name="password" id="password" placeholder="*********"
                             class="form-control" aria-label="password" required>
+                        <div class="valid-feedback">
+                            Looks Good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please choose a password.
+                        </div>
                     </div>
                 </div>
                 <div class="col-12 mb-6 d-flex justify-content-end">

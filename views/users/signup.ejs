@@ -13,7 +13,7 @@
             <div class="d-flex justify-content-center align-items-center">
                 <div class="underline"></div>
             </div>
-            <form action="/path" method="POST" class="row g-3 mt-3 validated-form" novalidate>
+            <form action="/path" method="POST" class="row g-3 mt-3 needs-validation validated-form" novalidate>
                 <div class="row g-3 section">
                     <label for="email" class="form-label col-4">Email</label>
                     <div class="col-md-8">
@@ -21,6 +21,9 @@
                             class="form-control" aria-label="Email" required>
                         <div class="valid-feedback">
                             Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please enter a valid email.
                         </div>
                     </div>
                 </div>
@@ -32,6 +35,9 @@
                         <div class="valid-feedback">
                             Looks good!
                         </div>
+                        <div class="invalid-feedback">
+                            Please enter a username.
+                        </div>
                     </div>
                 </div>
                 <div class="row g-3 section">
@@ -41,6 +47,9 @@
                             class="form-control" aria-label="password" required>
                         <div class="valid-feedback">
                             Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please enter a password.
                         </div>
                     </div>
                 </div>
