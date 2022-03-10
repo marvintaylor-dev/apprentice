@@ -24,7 +24,7 @@ const extension = (joi) => ({
 
 const Joi = BaseJoi.extend(extension)
 
-module.exports.userSchema = Joi.object({
+module.exports.userSchema = Joi.object().keys({
     job_title: Joi.string().escapeHTML()
         .label('Job Title'),
     name: Joi.object({
@@ -32,14 +32,15 @@ module.exports.userSchema = Joi.object({
         last: Joi.string().escapeHTML(),
     }),
     email: Joi.string().escapeHTML()
-        .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }),
+        .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
+        .required(),
     username: Joi.string()
         .alphanum()
         .min(3)
         .max(30)
-        .label('Username').escapeHTML(),
+        .label('Username').required().escapeHTML(),
     password: Joi.string()
-        .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).escapeHTML(),
+        .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required().escapeHTML(),
     age: Joi.number()
         .min(0),
     //profile_pic: Joi.any(),
@@ -68,3 +69,4 @@ module.exports.reviewSchema = Joi.object({
 module.exports.noteSchema = Joi.object({
     noteBody: Joi.string().escapeHTML()
 });
+

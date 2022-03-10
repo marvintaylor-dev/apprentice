@@ -10,21 +10,35 @@
 
 .faq-title {
   margin-top: 5rem;
-  color: #21d883;
+  color: $primary;
 }
 
 dt {
   font-size: 1.2rem;
-  color: white;
+  color: $white;
 }
+
 .accordion,
 .accordion-button {
   color: rgb(237, 237, 237);
 }
 
 .accordion-button {
-  border: 1px solid #21d883;
+  border: 1px solid $primary;
 }
+
+.accordion-button:not(.collapsed) {
+  background-color: $background;
+  color: $primary;
+}
+
+.accordion-collapse {
+  background-color: $background;
+  color: $lightGray;
+}
+
+
+
 
 .faqContainer {
   width: 45%;

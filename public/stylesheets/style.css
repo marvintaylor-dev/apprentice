@@ -1828,12 +1828,12 @@ dd {
 
 .faq-title {
   margin-top: 5rem;
-  color: #21d883;
+  color: #21D883;
 }
 
 dt {
   font-size: 1.2rem;
-  color: white;
+  color: #FFF;
 }
 
 .accordion,
@@ -1842,7 +1842,17 @@ dt {
 }
 
 .accordion-button {
-  border: 1px solid #21d883;
+  border: 1px solid #21D883;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #282828;
+  color: #21D883;
+}
+
+.accordion-collapse {
+  background-color: #282828;
+  color: rgba(242, 242, 242, 0.872);
 }
 
 .faqContainer {

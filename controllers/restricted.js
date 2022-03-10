@@ -72,10 +72,20 @@ module.exports.mentorDashboard = async (req, res) => {
         path: 'notes',
         populate: {
             path: 'author'
+        },
+        path: 'reviews',
+        populate: {
+            path: 'author'
         }
     });
+    if (!user) {
+        req.flash('error', 'Cannot find that mentor');
+        return res.redirect('/list')
+    }
+
     const mentees = await User.findById(user.mentees);
     const notes = await Note.find({})
+
     return res.render('restricted/dashboard', { user, id, mentees, notes })
 }
 

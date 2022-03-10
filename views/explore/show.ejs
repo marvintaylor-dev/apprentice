@@ -3,77 +3,76 @@
 <link rel="stylesheet" href="/stylesheets/style.css">
 
 <div class="showBody">
-  <div class="container">
-      <div class="showContainer">
-          <div class="prevPicNext">
-              <a class="navigation btn btn-info left"
-                href="<%= idArray[idArray.indexOf(user.id) - 1] %>">Previous</a>
+    <div class="container">
+        <div class="showContainer">
+            <div class="prevPicNext">
+                <a class="navigation btn btn-info left" href="<%= idArray[idArray.indexOf(user.id) - 1] %>">Previous</a>
 
                 <div class="avatar d-flex justify-content-center">
                     <% if(user.avatar.url) { %>
                     <img class="avatar__image" src="<%= user.avatar.url %>" alt="Mentor Image">
                     <% } else {%>
                     <img class="avatar__image"
-                   src="https://images.unsplash.com/photo-1618085220188-b4f210d22703?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80">
+                        src="https://images.unsplash.com/photo-1618085220188-b4f210d22703?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80">
                     <% } %>
-               </div>
+                </div>
 
-             <a class="navigation btn btn-info right" href="<%= idArray[idArray.indexOf(user.id) + 1] %>">Next</a>
-         </div>
-    
-        
-         <div class="showPg__name mt-5 d-flex justify-content-center">
-            <div class="text-white">Tier <%= user.tier %> </div>
-            <h1><%= user.name.first %> <%= user.name.last %></h1> 
-         </div>
-
-         <div class="line__styling"></div>
-
-         <div class="job-title d-flex justify-content-center mb-5">
-            <% if(user.job_title){ %>
-            <h2 id="job_title"><%= user.job_title.toUpperCase() %></h2> 
-            <% } else { %>
-            <h2 id="job_title">Job Title</h2>
-            <% } %>
-         </div>
+                <a class="navigation btn btn-info right" href="<%= idArray[idArray.indexOf(user.id) + 1] %>">Next</a>
+            </div>
 
 
-         <div class="information">
-            <div class="profileInformation col-sm">
+            <div class="showPg__name mt-5 d-flex justify-content-center">
+                <div class="text-white">Tier <%= user.tier %> </div>
+                <h1><%= user.name.first %> <%= user.name.last %></h1>
+            </div>
+
+            <div class="line__styling"></div>
+
+            <div class="job-title d-flex justify-content-center mb-5">
+                <% if(user.job_title){ %>
+                <h2 id="job_title"><%= user.job_title.toUpperCase() %></h2>
+                <% } else { %>
+                <h2 id="job_title">Job Title</h2>
+                <% } %>
+            </div>
+
+
+            <div class="information">
+                <div class="profileInformation col-sm">
                     <div class="job-description info-section">
                         <h3>Job Description</h3>
                         <p class="unique_info"><%= user.job_description %></p>
                     </div>
-                <div class="comp_edu_field">
-                    <div class="compensation info-section">
-                        <h3>Annual Compensation</h3>
-                        <p class="unique_info">$<%= user.salary %></p>
-                    </div>
-                    <div class="education info-section">
-                        <h3>Education Requirements</h3>
-                        <p class="unique_info"> <%= user.education_required  %></p>
-                    </div>
-                    <div class="field info-section">
-                        <h3>Field</h3>
-                        <p class="unique_info"><%= user.field_of_study  %></p>
+                    <div class="comp_edu_field">
+                        <div class="compensation info-section">
+                            <h3>Annual Compensation</h3>
+                            <p class="unique_info">$<%= user.salary %></p>
+                        </div>
+                        <div class="education info-section">
+                            <h3>Education Requirements</h3>
+                            <p class="unique_info"> <%= user.education_required  %></p>
+                        </div>
+                        <div class="field info-section">
+                            <h3>Field</h3>
+                            <p class="unique_info"><%= user.field_of_study  %></p>
+                        </div>
                     </div>
                 </div>
             </div>
-         </div>
-    
-         </div>
+
+        </div>
 
 
 
- 
-         <div class="progress_bar_container">
+
+        <div class="progress_bar_container">
             <div>
                 <label for="mentee_slots" id="mentee_slot_label">Number of Mentees</label>
             </div>
             <input type="range" value="<%= user.mentees.length %>" class="mentee_slots" id="mentee_slots"
                 name="mentee_slots" min="0" max="10">
         </div>
-       
+
 
         <div class="msg_map_container">
             <div class="messageRequest_Container">
@@ -82,45 +81,14 @@
                 </form>
 
                 <form action="/messages" target="_blank" rel="noreferrer noopener">
-                    <button id="room" name="room" value="<%= user.id %>" type="submit" class="btn btn-info privateMsgBtn">Private Message</button>
+                    <button id="room" name="room" value="<%= user.id %>" type="submit"
+                        class="btn btn-info privateMsgBtn">Private Message</button>
                 </form>
             </div>
 
             <div id='map'></div>
         </div>
 
-
-        <div id="reviews" class="text-white">
-          <div class="reviewGridOne">
-            <% if(currentUser){ %>
-            <h4 class="card-title">Leave Your Review Below:</h4>
-            <form action="/explore/<%=user._id%>/reviews" method="POST" class="validated-form" novalidate>
-                <fieldset class="starability-basic">
-                    <input type="radio" id="no-rate" class="input-no-rate" name="review[score]" value="1" checked
-                        aria-label="No rating." />
-                    <input type="radio" id="first-rate1" name="review[score]" value="1" />
-                    <label for="first-rate1" title="Terrible">1 star</label>
-                    <input type="radio" id="first-rate2" name="review[score]" value="2" />
-                    <label for="first-rate2" title="Not good">2 stars</label>
-                    <input type="radio" id="first-rate3" name="review[score]" value="3" />
-                    <label for="first-rate3" title="Average">3 stars</label>
-                    <input type="radio" id="first-rate4" name="review[score]" value="4" />
-                    <label for="first-rate4" title="Very good">4 stars</label>
-                    <input type="radio" id="first-rate5" name="review[score]" value="5" />
-                    <label for="first-rate5" title="Amazing">5 stars</label>
-                </fieldset>
-                <div class="mb-3">
-                    <textarea class="form-control" name="review[body]" id="body" cols="60" rows="5" required></textarea>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                </div>
-                <div>
-                    <button class="submitBtn btn btn-info mt-2">Submit Review</button>
-                </div>
-            </form>
-            <% } %>
-        </div>
         <div class="reviewGridTwo">
             <div>
                 <h4 class="card-title mb-3">Mentor Reviews</h4>
@@ -140,7 +108,8 @@
                 <% } %>
             </div>
         </div>
-        </div>
+
+
     </div>
 </div>
 
