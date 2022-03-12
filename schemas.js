@@ -40,7 +40,7 @@ module.exports.userSchema = Joi.object().keys({
         .max(30)
         .label('Username').required().escapeHTML(),
     password: Joi.string()
-        .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required().escapeHTML(),
+        .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).escapeHTML(),
     age: Joi.number()
         .min(0),
     //profile_pic: Joi.any(),

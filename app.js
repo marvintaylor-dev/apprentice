@@ -31,7 +31,6 @@ const flash = require('connect-flash')
 const port = process.env.PORT || 3000;
 //Protect mongo DB from attacks within the URL. Finding all users for example
 const mongoSanitize = require('express-mongo-sanitize');
-// 
 const helmet = require('helmet');
 
 
