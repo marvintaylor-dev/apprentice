@@ -30,30 +30,42 @@ module.exports.restrictedUserProfile = async (req, res) => {
 
 //Update and edit mentor additional profile information
 module.exports.updateUserProfile = async (req, res, next) => {
-    const geoData = await geocoder.forwardGeocode({
-        query: `${req.body.location.city},${req.body.location.state}`,
-        limit: 1
-    }).send()
-    const { id } = req.params
-    const user = await User.findByIdAndUpdate(id, { ...req.body });
-    user.geometry = geoData.body.features[0].geometry;
-    await user.save();
     try {
-        user.avatar = ({ url: req.file.path, filename: req.file.filename })
+        const geoData = await geocoder.forwardGeocode({
+            query: `${req.body.location.city},${req.body.location.state}`,
+            limit: 1
+        }).send()
+        const { id } = req.params
+        const user = await User.findByIdAndUpdate(id, { ...req.body });
+        user.geometry = geoData.body.features[0].geometry;
         await user.save();
-        if (req.body.deleteImage) {
-            await cloudinary.uploader.destroy(user.avatar.filename);
-            await user.updateOne({ $unset: { avatar: { filename: req.body.deleteImage } } })
+        try {
+            user.avatar = ({ url: req.file.path, filename: req.file.filename })
+            await user.save();
+            if (req.body.deleteImage) {
+                await cloudinary.uploader.destroy(user.avatar.filename);
+                await user.updateOne({ $unset: { avatar: { filename: req.body.deleteImage } } })
+            }
+            req.flash('success', 'Successfully updated your profile!')
+            return res.redirect('/list')
+        } catch (e) {
+            if (req.body.deleteImage) {
+                await cloudinary.uploader.destroy(user.avatar.filename);
+                await user.updateOne({ $unset: { avatar: { filename: req.body.deleteImage } } })
+            }
+            req.flash('success', 'Successfully updated your profile!')
+            return res.redirect('/list')
         }
-        req.flash('success', 'Successfully updated your profile!')
-        return res.redirect('/list')
     } catch (e) {
-        if (req.body.deleteImage) {
-            await cloudinary.uploader.destroy(user.avatar.filename);
-            await user.updateOne({ $unset: { avatar: { filename: req.body.deleteImage } } })
-        }
-        req.flash('success', 'Successfully updated your profile!')
-        return res.redirect('/list')
+        const geoData = await geocoder.forwardGeocode({
+            query: `${req.body.location.city},${req.body.location.state}`,
+            limit: 1
+        }).send()
+        const { id } = req.params
+        const user = await User.findById(id, { ...req.body });
+        user.geometry = geoData.body.features[0].geometry;
+        req.flash('error', 'Could not update. Your profile entry was missing something.')
+        return res.render(`restricted/${req.params.id}`)
     }
 }
 
