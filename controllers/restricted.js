@@ -97,8 +97,9 @@ module.exports.mentorDashboard = async (req, res) => {
 
     const mentees = await User.findById(user.mentees);
     const notes = await Note.find({})
+    const allMentees = await User.find({});
 
-    return res.render('restricted/dashboard', { user, id, mentees, notes })
+    return res.render('restricted/dashboard', { user, id, mentees, notes, allMentees })
 }
 
 

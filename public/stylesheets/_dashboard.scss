@@ -29,7 +29,7 @@
   padding-top: 1rem;
   padding-bottom: 1rem;
   box-shadow: 2px 2px 20px 10px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
+  
 
   & .dashboardNav__head {
     @include flexCenter(column);
@@ -126,7 +126,8 @@
 .removeMentee {
   background-color: $redOrange;
   color: white;
-  padding: 5px;
+  padding: .1rem .4rem;
+  margin: .3rem .2rem;
 }
 
 /* Show the dropdown menu on hover */
@@ -140,7 +141,7 @@
   position: absolute;
   background-color: $primary;
   padding: 10px 10px;
-  width: 320px;
+  min-width: fit-content;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
@@ -260,6 +261,12 @@
     color: black;
   }
 
+  .menteeNumber{
+    border: 1px solid white;
+    border: 50%;
+    color: white;
+  }
+
 
 }
 @media (max-width: 1200px) {
@@ -365,8 +372,46 @@
   padding-top: 3rem;
 }
 
+.menteeInfo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
 
+.menteeHeader{
+  color: var(--primary);
+}
 
+.menteeNumber{
+  color: var(--lightGray);
+}
+
+.menteeNumberSize{
+  font-size: 3rem;
+}
+
+.menteeList{
+  display: flex;
+  flex-direction: column;
+}
+
+.menteeCircle {
+  background-color: var(--primary);
+  border: .3rem solid green;
+  border-radius: 50%;
+  height: 6rem;
+  width: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.alignment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 /* 
 .addContentLink {
