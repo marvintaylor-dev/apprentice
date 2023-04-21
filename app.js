@@ -9,6 +9,7 @@ const app = express();
 const path = require('path');
 //allows us to use inline javascript
 const engine = require('ejs-mate');
+
 //provides syntax to pass information into our Mongo database
 const mongoose = require('mongoose');
 //provides a log for activity such as log in.
@@ -61,7 +62,7 @@ const userRoutes = require('./routes/users');
 
 const MongoStore = require('connect-mongo');
 
-const dbUrl = /* process.env.DB_URL || */ 'mongodb://localhost:27017/apprentice'
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/apprentice'
 
 
 //-----------MONGO / MONGOOSE DB CONNECTION-------------

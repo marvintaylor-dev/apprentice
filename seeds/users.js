@@ -35,7 +35,7 @@ const seedDB = async (req, res) => {
         const random100 = Math.floor(Math.random() * 100);
         const random1000 = Math.floor(Math.random() * 1000);
         const salary = Math.floor(Math.random() * 200000) + 1000;
-        const email = faker.internet.email(first,last);
+        const email = faker.internet.email(first, last);
         const password = 'elf';
         try {
             const user = new User({

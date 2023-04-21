@@ -10,6 +10,7 @@
 
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
             <div class="navbar-nav navbar">
+
                 <% if(currentUser){ %>
                 <div class="welcomeMessage d-flex">
                     <div>Welcome back,</div>
@@ -17,7 +18,7 @@
                 </div>
                 <% } %>
                 <a class="nav-link nav__tag" href="/explore">Explore</a>
-                <% } if(!currentUser) {%>
+                <% if(!currentUser) {%>
                 <a class="nav-link nav__tag" href="/login">Log in</a>
                 <a class="nav-link nav__tag" href="/signup">Sign Up</a>
                 <a class="nav-link nav__tag" href="/faq">Mentee vs Mentor</a>
@@ -28,6 +29,8 @@
                 <a class="nav-link nav__tag" href="/restricted/<%=currentUser._id %>">Profile</a>
                 <a class="nav-link nav__tag" href="/logout">Logout</a>
                 <% } %>
+
+
             </div>
         </div>
     </div>
