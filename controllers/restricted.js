@@ -87,6 +87,20 @@ module.exports.restrictedUserProfile = async (req, res) => {
   });
 };
 
+module.exports.updatePath = async (req, res) => {
+  const userId = req.params.id;
+  let value = req.query.Path;
+  const user = await User.findById(userId);
+  if (!user) {
+    return res.status(404).send("User not found");
+  }
+  user.path = value;
+  await user.save();
+  console.log(res);
+  req.flash("success", `Successfully selected the ${value} path!`);
+  return res.redirect(`/restricted/${userId}`);
+};
+
 //Update and edit mentor additional profile information
 module.exports.updateUserProfile = async (req, res, next) => {
   try {

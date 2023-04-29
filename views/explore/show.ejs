@@ -1,6 +1,6 @@
 <% layout('layouts/boilerplate') %>
 <link rel="stylesheet" href="/stylesheets/stars.css" />
-<link rel="stylesheet" href="/stylesheets/style.css">
+<link rel="stylesheet" href="/stylesheets/style.css" />
 
 <div class="showBody">
     <div class="container">
@@ -12,8 +12,7 @@
                     <% if(user.avatar.url) { %>
                     <img class="avatar__image" src="<%= user.avatar.url %>" alt="Mentor Image">
                     <% } else {%>
-                    <img class="avatar__image"
-                        src="https://images.unsplash.com/photo-1618085220188-b4f210d22703?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80">
+                    <img class="avatar__image" src="/Images/Missing_avatar.png" alt="Missing Avatar">
                     <% } %>
                 </div>
 

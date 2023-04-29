@@ -1,25 +1,30 @@
 <% layout('layouts/boilerplate') %>
-<link rel="stylesheet" href="/stylesheets/style.css">
+<link rel="stylesheet" href="/stylesheets/style.css" />
 
 <div class="d-flex justify-content-center mt-5">
-    <h1 id="header">Choose One</h1>
+  <h1 id="header">Choose One</h1>
 </div>
 
-
 <div class="row row-2 d-flex justify-content-center">
-    <div class="contained col-md-3">
-        <form action="/restricted/<%= currentUser._id  %> " method="GET">
-            <button id="mentorButton" class="category">
-                <p class="category_title">Mentor</p>
-            </button>
-        </form>
-    </div>
+  <div class="contained col-md-3">
+    <form
+      action="/user/<%= currentUser._id  %>?Path=Mentor&_method=PUT"
+      method="POST"
+    >
+      <button type="submit" id="mentorButton" class="category">
+        <p class="category_title">Mentor</p>
+      </button>
+    </form>
+  </div>
 
-    <div class="contained col-md-3">
-        <form action="/tiers" method="GET">
-            <button id="menteeButton" class="category">
-                <p class="category_title">Mentee</p>
-            </button>
-        </form>
-    </div>
+  <div class="contained col-md-3">
+    <form
+      action="/user/<%= currentUser._id  %>?Path=Mentee&_method=PUT"
+      method="POST"
+    >
+      <button type="submit" value="Mentee" id="menteeButton" class="category">
+        <p class="category_title">Mentee</p>
+      </button>
+    </form>
+  </div>
 </div>

@@ -157,6 +157,107 @@
     </div>
 </div>
 <% } %>
+<% if(user.path == "Mentee"){ %>
+    <div class="dashBody">
+        <div class="dashHeader">
+            <h1 class="dashHeader__content">Mentee Dashboard</h1>
+        </div>
+    
+        <nav class="dashboardNav">
+            <header class="dashboardNav__head">
+                <div class="dashboardNav__picture--container">
+                    <!-- insert profile picture -->
+                    <% if(user.avatar.url){ %>
+                    <img class="dashboardNav--picture" src="<%= user.avatar.url  %>" alt="">
+                    <% } else { %>
+                    <img class="dashboardNav--picture"
+                        src="https://images.unsplash.com/photo-1517849845537-4d257902454a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80"
+                        alt="">
+                    <% } %>
+                </div>
+                <% if(user.name.first){ %>
+                <div class="dashboardNav--username">Welcome, <%= user.name.first %> </div>
+                <% } else { %>
+                <div class="dashboardNav--username">Welcome, <%= user.username %> </div>
+                <% } %>
+            </header>
+            <div class="dashboardNav__links">
+                <a class="dashboardNav--link" href="#messages">Chat</a>
+                <a class="dashboardNav--link" href="#analytics">Analytics</a>
+            </div>
+        </nav>
+    
+        <div class="dashboardGrid">
+            <div id="messages" class="messages">
+                <div class="join-container">
+                    <header class="join-header">
+                        <h3>Group Chat</h3>
+                    </header>
+                    <main class="join-main">
+                        <form action="/chat" rel="noreferrer noopener">
+                            <div class="join__inputContainer form-control">
+                                <label for="room">Room</label>
+                                <select name="room" id="room">
+                                    <option value="Group 1">All</option>
+                                    <option value="Group 2">Mentee 1</option>
+                                    <option value="Group 3">Mentee 2</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="joinChatBtn btn">Join Chat</button>
+                        </form>
+                    </main>
+                </div>
+            </div>        
+            <!-- Commented out to remove the graph from the dashboard. It currently does not do anything -->
+    
+            <!-- <div id="analytics" class="analytics">
+                <div class="analytics__background">
+                    <div class="analytics--chart">
+                        <canvas id="myChart"></canvas>
+                    </div>
+                </div>
+            </div> -->    
+            <div class="assignments">
+                <div class="assignments__title">
+                    <h3>Notes</h3>
+                </div>
+                <form action="/dashboard/<%=user._id%>/notes" method="POST">
+                    <textarea class="noteInput" id="body" rows="3" cols="40" name="note[body]"></textarea>
+                    <button class="noteSubmit">Submit</button>
+                </form>
+    
+            </div>
+    
+            <div class="board assignments">
+                <div class="assignments__title h3">Note Board</div>
+                <div class="assignments-board">
+                    <% for(let note of notes) {%>
+                    <% if(note.author.toString() === user._id.toString()){ %>
+                    <div class="note-container">
+                        <form action="/dashboard/<%= user._id %>/edit/<%= note._id %>" method="POST">
+                            <span name="note[body]" class="noteBody"><%= note.body %></span>
+                            <button class="update-button hide"> &#10003;</button>
+    
+                        </form>
+    
+                        <form action="/dashboard/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
+                            <div class="button-container">
+                                <button class="edit-button">&#9998;</button>
+                                <button class="remove-button">&#10008;</button>
+                            </div>
+                        </form>
+    
+                    </div>
+                    <% } %>
+                    <% } %>
+                </div>
+            </div>
+            <ul class="noteList"></ul>
+        </div>
+    </div>
+<% } %>
+
+
 
 <!-- Data Visualization -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
