@@ -5,8 +5,9 @@ mapboxgl.accessToken = mapToken;
 const cluster = new mapboxgl.Map({
     container: 'cluster',
     style: 'mapbox://styles/mapbox/dark-v10',
-    center: [-103.59179687498357, 40.66995747013945],
-    zoom: 3
+    // center: [-103.59179687498357, 40.66995747013945],
+    center: [-115.1391, 36.1716],
+    zoom: 9.5
 });
 
 cluster.on('load', function () {
