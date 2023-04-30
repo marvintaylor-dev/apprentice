@@ -1,40 +1,37 @@
 <% layout('layouts/boilerplate') %>
-<link rel="stylesheet" href="/stylesheets/list.css">
+<link rel="stylesheet" href="/stylesheets/list.css" />
 
 <div class="listBody">
-    <div class="listContainer mt-5">
-        <h1 class="mentorsList">
-            <%= field_of_study || 'All' %> Mentors
-        </h1>
-    </div>
+  <div class="listContainer mt-5">
+    <h1 class="mentorsList"><%= field_of_study || 'All' %> Mentors</h1>
+  </div>
 
-    <div class="listContainer mt-5">
-        <div id="cluster"></div>
-        <div class="mentorInformation">
-            <ul>
-                <% for (let user of users) {%>
-                <% if(user.path){ %>
-
-                <li class="mentor_component">
-                    <a class="mentorInformation__name" href="/explore/<%=user._id%>">
-                        <%= user.name.first %>
-                        <%= user.name.last %>
-                    </a>
-                    <a class="mentorInformation__jobTitle" href="/explore/<%=user._id%>"><%= user.job_title %></a>
-                    <!-- <button id="profile_access"><a href="/restricted/<%=user._id%>">Restricted Access Profile</a></button> -->
-                </li>
-                <% } %>
-                <% } %>
-            </ul>
-        </div>
+  <div class="listContainer mt-5">
+    <div id="cluster"></div>
+    <div class="mentorInformation">
+      <ul>
+        <% for (let user of users) {%> { %>
+        <li class="mentor_component">
+          <a class="mentorInformation__name" href="/explore/<%=user._id%>">
+            <%= user.name.first %> <%= user.name.last %>
+          </a>
+          <a class="mentorInformation__jobTitle" href="/explore/<%=user._id%>">
+            <%= user.job_title %>
+          </a>
+        </li>
+        <% } %>
+      </ul>
     </div>
+  </div>
 </div>
 
-
-<script>  const mapToken = '<%-process.env.MAPBOX_TOKEN%>'; </script>
+<script>
+  const mapToken = "<%-process.env.MAPBOX_TOKEN%>";
+</script>
 
 <!-- if we save with auto formatting the ejs will separate the hypen from the % causing cluster map to break -->
-<script> const users = { features: <%- JSON.stringify(users) %> }; </script>
-
+<script>
+  const users = { features: <%- JSON.stringify(users) %> };
+</script>
 
 <script src="/javascripts/cluster.js"></script>

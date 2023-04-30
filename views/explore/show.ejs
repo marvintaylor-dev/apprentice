@@ -1,94 +1,120 @@
 <% layout('layouts/boilerplate') %>
-<link rel="stylesheet" href="/stylesheets/stars.css" />
 <link rel="stylesheet" href="/stylesheets/style.css" />
 
 <div class="showBody">
-    <div class="container">
-        <div class="showContainer">
-            <div class="prevPicNext">
-                <a class="navigation btn btn-info left" href="<%= idArray[idArray.indexOf(user.id) - 1] %>">Previous</a>
-
-                <div class="avatar d-flex justify-content-center">
-                    <% if(user.avatar.url) { %>
-                    <img class="avatar__image" src="<%= user.avatar.url %>" alt="Mentor Image">
-                    <% } else {%>
-                    <img class="avatar__image" src="/Images/Missing_avatar.png" alt="Missing Avatar">
-                    <% } %>
-                </div>
-
-                <a class="navigation btn btn-info right" href="<%= idArray[idArray.indexOf(user.id) + 1] %>">Next</a>
-            </div>
-
-
-            <div class="showPg__name mt-5 d-flex justify-content-center">
-                <div class="text-white">Tier <%= user.tier %> </div>
-                <h1><%= user.name.first %> <%= user.name.last %></h1>
-            </div>
-
-            <div class="line__styling"></div>
-
-            <div class="job-title d-flex justify-content-center mb-5">
-                <% if(user.job_title){ %>
-                <h2 id="job_title"><%= user.job_title.toUpperCase() %></h2>
-                <% } else { %>
-                <h2 id="job_title">Job Title</h2>
-                <% } %>
-            </div>
-
-
-            <div class="information">
-                <div class="profileInformation col-sm">
-                    <div class="job-description info-section">
-                        <h3>Job Description</h3>
-                        <p class="unique_info"><%= user.job_description %></p>
-                    </div>
-                    <div class="comp_edu_field">
-                        <div class="compensation info-section">
-                            <h3>Annual Compensation</h3>
-                            <p class="unique_info">$<%= user.salary %></p>
-                        </div>
-                        <div class="education info-section">
-                            <h3>Education Requirements</h3>
-                            <p class="unique_info"> <%= user.education_required  %></p>
-                        </div>
-                        <div class="field info-section">
-                            <h3>Field</h3>
-                            <p class="unique_info"><%= user.field_of_study  %></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+  <div class="showContainer">
+    <div class="avatar-name-title d-flex">
+      <div class="prevPicNext d-flex flex-column gap-3">
+        <div class="avatar d-flex justify-content-center">
+          <% if(user.avatar.url) { %>
+          <img
+            class="avatar__image"
+            src="<%= user.avatar.url %>"
+            alt="Mentor Image"
+          />
+          <% } else {%>
+          <img
+            class="avatar__image"
+            src="/Images/Missing_avatar.png"
+            alt="Missing Avatar"
+          />
+          <% } %>
+        </div>
+        <div>
+          <a
+            class="navigation btn btn-info left"
+            href="<%= idArray[idArray.indexOf(user.id) - 1] %>"
+            >Previous</a
+          >
+          <a
+            class="navigation btn btn-info right"
+            href="<%= idArray[idArray.indexOf(user.id) + 1] %>"
+            >Next</a
+          >
+        </div>
+      </div>
+      <div>
+        <div class="showPg__name d-flex justify-content-center">
+          <h1><%= user.name.first %> <%= user.name.last %></h1>
         </div>
 
+        <div class="line__styling"></div>
 
-
-
-        <div class="progress_bar_container">
-            <div>
-                <label for="mentee_slots" id="mentee_slot_label">Number of Mentees</label>
-            </div>
-            <input type="range" value="<%= user.mentees.length %>" class="mentee_slots" id="mentee_slots"
-                name="mentee_slots" min="0" max="10">
+        <div class="job-title d-flex justify-content-center">
+          <div class="d-flex flex-column align-items-end">
+            <h2 id="job_title"><%= user.job_title.toUpperCase() %></h2>
+            <div class="text-white">Tier <%= user.tier %></div>
+          </div>
         </div>
+      </div>
+    </div>
 
+    <div class="msg_map_container">
+      <div id="map"></div>
+    </div>
+  </div>
 
-        <div class="msg_map_container">
-            <div class="messageRequest_Container">
-                <form action="/explore/<%=user._id%>/mentor" method="POST">
-                    <button id="request_btn" class="btn btn-warning" name="mentees">Request Mentorship</button>
-                </form>
+  <div class="information">
+    <div class="profileInformation">
+      <div class="job-description info-section">
+        <div>Job Description</div>
+        <p class="unique_info"><%= user.job_description %></p>
+      </div>
+      <div class="compensation info-section">
+        <div>Annual Compensation</div>
+        <p class="unique_info">$<%= user.salary %></p>
+      </div>
+      <div class="education info-section">
+        <div>Education Requirements</div>
+        <p class="unique_info"><%= user.education_required %></p>
+      </div>
+      <div class="field info-section">
+        <div>Field</div>
+        <p class="unique_info"><%= user.field_of_study %></p>
+      </div>
+    </div>
+  </div>
 
-                <form action="/messages" target="_blank" rel="noreferrer noopener">
-                    <button id="room" name="room" value="<%= user.id %>" type="submit"
-                        class="btn btn-info privateMsgBtn">Private Message</button>
-                </form>
-            </div>
+  <div class="sliderAndButtonsContainer mt-5">
+    <div class="progress_bar_container">
+      <div class="d-flex flex-column">
+        <label for="mentee_slots" id="mentee_slot_label"
+          >Number of Mentees</label
+        >
+        <input
+          disabled
+          type="range"
+          value="<%= user.mentees.length %>"
+          class="mentee_slots"
+          id="mentee_slots"
+          name="mentee_slots"
+          min="0"
+          max="10"
+        />
+      </div>
+    </div>
+    <div class="messageRequest_Container">
+      <form action="/explore/<%=user._id%>/mentor" method="POST">
+        <button id="request_btn" class="myBtn" name="mentees">
+          Request Mentorship
+        </button>
+      </form>
 
-            <div id='map'></div>
-        </div>
+      <form action="/messages" target="_blank" rel="noreferrer noopener">
+        <button
+          id="room"
+          name="room"
+          value="<%= user.id %>"
+          type="submit"
+          class="privateMsgBtn myBtn"
+        >
+          Private Message
+        </button>
+      </form>
+    </div>
+  </div>
 
-        <div class="reviewGridTwo">
+  <!-- <div class="reviewGridTwo">
             <div>
                 <h4 class="card-title mb-3">Mentor Reviews</h4>
                 <% for(let review of user.reviews) {%>
@@ -106,27 +132,26 @@
                 </div>
                 <% } %>
             </div>
-        </div>
-
-
-    </div>
+        </div> -->
 </div>
 
-
-</div>
-</div>
-
-
-
-<script>  const mapToken = '<%-process.env.MAPBOX_TOKEN%>'; </script>
+<script>
+  const mapToken = "<%-process.env.MAPBOX_TOKEN%>";
+</script>
 
 <!-- Workaround for JSON.stringify as it does not work any longer. Pass in numbers and parseFloat on map.js -->
-<script> const coordinate1 = '<%- user.geometry.coordinates[0] %>';</script>
-<script> const coordinate2 = '<%- user.geometry.coordinates[1] %>';</script>
-<script>const userName = '<%- `${user.name.first} ${user.name.last}`%>'; </script>
-<script>const title = '<%- user.job_title %>'; </script>
-
-
+<script>
+  const coordinate1 = "<%- user.geometry.coordinates[0] %>";
+</script>
+<script>
+  const coordinate2 = "<%- user.geometry.coordinates[1] %>";
+</script>
+<script>
+  const userName = "<%- `${user.name.first} ${user.name.last}`%>";
+</script>
+<script>
+  const title = "<%- user.job_title %>";
+</script>
 
 <script src="/javascripts/map.js"></script>
 <script src="/javascripts/validation.js"></script>

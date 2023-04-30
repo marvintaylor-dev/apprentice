@@ -1,18 +1,19 @@
 .showBody {
-  min-height: 100vh;
+  margin: 5rem 10%;
 }
 
 .showContainer {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 3rem;
 }
 
 .prevPicNext {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-right: 2rem;
 }
 
 .navigation {
@@ -21,24 +22,21 @@
 }
 
 .avatar {
-  top: 5rem;
   display: flex;
   justify-items: center;
-  align-items: flex-start;
+  align-items: center;
   font-weight: bold;
   color: $lightGray;
-  height: 25rem;
-  width: 25rem;
+  height: 15rem;
+  width: 15rem;
   border-radius: 50%;
   border: 3px solid $primary;
   overflow: hidden;
-  margin: 2rem 3rem 0 3rem;
   transition: all 1s ease-in-out;
 }
 
 .avatar__image {
   z-index: 1;
-  margin-bottom: 3rem;
   max-width: 100%;
 }
 
@@ -53,7 +51,6 @@
 .comp_edu_field {
   display: flex;
   justify-content: space-between;
-  margin-top: 10rem;
 }
 
 .information {
@@ -72,14 +69,8 @@
   color: white;
 }
 
-.info-section {
-  margin-bottom: 4rem;
-  margin-right: 3rem;
-}
-
 .progress_bar_container {
   width: 25rem;
-  margin-bottom: 5rem;
 }
 
 .progress_color {
@@ -118,10 +109,6 @@
   height: 300px;
   border-radius: 5em;
   border: 2px solid $primary;
-  margin-left: 60vw;
-  top: -15rem;
-  right: 4rem;
-  position: absolute;
 }
 
 .mapboxgl-popup {
@@ -147,13 +134,16 @@
 }
 
 #mentee_slot_label {
-  margin-top: 10rem;
   color: white;
   font-size: 1.5rem;
 }
 
-.profileInformation h3 {
-  font-size: 2rem;
+.profileInformation {
+  font-size: 1rem;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
 .line__styling {
@@ -188,72 +178,44 @@
   grid-template-columns: repeat(2, 1fr);
 }
 
+.sliderAndButtonsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 5rem;
+}
+
 /* ----------------------------------------------- RESPONSIVE DESIGN ----------------------------------------------- */
 
 @media (max-width: 1200px) {
-  .messageRequest_Container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
-  }
-  .privateMsgBtn {
-    margin-left: 0;
+  .myBtn,
+  #request_btn {
+    font-size: 1rem;
   }
 }
-
 @media (max-width: 1000px) {
-  .avatar {
-    height: 15rem;
-    width: 15rem;
-    margin: 3rem 1rem 0 1rem;
-  }
-
-  .container {
-    flex-direction: column;
-  }
-
-  .comp_edu_field {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 5rem;
-    flex-direction: column;
-  }
-
-  .progress_bar_container {
-    margin-left: 2rem;
-    width: 90%;
-  }
-
-  #mentee_slot_label {
-    margin-top: 5rem;
-  }
-
-  .messageRequest_Container {
-    display: flex;
-    justify-content: center;
+  .showContainer,
+  .sliderAndButtonsContainer {
     align-items: center;
     flex-direction: column;
   }
 
-  .privateMsgBtn {
-    margin-left: 0rem;
+  .avatar-name-title {
+    flex-direction: column-reverse;
   }
 
-  .information {
-    margin-left: 2rem;
+  .sliderAndButtonsContainer {
+    gap: 2rem;
   }
-  .info-section {
-    margin-left: 0rem;
+
+  .prevPicNext {
     margin-right: 0rem;
   }
+}
 
-  #reviews {
-    grid-template-columns: 1fr;
-  }
-
-  #map {
-    display: none;
+@media (max-width: 800px) {
+  .profileInformation {
+    flex-direction: column;
   }
 }
 
@@ -262,8 +224,25 @@
     font-size: 1rem;
   }
 
-  #reviews {
-    padding: 2rem;
+  #map {
+    width: 300px;
+    height: 300px;
+  }
+
+  .messageRequest_Container {
+    flex-direction: column;
+  }
+
+  .privateMsgBtn {
+    margin-left: 0rem;
+  }
+
+  .sliderAndButtonsContainer {
+    flex-wrap: nowrap;
+  }
+
+  .progress_bar_container {
+    width: fit-content;
   }
 }
 
@@ -271,11 +250,6 @@
   .avatar {
     height: 10rem;
     width: 10rem;
-    margin: 3rem 1rem 0 1rem;
-  }
-
-  .navigation {
-    font-size: 0.5rem;
-    padding: 0.5rem;
+    margin-top: 2rem;
   }
 }
